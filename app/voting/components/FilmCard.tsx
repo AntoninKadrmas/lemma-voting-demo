@@ -20,6 +20,7 @@ export default function DragCarousel({
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [currentX, setCurrentX] = useState(0);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const cardWidth = 350;
   const threshold = cardWidth / 4;
@@ -48,7 +49,6 @@ export default function DragCarousel({
   // Handle drag end
   const handleDragEnd = () => {
     if (!isDragging) return;
-
     const dragDistance = startX - currentX;
     if (dragDistance > threshold && activeIndex < items.length - 1) {
       // Dragged left (next card)
@@ -88,15 +88,16 @@ export default function DragCarousel({
       <div
         className="relative h-full w-full"
         onTouchStart={handleDragStart}
-        onMouseDown={handleDragStart}
+        // onMouseDown={handleDragStart}
         onTouchEnd={handleDragEnd}
-        onMouseUp={handleDragEnd}
+        // onMouseUp={handleDragEnd}
         onTouchMove={(e) => handleDrag(e as unknown as TouchEvent)}
-        onMouseMove={(e) => handleDrag(e as unknown as MouseEvent)}
+        // onMouseMove={(e) => handleDrag(e as unknown as MouseEvent)}
         onMouseLeave={handleDragEnd}
         onPointerDown={handleDragStart}
-        onPointerMove={(e) => handleDrag(e as unknown as TouchEvent)}
+        onPointerMove={(e) => handleDrag(e as unknown as PointerEvent)}
         onPointerUp={handleDragEnd}
+        // onPointerLeave={handleDragEnd}
       >
         {items.map((item, index) => {
           // Calculate the base position based on index relative to active index
