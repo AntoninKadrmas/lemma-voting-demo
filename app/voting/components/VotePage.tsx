@@ -26,11 +26,7 @@ export const apiUrl = false
   ? "http://localhost:3001/api"
   : "https://lemma-voting-demo.vercel.app/api";
 
-export const VotePage: FC<VotePageProps> = ({
-  firstBlock,
-  secondBlock,
-  ...props
-}) => {
+export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
   const client = useQueryClient();
   const [votedFilms, setVotedFilms] = useState<Set<number>>(new Set());
   const searchParams = useSearchParams();
@@ -61,7 +57,7 @@ export const VotePage: FC<VotePageProps> = ({
       });
       return await response.json();
     },
-    onSuccess: (val) => {
+    onSuccess: () => {
       toast.success("Your work has been submitted", {
         className: "text-white",
         description: "Your vote has been submitted successfully.",
@@ -69,7 +65,7 @@ export const VotePage: FC<VotePageProps> = ({
       client.invalidateQueries({ queryKey: ["votedFilms", voteId] });
     },
     onError: (error) => {
-      console.log(error);
+      console.error(error);
       toast.error("Error", {
         className: "text-white",
         description: "There was an error submitting your vote." + error.message,
@@ -93,7 +89,6 @@ export const VotePage: FC<VotePageProps> = ({
       setVotedFilms(new Set(JSON.parse(data.films)));
     }
   }, [data]);
-  console.log(isError);
   return (
     <>
       {!isError && (

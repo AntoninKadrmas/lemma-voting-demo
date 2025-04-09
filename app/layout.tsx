@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Script>
+      <Script id="darkmode">
         {`
           document.documentElement.classList.add('dark');
         `}

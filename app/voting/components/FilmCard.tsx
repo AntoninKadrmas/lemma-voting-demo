@@ -147,7 +147,7 @@ export default function DragCarousel({
                         background:
                           "linear-gradient(to right, rgba(0, 0, 0, 0.6), transparent)",
                       }}
-                      onClick={(e) => {
+                      onClick={() => {
                         setActiveIndex(index - 1);
                         onSelected(!state);
                       }}
@@ -163,7 +163,7 @@ export default function DragCarousel({
                         background:
                           "linear-gradient(to left, rgba(0, 0, 0, 0.6), transparent)",
                       }}
-                      onClick={(e) => {
+                      onClick={() => {
                         setActiveIndex(index + 1);
                         onSelected(!state);
                       }}

@@ -7,8 +7,8 @@ import { FilmType } from "./components/FilmType";
 import { Toaster } from "@/components/ui/sonner";
 import { useQuery } from "@tanstack/react-query";
 
-const page = () => {
-  const { data, isLoading, isError } = useQuery({
+const Page = () => {
+  const { data } = useQuery({
     queryKey: ["allFilms"],
     queryFn: async () => {
       const response = await fetch(`${apiUrl}/films`, {
@@ -26,7 +26,7 @@ const page = () => {
   ): { nodes: ReactNode[]; id: number } => {
     return {
       nodes: [
-        <div className="h-full w-full bg-background">
+        <div className="h-full w-full bg-background" key={item.id + item.name}>
           <div className={"h-[200px] w-[300px]"}>
             <img
               src={
@@ -41,7 +41,10 @@ const page = () => {
             <p className="text-sm font-light">{item.genre}</p>
           </div>
         </div>,
-        <div className="h-full w-full overflow-auto bg-background p-5">
+        <div
+          className="h-full w-full overflow-auto bg-background p-5"
+          key={item.id + item.description}
+        >
           <p className="text-md">{item.name}</p>
           <p className="text-sm">{item.description}</p>
         </div>,
@@ -74,4 +77,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
