@@ -24,7 +24,7 @@ type VotePageProps = {
 
 export const apiUrl = false
   ? "http://localhost:3001/api"
-  : "https://voting-demo.vercel.app/api";
+  : "https://lemma-voting-demo.vercel.app/api";
 
 export const VotePage: FC<VotePageProps> = ({
   firstBlock,
