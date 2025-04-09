@@ -39,7 +39,15 @@ export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
           },
         }
       );
-      return await response.json();
+      const data = await response.json();
+      try {
+        if (data && data.films && Array.isArray(JSON.parse(data.films))) {
+          setVotedFilms(new Set(JSON.parse(data.films)));
+        }
+      } catch (e) {
+        console.error(e);
+      }
+      return data;
     },
   });
   const { mutate, isPending } = useMutation({
@@ -52,6 +60,7 @@ export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            voteId: voteId,
             films: JSON.stringify(Array.from(films)),
             timestamp: new Date().toISOString(),
           }),
@@ -64,17 +73,19 @@ export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
         className: "text-white",
         description: "Your vote has been submitted successfully.",
       });
-      client.invalidateQueries({ queryKey: ["votedFilms", voteId] });
     },
-    onError: (error) => {
-      console.error(error);
+    onError: () => {
       toast.error("Error", {
         className: "text-white",
-        description: "There was an error submitting your vote." + error.message,
+        description: "There was an error submitting your vote.",
         action: {
           label: "Try again",
           onClick: onSubmit,
         },
+      });
+      client.invalidateQueries({
+        queryKey: ["votedFilms", voteId],
+        exact: true,
       });
     },
   });
@@ -86,11 +97,7 @@ export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
     [votedFilms]
   );
 
-  useEffect(() => {
-    if (data && Array.isArray(JSON.parse(data.films))) {
-      setVotedFilms(new Set(JSON.parse(data.films)));
-    }
-  }, [data]);
+  useEffect(() => {}, [data]);
   return (
     <>
       {!isError && (
