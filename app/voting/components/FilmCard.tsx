@@ -26,7 +26,6 @@ export default function DragCarousel({
 
   // Handle drag start
   const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
-    e.preventDefault();
     e.stopPropagation();
     setIsDragging(true);
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
@@ -36,7 +35,6 @@ export default function DragCarousel({
 
   // Handle dragging
   const handleDrag = (e: MouseEvent | TouchEvent) => {
-    e.preventDefault();
     e.stopPropagation();
     if (!isDragging) return;
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
@@ -97,9 +95,8 @@ export default function DragCarousel({
         onMouseMove={(e) => handleDrag(e as unknown as MouseEvent)}
         onMouseLeave={handleDragEnd}
         onPointerDown={handleDragStart}
-        onPointerMove={(e) => handleDrag(e as unknown as PointerEvent)}
+        onPointerMove={(e) => handleDrag(e as unknown as TouchEvent)}
         onPointerUp={handleDragEnd}
-        onPointerLeave={handleDragEnd}
       >
         {items.map((item, index) => {
           // Calculate the base position based on index relative to active index

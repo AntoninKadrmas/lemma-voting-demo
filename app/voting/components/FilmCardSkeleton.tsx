@@ -14,7 +14,7 @@ export const FilmCardSkeleton: FC<FilmCardSkeletonProps> = ({}) => {
 export const FilmCardSkeletonGroup: FC<FilmCardSkeletonProps> = ({}) => {
   return (
     <>
-      {Array(6)
+      {Array(10)
         .fill(0)
         .map((data, index) => {
           return <FilmCardSkeleton key={data + index} />;

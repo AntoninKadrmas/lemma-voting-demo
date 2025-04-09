@@ -53,15 +53,15 @@ const Page = () => {
   };
 
   return (
-    <>
-      <div className="flex h-auto py-28 w-screen items-center justify-center">
-        <h1 className="">VOTING</h1>
+    <div className="w-full">
+      <div className="flex h-auto py-28 w-fit m-auto items-center justify-center">
+        <h1>VOTING</h1>
       </div>
       <Toaster />
       {
         <Suspense
           fallback={
-            <div className="flex flex-col w-full gap-20 p-10 items-center">
+            <div className="flex flex-col w-full gap-20 p-10 items-center ">
               <h2>First block</h2>
               <div className="flex flex-col sm:flex-row sm:flex-wrap gap-6 ">
                 <FilmCardSkeletonGroup />
@@ -72,7 +72,7 @@ const Page = () => {
           <VotePage firstBlock={data ? data.map(getFimComponent) : null} />
         </Suspense>
       }
-    </>
+    </div>
   );
 };
 
