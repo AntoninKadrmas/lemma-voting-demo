@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
 
   interface TriggerFlowResponse {
     error?: string;
-    [key: string]: any;
+    [key: string]: unknown;
   }
 
   const data: TriggerFlowResponse = (await directus.request(
