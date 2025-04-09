@@ -1,9 +1,10 @@
 "use client";
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import { apiUrl, VotePage } from "./components/VotePage";
 import { FilmType } from "./components/FilmType";
 import { Toaster } from "@/components/ui/sonner";
 import { useQuery } from "@tanstack/react-query";
+import { FilmCardSkeletonGroup } from "./components/FilmCardSkeleton";
 
 const Page = () => {
   const { data } = useQuery({
@@ -57,7 +58,20 @@ const Page = () => {
         <h1 className="">VOTING</h1>
       </div>
       <Toaster />
-      {<VotePage firstBlock={data ? data.map(getFimComponent) : null} />}
+      {
+        <Suspense
+          fallback={
+            <div className="flex flex-col w-full gap-20 p-10 items-center">
+              <h2>First block</h2>
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-6 ">
+                <FilmCardSkeletonGroup />
+              </div>
+            </div>
+          }
+        >
+          <VotePage firstBlock={data ? data.map(getFimComponent) : null} />
+        </Suspense>
+      }
     </>
   );
 };
