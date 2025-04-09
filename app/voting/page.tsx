@@ -1,6 +1,6 @@
 "use client";
 import { ReactNode, Suspense } from "react";
-import { apiUrl, VotePage } from "./components/VotePage";
+import { VotePage } from "./components/VotePage";
 import { FilmType } from "./components/FilmType";
 import { Toaster } from "@/components/ui/sonner";
 import { useQuery } from "@tanstack/react-query";
@@ -10,7 +10,7 @@ const Page = () => {
   const { data } = useQuery({
     queryKey: ["allFilms"],
     queryFn: async () => {
-      const response = await fetch(`${apiUrl}/films`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ""}/films`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

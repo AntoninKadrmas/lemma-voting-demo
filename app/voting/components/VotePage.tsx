@@ -22,10 +22,6 @@ type VotePageProps = {
   secondBlock?: { nodes: ReactNode[]; id: number }[];
 } & HTMLAttributes<HTMLOrSVGElement>;
 
-export const apiUrl = false
-  ? "http://localhost:3001/api"
-  : "https://lemma-voting-demo.vercel.app/api";
-
 export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
   const client = useQueryClient();
   const [votedFilms, setVotedFilms] = useState<Set<number>>(new Set());
@@ -34,27 +30,33 @@ export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
   const { data, isLoading, isError } = useQuery<VoteType>({
     queryKey: ["votedFilms", voteId],
     queryFn: async () => {
-      const response = await fetch(`${apiUrl}/vote/${voteId}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL || ""}/vote/${voteId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       return await response.json();
     },
   });
   const { mutate, isPending } = useMutation({
     mutationFn: async (films: Set<number>) => {
-      const response = await fetch(`${apiUrl}/vote/${voteId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          films: JSON.stringify(Array.from(films)),
-          timestamp: new Date().toISOString(),
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL || ""}/vote/${voteId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            films: JSON.stringify(Array.from(films)),
+            timestamp: new Date().toISOString(),
+          }),
+        }
+      );
       return await response.json();
     },
     onSuccess: () => {
