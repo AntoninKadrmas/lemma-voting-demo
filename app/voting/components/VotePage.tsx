@@ -22,7 +22,7 @@ type VotePageProps = {
   secondBlock?: { nodes: ReactNode[]; id: number }[];
 } & HTMLAttributes<HTMLOrSVGElement>;
 
-export const apiUrl = true
+export const apiUrl = false
   ? "http://localhost:3001/api"
   : "https://lemma-voting-demo.vercel.app/api";
 
