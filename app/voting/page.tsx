@@ -48,14 +48,6 @@ const Page = () => {
           <p className="text-md">{item.name}</p>
           <p className="text-sm">{item.description}</p>
         </div>,
-        // <div className="h-full w-full overflow-auto bg-background p-5">
-        //   {item.authors?.map((val: any, index: number) => (
-        //     <div className="mb-2 flex flex-col" key={index}>
-        //       <span className="text-sm font-bold">{val.role}</span>
-        //       <span className="text-sm font-light">{val.names}</span>
-        //     </div>
-        //   ))}
-        // </div>,
       ],
       id: item.id,
     };
