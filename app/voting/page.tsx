@@ -1,6 +1,4 @@
 "use client";
-// import { getVotingFilms } from "@/lib/directus";
-// import DirectusImage from "@/components/elements/DirectusImage";
 import { ReactNode } from "react";
 import { apiUrl, VotePage } from "./components/VotePage";
 import { FilmType } from "./components/FilmType";
@@ -59,12 +57,7 @@ const Page = () => {
         <h1 className="">VOTING</h1>
       </div>
       <Toaster />
-      {
-        <VotePage
-          firstBlock={data ? data.map(getFimComponent) : null}
-          // secondBlock={secondBlock.map(getFimComponent)}
-        />
-      }
+      {<VotePage firstBlock={data ? data.map(getFimComponent) : null} />}
     </>
   );
 };
