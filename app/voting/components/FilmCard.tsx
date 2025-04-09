@@ -93,11 +93,11 @@ export default function DragCarousel({
         onMouseDown={handleDragStart}
         onTouchEnd={handleDragEnd}
         onMouseUp={handleDragEnd}
-        onTouchMove={handleDrag}
-        onMouseMove={handleDrag}
+        onTouchMove={(e) => handleDrag(e as unknown as TouchEvent)}
+        onMouseMove={(e) => handleDrag(e as unknown as MouseEvent)}
         onMouseLeave={handleDragEnd}
         onPointerDown={handleDragStart}
-        onPointerMove={handleDrag}
+        onPointerMove={(e) => handleDrag(e as unknown as MouseEvent)}
         onPointerUp={handleDragEnd}
         onPointerLeave={handleDragEnd}
       >
