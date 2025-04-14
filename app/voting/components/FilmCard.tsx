@@ -4,13 +4,8 @@ import { useState, useRef, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
-import {
-  BottomLeftArrow,
-  BottomRightArrow,
-  TopLeftArrow,
-  TopRightArrow,
-  buttonArrowsWrapperClassName,
-} from "./Arrow";
+import { BottomLeftArrow, BottomRightArrow, TopLeftArrow, TopRightArrow } from "./Arrow/Arrow";
+
 
 interface CarouselProps {
   items: ReactNode[];
