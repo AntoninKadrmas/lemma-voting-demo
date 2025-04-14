@@ -33,6 +33,7 @@ export default function DragCarousel({
   const containerRef = useRef<HTMLDivElement>(null);
   const cardWidth = 350;
   const threshold = cardWidth / 4;
+  const limitToTap = 10;
 
   // Handle drag start
   const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
@@ -53,7 +54,7 @@ export default function DragCarousel({
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
     const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
     if (clientX > currentX && activeIndex == 0) {
-      setStartX(currentX + 15);
+      setStartX(currentX + limitToTap + 5);
       return;
     }
     setCurrentY(clientY);
@@ -71,7 +72,10 @@ export default function DragCarousel({
     } else if (dragDistanceX < -threshold && activeIndex > 0) {
       // Dragged right (previous card)
       setActiveIndex(activeIndex - 1);
-    } else if (Math.abs(dragDistanceX) < 10 && Math.abs(dragDistanceY) < 10)
+    } else if (
+      Math.abs(dragDistanceX) < limitToTap &&
+      Math.abs(dragDistanceY) < limitToTap
+    )
       onSelected(!state);
 
     setIsDragging(false);
