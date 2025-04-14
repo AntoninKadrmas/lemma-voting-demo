@@ -4,6 +4,13 @@ import { useState, useRef, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
+import {
+  BottomLeftArrow,
+  BottomRightArrow,
+  TopLeftArrow,
+  TopRightArrow,
+  buttonArrowsWrapperClassName,
+} from "./Arrow";
 
 interface CarouselProps {
   items: ReactNode[];
@@ -19,7 +26,9 @@ export default function DragCarousel({
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
+  const [startY, setStartY] = useState(0);
   const [currentX, setCurrentX] = useState(0);
+  const [currentY, setCurrentY] = useState(0);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const cardWidth = 350;
@@ -32,6 +41,9 @@ export default function DragCarousel({
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
     setStartX(clientX);
     setCurrentX(clientX);
+    const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+    setStartY(clientY);
+    setCurrentY(clientY);
   };
 
   // Handle dragging
@@ -39,28 +51,34 @@ export default function DragCarousel({
     e.stopPropagation();
     if (!isDragging) return;
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+    const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
     if (clientX > currentX && activeIndex == 0) {
-      setCurrentX(startX + 1);
+      setStartX(currentX + 15);
       return;
     }
+    setCurrentY(clientY);
     setCurrentX(clientX);
   };
 
   // Handle drag end
   const handleDragEnd = () => {
     if (!isDragging) return;
-    const dragDistance = startX - currentX;
-    if (dragDistance > threshold && activeIndex < items.length - 1) {
+    const dragDistanceX = startX - currentX;
+    const dragDistanceY = startY - currentY;
+    if (dragDistanceX > threshold && activeIndex < items.length - 1) {
       // Dragged left (next card)
       setActiveIndex(activeIndex + 1);
-    } else if (dragDistance < -threshold && activeIndex > 0) {
+    } else if (dragDistanceX < -threshold && activeIndex > 0) {
       // Dragged right (previous card)
       setActiveIndex(activeIndex - 1);
-    } else if (dragDistance == 0) onSelected(!state);
+    } else if (Math.abs(dragDistanceX) < 10 && Math.abs(dragDistanceY) < 10)
+      onSelected(!state);
 
     setIsDragging(false);
     setCurrentX(0);
     setStartX(0);
+    setCurrentY(0);
+    setStartY(0);
   };
 
   // Calculate drag percentage for animation
@@ -77,9 +95,9 @@ export default function DragCarousel({
       className={cn(
         "group relative mx-auto h-[270px] w-[300px] max-w-lg overflow-hidden",
         "transition-all duration-200 ease-in-out",
-        state
-          ? "border-2 border-white saturate-100"
-          : "border-2 border-muted-foreground saturate-[0.3]",
+        state ? " saturate-[1.2]" : "saturate-[0.2]",
+        state &&
+          "[&_.narrow-horizontal-line]:w-1/3 [&_.vertical-line]:h-1/2 [&_.wide-horizontal-line]:w-2/3",
         isDragging ? "cursor-grabbing" : "cursor-pointer",
         "select-none"
       )}
@@ -136,6 +154,10 @@ export default function DragCarousel({
                 opacity,
               }}
             >
+              <TopLeftArrow />
+              <TopRightArrow />
+              <BottomLeftArrow />
+              <BottomRightArrow />
               <CardContent className="flex h-full items-center justify-between p-0 text-2xl font-bold text-white">
                 <>
                   {index != 0 && (
