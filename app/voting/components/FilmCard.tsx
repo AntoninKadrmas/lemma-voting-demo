@@ -4,8 +4,12 @@ import { useState, useRef, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
-import { BottomLeftArrow, BottomRightArrow, TopLeftArrow, TopRightArrow } from "./Arrow/Arrow";
-
+import {
+  BottomLeftArrow,
+  BottomRightArrow,
+  TopLeftArrow,
+  TopRightArrow,
+} from "./Arrow/Arrow";
 
 interface CarouselProps {
   items: ReactNode[];
@@ -28,7 +32,8 @@ export default function DragCarousel({
   const containerRef = useRef<HTMLDivElement>(null);
   const cardWidth = 350;
   const threshold = cardWidth / 4;
-  const limitToTap = 10;
+  const limitToTapX = 50;
+  const limitToTapY = 10;
 
   // Handle drag start
   const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
@@ -49,7 +54,7 @@ export default function DragCarousel({
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
     const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
     if (clientX > currentX && activeIndex == 0) {
-      setStartX(currentX + limitToTap + 5);
+      setCurrentY(startY + limitToTapY + 1);
       return;
     }
     setCurrentY(clientY);
@@ -68,8 +73,8 @@ export default function DragCarousel({
       // Dragged right (previous card)
       setActiveIndex(activeIndex - 1);
     } else if (
-      Math.abs(dragDistanceX) < limitToTap &&
-      Math.abs(dragDistanceY) < limitToTap
+      Math.abs(dragDistanceX) < limitToTapX &&
+      Math.abs(dragDistanceY) < limitToTapY
     )
       onSelected(!state);
 
@@ -93,10 +98,10 @@ export default function DragCarousel({
     <div
       className={cn(
         "group relative mx-auto h-[270px] w-[300px] max-w-lg overflow-hidden",
-        "transition-all duration-200 ease-in-out",
-        state ? " saturate-[1.2]" : "saturate-[0.2]",
-        state &&
-          "[&_.narrow-horizontal-line]:w-1/3 [&_.vertical-line]:h-1/2 [&_.wide-horizontal-line]:w-2/3",
+        "transition-all duration-100 ease-in-out",
+        state ? " saturate-[1.5]" : "saturate-[0.2]",
+        state && "border-3 border-white",
+        // "[&_.narrow-horizontal-line]:w-1/3 [&_.vertical-line]:h-1/2 [&_.wide-horizontal-line]:w-2/3",
         isDragging ? "cursor-grabbing" : "cursor-pointer",
         "select-none"
       )}
@@ -145,7 +150,7 @@ export default function DragCarousel({
                 "absolute left-1/2 top-1/2 h-[270px] w-[300px] rounded-none border-none p-0",
                 isDragging
                   ? "transition-none"
-                  : "transition-all duration-300 ease-out"
+                  : "transition-all duration-100 ease-out"
               )}
               style={{
                 transform: `translate(-50%, -50%) translateX(${x}px) scale(${scale})`,
@@ -153,10 +158,10 @@ export default function DragCarousel({
                 opacity,
               }}
             >
-              <TopLeftArrow />
+              {/* <TopLeftArrow />
               <TopRightArrow />
               <BottomLeftArrow />
-              <BottomRightArrow />
+              <BottomRightArrow /> */}
               <CardContent className="flex h-full items-center justify-between p-0 text-2xl font-bold text-white">
                 <>
                   {index != 0 && (
@@ -198,7 +203,7 @@ export default function DragCarousel({
       </div>
 
       {/* Navigation dots */}
-      <div className="absolute bottom-4 right-4 z-50 flex transform space-x-2">
+      <div className="absolute bottom-4 right-4 z-30 flex transform space-x-2">
         {items.map((_, index) => (
           <button
             key={index}
