@@ -99,6 +99,16 @@ export function FloatingFilterButton() {
     setFilteredSearch((prev) => {
       const updatedMap = new Map(prev);
       updatedMap.forEach((value, key) => {
+        updatedMap.set(key, { ...value, selected: false });
+      });
+      return updatedMap;
+    });
+  };
+
+  const onCleanForce = () => {
+    setFilteredSearch((prev) => {
+      const updatedMap = new Map(prev);
+      updatedMap.forEach((value, key) => {
         updatedMap.set(key, { value: [], selected: false });
       });
       return updatedMap;
@@ -159,17 +169,17 @@ export function FloatingFilterButton() {
       >
         <div className="w-full h-full relative flex justify-center items-center transition-all duration-100 ease-in-out">
           {(filteredSearch.get("name")?.value?.length ?? 0) > 0 && (
-            <div className="absolute -left-1 -top-1 bg-red-400 text-white rounded-2xl font-bold p-1">
+            <div className="absolute -left-1 -top-1 bg-destructive dark:bg-destructive/60 text-white rounded-2xl font-bold p-1">
               <MdSearch className="!h-4 !w-4" />
             </div>
           )}
           {(filteredSearch.get("author")?.value?.length ?? 0) > 0 && (
-            <div className="absolute -right-1 -top-1 bg-red-400 text-white rounded-2xl font-bold p-1">
+            <div className="absolute -right-1 -top-1 bg-destructive dark:bg-destructive/60 text-white rounded-2xl font-bold p-1">
               <MdPerson className="!h-4 !w-4" />
             </div>
           )}
           {(filteredSearch.get("genre")?.value?.length ?? 0) > 0 && (
-            <div className="absolute -right-1 -bottom-1 bg-red-400 text-white rounded-2xl font-bold p-1">
+            <div className="absolute -right-1 -bottom-1 bg-destructive dark:bg-destructive/60 text-white rounded-2xl font-bold p-1">
               <MdCategory className="!h-4 !w-4" />
             </div>
           )}
@@ -390,7 +400,7 @@ export function FloatingFilterButton() {
                 : "text-shadow-white"
             )}
             onClick={() => {
-              onClean();
+              onCleanForce();
             }}
           >
             <MdDelete className="!h-5 !w-5" />

@@ -1,11 +1,5 @@
 "use client";
-import {
-  FC,
-  HTMLAttributes,
-  ReactNode,
-  useCallback,
-  useState,
-} from "react";
+import { FC, HTMLAttributes, ReactNode, useCallback, useState } from "react";
 import DragCarousel from "./FilmCard";
 import { useSearchParams } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -15,6 +9,7 @@ import { VoteType } from "./FilmType";
 import { FilmCardSkeletonGroup } from "./FilmCardSkeleton";
 import { FloatingFilterButton } from "./FloatingFilterButton";
 import { SaveButton } from "./SaveButton";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 type VotePageProps = {
   className?: string;
   firstBlock?: { nodes: ReactNode[]; id: number }[];
@@ -69,7 +64,7 @@ export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
     },
     onSuccess: () => {
       toast.success("Your work has been submitted", {
-        className: "text-white",
+        className: "dark:text-white",
         description: "Your vote has been submitted successfully.",
       });
       client.invalidateQueries({
@@ -79,7 +74,7 @@ export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
     },
     onError: () => {
       toast.error("Error", {
-        className: "text-white",
+        className: "dark:text-white",
         description: "There was an error submitting your vote.",
         action: {
           label: "Try again",
@@ -153,6 +148,7 @@ export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
             changesAmount={changesAmount}
           />
           <FloatingFilterButton />
+          <ModeToggle />
         </div>
       )}
       {isError && (

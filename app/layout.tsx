@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import Script from "next/script";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,15 +27,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Script id="darkmode">
-        {`
-          document.documentElement.classList.add('dark');
-        `}
-      </Script>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background font-sans text-white`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background font-sans dark:text-white`}
       >
-        <Providers>{children}</Providers>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Providers>{children}</Providers>
+        </ThemeProvider>
       </body>
     </html>
   );

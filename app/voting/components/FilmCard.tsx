@@ -92,8 +92,10 @@ export default function DragCarousel({
       className={cn(
         "group relative mx-auto h-[270px] w-[300px] max-w-lg overflow-hidden",
         "transition-all duration-100 ease-in-out",
-        state ? " saturate-[1.5]" : "saturate-[0.2]",
-        state && "border-3 border-white",
+        state
+          ? "saturate-[1.5]"
+          : "saturate-[0.2] border-3 border-transparent ",
+        state && "border-3 border-gray-600 dark:border-white",
         // "[&_.narrow-horizontal-line]:w-1/3 [&_.vertical-line]:h-1/2 [&_.wide-horizontal-line]:w-2/3",
         isDragging ? "cursor-grabbing" : "cursor-pointer",
         "select-none"
@@ -152,7 +154,7 @@ export default function DragCarousel({
               }}
             >
               {" "}
-              <CardContent className="flex h-full items-center justify-between p-0 text-2xl font-bold text-white">
+              <CardContent className="flex h-full items-center justify-between p-0 text-2xl font-bold dark:text-white">
                 <>
                   {index != 0 && (
                     <div
@@ -199,7 +201,9 @@ export default function DragCarousel({
             key={index}
             className={cn(
               "h-2 w-2 rounded-full transition-all",
-              index === activeIndex ? "w-4 bg-white" : "bg-gray-400"
+              index === activeIndex
+                ? "w-4 bg-gray-800 dark:bg-white"
+                : "bg-gray-400 white:bg-gray-400"
             )}
             onClick={() => setActiveIndex(index)}
             aria-label={`Go to slide ${index + 1}`}
