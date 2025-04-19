@@ -18,6 +18,7 @@ import { VoteType } from "./FilmType";
 import { FilmCardSkeletonGroup } from "./FilmCardSkeleton";
 import { cn } from "@/lib/utils";
 import { FloatingFilterButton } from "./FloatingFilterButton";
+import { SaveButton } from "./SaveButton";
 type VotePageProps = {
   className?: string;
   firstBlock?: { nodes: ReactNode[]; id: number }[];
@@ -148,30 +149,13 @@ export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
               ))}
             {(!firstBlock || !data) && <FilmCardSkeletonGroup />}
           </div>
-          <Button
-            variant="default"
-            size="icon"
-            onClick={onSubmit}
-            disabled={
-              changesAmount == 0 || isPending || isLoading || isFetching
-            }
-            className={cn(
-              isPending || isLoading
-                ? "cursor-none brightness-50"
-                : "cursor-pointer",
-              "h-14 w-14 absolute bottom-6 md:bottom-10 right-6 md:right-12 z-[100]"
-            )}
-          >
-            <div className="w-full h-full flex justify-center items-center relative z-[100]">
-              {!isPending && <LuSave className="w-10 h-10" />}
-              {isPending && <LuLoader className="animate-spin w-10 h-10" />}
-              {changesAmount > 0 && (
-                <div className="absolute -top-2 -right-2 px-2 py-1 flex justify-center items-center rounded-2xl bg-red-400 text-white font-bold">
-                  {changesAmount}
-                </div>
-              )}
-            </div>
-          </Button>
+          <SaveButton
+            isFetching={isFetching}
+            isLoading={isLoading}
+            isPending={isPending}
+            onSubmit={onSubmit}
+            changesAmount={changesAmount}
+          />
           <FloatingFilterButton />
         </div>
       )}
