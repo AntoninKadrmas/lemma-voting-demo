@@ -42,8 +42,8 @@ export const SaveButton: FC<SaveButtonProps> = ({
         )}
       >
         <div className="w-full h-full flex justify-center items-center relative">
-          {!isPending && <LuSave className="w-10 h-10" />}
-          {isPending && <LuLoader className="animate-spin w-10 h-10" />}
+          {!isPending && <LuSave className="!w-5 !h-5" />}
+          {isPending && <LuLoader className="animate-spin !w-5 !h-5" />}
           {changesAmount > 0 && (
             <div className="absolute -top-2 -right-2 px-2 py-1 flex justify-center items-center rounded-2xl bg-red-400 text-white font-bold">
               {changesAmount}

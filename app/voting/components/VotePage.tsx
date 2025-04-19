@@ -4,19 +4,15 @@ import {
   HTMLAttributes,
   ReactNode,
   useCallback,
-  useEffect,
   useState,
 } from "react";
 import DragCarousel from "./FilmCard";
 import { useSearchParams } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { debounce } from "lodash";
-import { LuLoader, LuSave } from "react-icons/lu";
 import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
 import { VoteType } from "./FilmType";
 import { FilmCardSkeletonGroup } from "./FilmCardSkeleton";
-import { cn } from "@/lib/utils";
 import { FloatingFilterButton } from "./FloatingFilterButton";
 import { SaveButton } from "./SaveButton";
 type VotePageProps = {

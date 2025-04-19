@@ -2,7 +2,6 @@
 
 import {
   Dispatch,
-  FC,
   ForwardedRef,
   forwardRef,
   SetStateAction,
@@ -108,4 +107,5 @@ const MultipleSelect = forwardRef<HTMLDivElement, ISelectProps>(
   }
 );
 
+MultipleSelect.displayName = "MultipleSelect";
 export default MultipleSelect;

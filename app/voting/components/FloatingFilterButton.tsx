@@ -119,7 +119,6 @@ export function FloatingFilterButton() {
     const handleClickOutside = (e: MouseEvent | TouchEvent) => {
       const target =
         "touches" in e ? (e.touches[0].target as Node) : (e.target as Node);
-      // console.log(target);
       const clickedInsideFilter = containerRef.current?.contains(target);
 
       console.log("Clicked target", target);
@@ -359,7 +358,7 @@ export function FloatingFilterButton() {
                   : ""
                 : "text-shadow-white"
             )}
-            onClick={(e) => {
+            onClick={() => {
               toggleSearch("genre");
             }}
           >
@@ -390,7 +389,7 @@ export function FloatingFilterButton() {
                   : ""
                 : "text-shadow-white"
             )}
-            onClick={(e) => {
+            onClick={() => {
               onClean();
             }}
           >
