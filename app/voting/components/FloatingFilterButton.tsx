@@ -158,7 +158,10 @@ export function FloatingFilterButton() {
   return (
     <div
       ref={containerRef}
-      className="absolute w-screen transition-all duration-100 ease-in-out flex flex-col right-0 top-0 items-end z-20 p-3 sm:p-8"
+      className={cn(
+        "absolute transition-all duration-100 ease-in-out flex flex-col right-0 top-0 items-end z-20 pt-3 pr-3 sm:pt-8 sm:pr-8",
+        isFilterExpanded ? "w-screen md:w-[400px]" : "w-auto"
+      )}
     >
       {/* Main filter button */}
       <Button
@@ -169,17 +172,17 @@ export function FloatingFilterButton() {
       >
         <div className="w-full h-full relative flex justify-center items-center transition-all duration-100 ease-in-out">
           {(filteredSearch.get("name")?.value?.length ?? 0) > 0 && (
-            <div className="absolute -left-1 -top-1 bg-destructive dark:bg-destructive/60 text-white rounded-2xl font-bold p-1">
+            <div className="absolute -left-1 -top-1 bg-destructive dark:bg-destructive text-white rounded-2xl font-bold p-1">
               <MdSearch className="!h-4 !w-4" />
             </div>
           )}
           {(filteredSearch.get("author")?.value?.length ?? 0) > 0 && (
-            <div className="absolute -right-1 -top-1 bg-destructive dark:bg-destructive/60 text-white rounded-2xl font-bold p-1">
+            <div className="absolute -right-1 -top-1 bg-destructive dark:bg-destructive text-white rounded-2xl font-bold p-1">
               <MdPerson className="!h-4 !w-4" />
             </div>
           )}
           {(filteredSearch.get("genre")?.value?.length ?? 0) > 0 && (
-            <div className="absolute -right-1 -bottom-1 bg-destructive dark:bg-destructive/60 text-white rounded-2xl font-bold p-1">
+            <div className="absolute -right-1 -bottom-1 bg-destructive dark:bg-destructive text-white rounded-2xl font-bold p-1">
               <MdCategory className="!h-4 !w-4" />
             </div>
           )}
@@ -190,10 +193,10 @@ export function FloatingFilterButton() {
       {/* Filter options (vertical dropdown) */}
       <div
         className={cn(
-          "flex flex-col gap-3 mt-3 transition-all duration-200 ease-in-out  w-full max-w-[400px]",
+          "flex flex-col transition-all duration-200 ease-in-out w-full max-w-[400px]",
           isFilterExpanded
-            ? "h-fit py-1 pl-1 opacity-100"
-            : "max-h-0 pointer-events-none opacity-0"
+            ? "h-fit py-1 pl-1 opacity-100 mt-3 gap-3"
+            : "max-h-[0] pointer-events-none opacity-0"
         )}
       >
         {/* Search by name option */}

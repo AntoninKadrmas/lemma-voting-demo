@@ -19,7 +19,7 @@ export function ModeToggle() {
   return (
     <div
       className={cn(
-        "absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between left-0 bottom-0 items-end z-20 p-3 sm:p-8"
+        "absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between left-0 bottom-0 items-end z-20 pb-3 pl-3  sm:pl-8 sm:pb-8"
       )}
     >
       <DropdownMenu>
