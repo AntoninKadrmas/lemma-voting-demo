@@ -71,7 +71,7 @@ export function FloatingFilterButton() {
       const updatedMap = new Map(prev);
       updatedMap.forEach((value, key) => {
         let newValue: string[];
-        if (key == type && value.selected && value.value.length > 0) {
+        if (key == type  && value.value.length > 0) {
           newValue = [];
           clearedInput = true;
         } else newValue = value.value;
