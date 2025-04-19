@@ -10,13 +10,16 @@ const Page = () => {
   const { data } = useQuery({
     queryKey: ["allFilms"],
     queryFn: async () => {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ""}/films`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        mode: "no-cors",
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL || ""}/films`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          mode: "no-cors",
+        }
+      );
       return await response.json();
     },
   });
@@ -35,7 +38,7 @@ const Page = () => {
               className="pointer-events-none h-full w-full object-cover"
             />
           </div>
-          <div className="flex flex-col p-2">
+          <div className="flex flex-col p-2 pl-4">
             <h2 className="truncate text-ellipsis text-xl">{item.name}</h2>
             <p className="text-sm font-light">{item.genre}</p>
           </div>
@@ -53,11 +56,8 @@ const Page = () => {
   };
 
   return (
-    <div className="w-full">
-      <div className="flex h-auto py-28 w-fit m-auto items-center justify-center">
-        <h1>VOTING</h1>
-      </div>
-      <Toaster />
+    <>
+      <Toaster position="top-right" />
       {
         <Suspense
           fallback={
@@ -72,7 +72,7 @@ const Page = () => {
           <VotePage firstBlock={data ? data.map(getFimComponent) : null} />
         </Suspense>
       }
-    </div>
+    </>
   );
 };
 

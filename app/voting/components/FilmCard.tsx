@@ -4,13 +4,6 @@ import { useState, useRef, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
-import {
-  BottomLeftArrow,
-  BottomRightArrow,
-  TopLeftArrow,
-  TopRightArrow,
-} from "./Arrow/Arrow";
-
 interface CarouselProps {
   items: ReactNode[];
   state: boolean;
@@ -158,10 +151,7 @@ export default function DragCarousel({
                 opacity,
               }}
             >
-              {/* <TopLeftArrow />
-              <TopRightArrow />
-              <BottomLeftArrow />
-              <BottomRightArrow /> */}
+              {" "}
               <CardContent className="flex h-full items-center justify-between p-0 text-2xl font-bold text-white">
                 <>
                   {index != 0 && (

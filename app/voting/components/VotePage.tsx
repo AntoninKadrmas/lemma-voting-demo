@@ -11,11 +11,13 @@ import DragCarousel from "./FilmCard";
 import { useSearchParams } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { debounce } from "lodash";
-import { LuLoader } from "react-icons/lu";
+import { LuLoader, LuSave } from "react-icons/lu";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { VoteType } from "./FilmType";
 import { FilmCardSkeletonGroup } from "./FilmCardSkeleton";
+import { cn } from "@/lib/utils";
+import { FloatingFilterButton } from "./FloatingFilterButton";
 type VotePageProps = {
   className?: string;
   firstBlock?: { nodes: ReactNode[]; id: number }[];
@@ -27,7 +29,7 @@ export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
   const [votedFilms, setVotedFilms] = useState<Set<number>>(new Set());
   const searchParams = useSearchParams();
   const voteId = searchParams.get("voteId");
-  const { data, isLoading, isError } = useQuery<VoteType>({
+  const { data, isLoading, isError, isFetching } = useQuery<VoteType>({
     queryKey: ["votedFilms", voteId],
     queryFn: async () => {
       const response = await fetch(
@@ -73,6 +75,10 @@ export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
         className: "text-white",
         description: "Your vote has been submitted successfully.",
       });
+      client.invalidateQueries({
+        queryKey: ["votedFilms", voteId],
+        exact: true,
+      });
     },
     onError: () => {
       toast.error("Error", {
@@ -93,17 +99,34 @@ export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
   const onSubmit = useCallback(
     debounce(() => {
       mutate(votedFilms);
-    }, 300),
+    }, 200),
     [votedFilms]
   );
 
-  useEffect(() => {}, [data]);
+  const xor = (arr1: number[], arr2: number[]) => {
+    return [
+      ...arr1.filter((x) => !arr2.includes(x)),
+      ...arr2.filter((x) => !arr1.includes(x)),
+    ];
+  };
+  let changesAmount = votedFilms.size;
+  if (data) {
+    try {
+      changesAmount = xor(
+        Array.from(votedFilms),
+        Array.from(JSON.parse(data.films))
+      ).length;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   return (
     <>
       {!isError && (
-        <div className="flex flex-col w-full gap-20 p-10 items-center">
+        <div className="flex flex-col w-full gap-20 p-10 items-center h-screen overflow-y-auto ">
           <h2>First block</h2>
-          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-6 ">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-6 z-10">
             {firstBlock &&
               data &&
               firstBlock.map((item, index) => (
@@ -126,19 +149,30 @@ export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
             {(!firstBlock || !data) && <FilmCardSkeletonGroup />}
           </div>
           <Button
+            variant="default"
+            size="icon"
             onClick={onSubmit}
-            disabled={isPending}
-            className={
-              isPending || isLoading
-                ? "cursor-not-allowed opacity-50"
-                : "cursor-pointer"
+            disabled={
+              changesAmount == 0 || isPending || isLoading || isFetching
             }
+            className={cn(
+              isPending || isLoading
+                ? "cursor-none brightness-50"
+                : "cursor-pointer",
+              "h-14 w-14 absolute bottom-6 md:bottom-10 right-6 md:right-12 z-[100]"
+            )}
           >
-            <div className="flex gap-2">
-              {isPending && <LuLoader className="animate-spin" />}
-              <span>Submit Vote</span>
+            <div className="w-full h-full flex justify-center items-center relative z-[100]">
+              {!isPending && <LuSave className="w-10 h-10" />}
+              {isPending && <LuLoader className="animate-spin w-10 h-10" />}
+              {changesAmount > 0 && (
+                <div className="absolute -top-2 -right-2 px-2 py-1 flex justify-center items-center rounded-2xl bg-red-400 text-white font-bold">
+                  {changesAmount}
+                </div>
+              )}
             </div>
           </Button>
+          <FloatingFilterButton />
         </div>
       )}
       {isError && (
