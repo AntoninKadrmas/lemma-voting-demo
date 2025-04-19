@@ -28,7 +28,7 @@ export function ModeToggle() {
             variant="secondary"
             size="icon"
             className={cn(
-              "h-14 w-14 ",
+              "h-10 w-10 ",
               "bg-primary text-primary-foreground dark:text-shadow-white"
             )}
           >
@@ -37,7 +37,7 @@ export function ModeToggle() {
             <span className="sr-only">Toggle theme</span>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
+        <DropdownMenuContent align="end" className="ml-1">
           <DropdownMenuItem onClick={() => setTheme("light")}>
             Light
           </DropdownMenuItem>
