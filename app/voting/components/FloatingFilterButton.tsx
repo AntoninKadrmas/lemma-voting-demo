@@ -15,7 +15,7 @@ type FilterOption = {
   value: string[];
 };
 
-type FilterOptionMap = Map<SearchOption, FilterOption>;
+type FilterState = Record<SearchOption, FilterOption>;
 
 const genres = [
   { label: "Fiction", value: "fiction" },
@@ -30,31 +30,12 @@ const genres = [
 
 export function FloatingFilterButton() {
   const [isFilterExpanded, setIsFilterExpanded] = useState(false);
-  const [filteredSearch, setFilteredSearch] = useState<FilterOptionMap>(
-    new Map<SearchOption, FilterOption>([
-      [
-        "author",
-        {
-          selected: false,
-          value: [],
-        },
-      ],
-      [
-        "genre",
-        {
-          selected: false,
-          value: [],
-        },
-      ],
-      [
-        "name",
-        {
-          selected: false,
-          value: [],
-        },
-      ],
-    ])
-  );
+  const [filteredSearch, setFilteredSearch] = useState<FilterState>({
+    author: { selected: false, value: [] },
+    genre: { selected: false, value: [] },
+    name: { selected: false, value: [] },
+  });
+
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRefs = useRef<
     Record<string, HTMLDivElement | HTMLInputElement | HTMLButtonElement | null>
@@ -67,51 +48,51 @@ export function FloatingFilterButton() {
 
   const toggleSearch = (type: SearchOption) => {
     setFilteredSearch((prev) => {
+      const updated = { ...prev };
       let clearedInput = false;
-      const updatedMap = new Map(prev);
-      updatedMap.forEach((value, key) => {
-        let newValue: string[];
-        if (key == type  && value.value.length > 0) {
+
+      (Object.keys(updated) as SearchOption[]).forEach((key) => {
+        const filter = updated[key];
+        let newValue = filter.value;
+        if (key === type && filter.value.length > 0) {
           newValue = [];
           clearedInput = true;
-        } else newValue = value.value;
-        let newSelected;
-        if (value.selected && value.value.length > 0) newSelected = true;
-        else if (key == type) newSelected = !value.selected;
-        else newSelected = value.value.length > 0;
-        updatedMap.set(key, {
-          selected: newSelected,
-          value: newValue,
-        });
+        }
+
+        const newSelected =
+          (filter.selected && filter.value.length > 0) ||
+          (key === type ? !filter.selected : filter.value.length > 0);
+
+        updated[key] = { selected: newSelected, value: newValue };
       });
-      if (clearedInput || checkClosed(updatedMap.get(type)!)) {
+
+      if (clearedInput || checkClosed(updated[type])) {
         setTimeout(() => {
-          if (inputRefs.current[type]) {
-            inputRefs.current[type]?.focus();
-          }
+          inputRefs.current[type]?.focus?.();
         }, 100);
       }
-      return updatedMap;
+
+      return updated;
     });
   };
 
   const onClean = () => {
     setFilteredSearch((prev) => {
-      const updatedMap = new Map(prev);
-      updatedMap.forEach((value, key) => {
-        updatedMap.set(key, { ...value, selected: false });
+      const updated = { ...prev };
+      (Object.keys(updated) as SearchOption[]).forEach((key) => {
+        updated[key].selected = false;
       });
-      return updatedMap;
+      return updated;
     });
   };
 
   const onCleanForce = () => {
     setFilteredSearch((prev) => {
-      const updatedMap = new Map(prev);
-      updatedMap.forEach((value, key) => {
-        updatedMap.set(key, { value: [], selected: false });
+      const updated = { ...prev };
+      (Object.keys(updated) as SearchOption[]).forEach((key) => {
+        updated[key] = { value: [], selected: false };
       });
-      return updatedMap;
+      return updated;
     });
   };
 
@@ -124,19 +105,12 @@ export function FloatingFilterButton() {
     setIsFilterExpanded(true);
   };
 
-  // Handle click outside to collapse
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent | TouchEvent) => {
       const target =
         "touches" in e ? (e.touches[0].target as Node) : (e.target as Node);
       const clickedInsideFilter = containerRef.current?.contains(target);
-
-      console.log("Clicked target", target);
-      console.log("Inside filter:", clickedInsideFilter);
-
-      if (!clickedInsideFilter) {
-        onClose();
-      }
+      if (!clickedInsideFilter) onClose();
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -147,13 +121,10 @@ export function FloatingFilterButton() {
     };
   }, []);
 
-  const checkClosed = (data: FilterOption) => {
-    return data.selected || checkValue(data);
-  };
+  const checkClosed = (data: FilterOption) => data.selected || checkValue(data);
+  const checkValue = (data: FilterOption) => data.value.length > 0;
 
-  const checkValue = (data: FilterOption) => {
-    return data.value.length > 0;
-  };
+  const hasAnyFilter = Object.values(filteredSearch).some(checkValue);
 
   return (
     <div
@@ -163,7 +134,6 @@ export function FloatingFilterButton() {
         isFilterExpanded ? "w-screen md:w-[400px]" : "w-auto"
       )}
     >
-      {/* Main filter button */}
       <Button
         size="icon"
         variant={isFilterExpanded ? "secondary" : "default"}
@@ -171,18 +141,18 @@ export function FloatingFilterButton() {
         onClick={toggleFilter}
       >
         <div className="w-full h-full relative flex justify-center items-center transition-all duration-100 ease-in-out">
-          {(filteredSearch.get("name")?.value?.length ?? 0) > 0 && (
-            <div className="absolute -left-1 -top-1 bg-destructive dark:bg-destructive text-white rounded-2xl font-bold p-1">
+          {filteredSearch.name.value.length > 0 && (
+            <div className="absolute -left-1 -top-1 bg-destructive text-white rounded-2xl font-bold p-1">
               <MdSearch className="!h-4 !w-4" />
             </div>
           )}
-          {(filteredSearch.get("author")?.value?.length ?? 0) > 0 && (
-            <div className="absolute -right-1 -top-1 bg-destructive dark:bg-destructive text-white rounded-2xl font-bold p-1">
+          {filteredSearch.author.value.length > 0 && (
+            <div className="absolute -right-1 -top-1 bg-destructive text-white rounded-2xl font-bold p-1">
               <MdPerson className="!h-4 !w-4" />
             </div>
           )}
-          {(filteredSearch.get("genre")?.value?.length ?? 0) > 0 && (
-            <div className="absolute -right-1 -bottom-1 bg-destructive dark:bg-destructive text-white rounded-2xl font-bold p-1">
+          {filteredSearch.genre.value.length > 0 && (
+            <div className="absolute -right-1 -bottom-1 bg-destructive text-white rounded-2xl font-bold p-1">
               <MdCategory className="!h-4 !w-4" />
             </div>
           )}
@@ -190,7 +160,7 @@ export function FloatingFilterButton() {
         </div>
       </Button>
 
-      {/* Filter options (vertical dropdown) */}
+      {/* Dropdown */}
       <div
         className={cn(
           "flex flex-col transition-all duration-200 ease-in-out w-full max-w-[400px]",
@@ -199,14 +169,14 @@ export function FloatingFilterButton() {
             : "max-h-[0] pointer-events-none opacity-0"
         )}
       >
-        {/* Search by name option */}
+        {/* Name */}
         <div className="flex items-center gap-3 justify-end">
           <div
             className={cn("transition-all duration-200 ease-in-out", {
               "w-[0] opacity-0 pointer-events-none": !checkClosed(
-                filteredSearch.get("name")!
+                filteredSearch.name
               ),
-              "w-full opacity-100": checkClosed(filteredSearch.get("name")!),
+              "w-full opacity-100": checkClosed(filteredSearch.name),
             })}
           >
             <Input
@@ -214,23 +184,16 @@ export function FloatingFilterButton() {
                 inputRefs.current["name"] = el;
               }}
               onChange={(val) => {
-                setFilteredSearch((prev) => {
-                  const updatedMap = new Map(prev);
-                  const authorFilter = updatedMap.get("name");
-                  if (authorFilter) {
-                    authorFilter.value = val.target.value
-                      ? [val.target.value]
-                      : [];
-                    updatedMap.set("name", authorFilter);
-                  }
-                  return updatedMap;
-                });
+                const value = val.target.value;
+                setFilteredSearch((prev) => ({
+                  ...prev,
+                  name: {
+                    ...prev.name,
+                    value: value ? [value] : [],
+                  },
+                }));
               }}
-              value={
-                (filteredSearch.get("name")?.value?.length ?? 0) > 0
-                  ? filteredSearch.get("name")?.value[0]
-                  : ""
-              }
+              value={filteredSearch.name.value[0] || ""}
               placeholder="Search by name..."
               className="h-14 rounded-full shadow-lg border-0 pr-14 text-sm"
             />
@@ -238,14 +201,14 @@ export function FloatingFilterButton() {
           <Button
             size="icon"
             variant={
-              filteredSearch.get("name")?.value.length == 0
+              filteredSearch.name.value.length === 0
                 ? "secondary"
                 : "destructive"
             }
             className={cn(
               "h-14 w-14 rounded-full shadow-lg flex-shrink-0 cursor-pointer",
-              filteredSearch.get("name")?.value.length == 0
-                ? checkClosed(filteredSearch.get("name")!)
+              filteredSearch.name.value.length === 0
+                ? checkClosed(filteredSearch.name)
                   ? "bg-primary text-primary-foreground"
                   : ""
                 : "text-shadow-white"
@@ -256,14 +219,14 @@ export function FloatingFilterButton() {
           </Button>
         </div>
 
-        {/* Search by author option */}
+        {/* Author */}
         <div className="flex items-center gap-3 justify-end">
           <div
             className={cn("transition-all duration-200 ease-in-out", {
               "w-[0] opacity-0 pointer-events-none": !checkClosed(
-                filteredSearch.get("author")!
+                filteredSearch.author
               ),
-              "w-full opacity-100": checkClosed(filteredSearch.get("author")!),
+              "w-full opacity-100": checkClosed(filteredSearch.author),
             })}
           >
             <Input
@@ -271,23 +234,16 @@ export function FloatingFilterButton() {
                 inputRefs.current["author"] = el;
               }}
               onChange={(val) => {
-                setFilteredSearch((prev) => {
-                  const updatedMap = new Map(prev);
-                  const authorFilter = updatedMap.get("author");
-                  if (authorFilter) {
-                    authorFilter.value = val.target.value
-                      ? [val.target.value]
-                      : [];
-                    updatedMap.set("author", authorFilter);
-                  }
-                  return updatedMap;
-                });
+                const value = val.target.value;
+                setFilteredSearch((prev) => ({
+                  ...prev,
+                  author: {
+                    ...prev.author,
+                    value: value ? [value] : [],
+                  },
+                }));
               }}
-              value={
-                (filteredSearch.get("author")?.value?.length ?? 0) > 0
-                  ? filteredSearch.get("author")?.value[0]
-                  : ""
-              }
+              value={filteredSearch.author.value[0] || ""}
               placeholder="Search by author..."
               className="h-14 rounded-full shadow-lg border-0 pr-14 text-sm"
             />
@@ -295,14 +251,14 @@ export function FloatingFilterButton() {
           <Button
             size="icon"
             variant={
-              filteredSearch.get("author")?.value.length == 0
+              filteredSearch.author.value.length === 0
                 ? "secondary"
                 : "destructive"
             }
             className={cn(
               "h-14 w-14 rounded-full shadow-lg flex-shrink-0 cursor-pointer",
-              filteredSearch.get("author")?.value.length == 0
-                ? checkClosed(filteredSearch.get("author")!)
+              filteredSearch.author.value.length === 0
+                ? checkClosed(filteredSearch.author)
                   ? "bg-primary text-primary-foreground"
                   : ""
                 : "text-shadow-white"
@@ -313,7 +269,7 @@ export function FloatingFilterButton() {
           </Button>
         </div>
 
-        {/* Genre selector option */}
+        {/* Genre */}
         <div
           className="flex items-center gap-3 justify-end"
           onClick={(e) => e.stopPropagation()}
@@ -321,71 +277,59 @@ export function FloatingFilterButton() {
           <div
             className={cn("transition-all duration-200 ease-in-out", {
               "w-[0] opacity-0 pointer-events-none": !checkClosed(
-                filteredSearch.get("genre")!
+                filteredSearch.genre
               ),
-              "w-full opacity-100": checkClosed(filteredSearch.get("genre")!),
+              "w-full opacity-100": checkClosed(filteredSearch.genre),
             })}
             ref={(el) => {
               inputRefs.current["genre"] = el;
             }}
           >
             <MultipleSelect
-              isOpen={checkClosed(filteredSearch.get("genre")!)}
+              isOpen={checkClosed(filteredSearch.genre)}
               options={genres}
               placeholder="Search by genres..."
-              selectedOptions={
-                (filteredSearch.get("genre")?.value as string[]) || []
-              }
-              setSelectedOptions={(
-                value: string[] | ((prevState: string[]) => string[])
-              ) => {
-                setFilteredSearch((prev) => {
-                  const genreFilter = prev.get("genre");
-                  if (genreFilter) {
-                    const newValue =
+              selectedOptions={filteredSearch.genre.value}
+              setSelectedOptions={(value) => {
+                setFilteredSearch((prev) => ({
+                  ...prev,
+                  genre: {
+                    ...prev.genre,
+                    value:
                       typeof value === "function"
-                        ? value(genreFilter.value as string[])
-                        : value;
-                    return new Map(prev).set("genre", {
-                      ...genreFilter,
-                      value: newValue,
-                    });
-                  }
-                  return prev;
-                });
+                        ? value(prev.genre.value)
+                        : value,
+                  },
+                }));
               }}
             />
           </div>
           <Button
             size="icon"
             variant={
-              filteredSearch.get("genre")?.value.length == 0
+              filteredSearch.genre.value.length === 0
                 ? "secondary"
                 : "destructive"
             }
             className={cn(
               "h-14 w-14 rounded-full shadow-lg flex-shrink-0 cursor-pointer",
-              filteredSearch.get("genre")?.value.length == 0
-                ? checkClosed(filteredSearch.get("genre")!)
+              filteredSearch.genre.value.length === 0
+                ? checkClosed(filteredSearch.genre)
                   ? "bg-primary text-primary-foreground"
                   : ""
                 : "text-shadow-white"
             )}
-            onClick={() => {
-              toggleSearch("genre");
-            }}
+            onClick={() => toggleSearch("genre")}
           >
             <MdCategory className="!h-5 !w-5" />
           </Button>
         </div>
-        {/* Clean selector option */}
+
+        {/* Clear All */}
         <div
           className={cn(
             "flex items-center justify-end",
-            filteredSearch
-              .values()
-              .map(checkValue)
-              .reduce((prev: boolean, curr: boolean) => prev || curr)
+            hasAnyFilter
               ? "h-auto opacity-100"
               : "h-[0] overflow-hidden opacity-0"
           )}
@@ -393,18 +337,9 @@ export function FloatingFilterButton() {
         >
           <Button
             size="icon"
-            variant={"destructive"}
-            className={cn(
-              "h-14 w-14 rounded-full shadow-lg flex-shrink-0 cursor-pointer",
-              filteredSearch.get("genre")?.value.length == 0
-                ? checkClosed(filteredSearch.get("genre")!)
-                  ? "bg-primary text-primary-foreground"
-                  : ""
-                : "text-shadow-white"
-            )}
-            onClick={() => {
-              onCleanForce();
-            }}
+            variant="destructive"
+            className="h-14 w-14 rounded-full shadow-lg flex-shrink-0 cursor-pointer"
+            onClick={onCleanForce}
           >
             <MdDelete className="!h-5 !w-5" />
           </Button>
