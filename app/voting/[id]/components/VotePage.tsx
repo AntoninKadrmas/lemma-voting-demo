@@ -128,7 +128,6 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
   let filteredMovies = movies?.filter((item) => {
     return votingFilmsIds.has(item.id);
   });
-  console.log(votedFilms, userVotedId, areSetsEqual(votedFilms, userVotedId));
   return (
     <>
       {!isError && (

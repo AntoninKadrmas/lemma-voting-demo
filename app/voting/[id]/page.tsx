@@ -23,12 +23,10 @@ const Page: FC<Props> = async ({ params }) => {
   if (res.status != 200) return "Error during film fetching";
   const films: ApiCollections["film"][number][] = await res.json();
   const getFimComponent = (item: ApiCollections["film"][number]) => {
-    console.log(item);
     item = parseTranslations<
       ApiCollections["film"][number] &
         ApiCollections["film_translations"][number]
     >(item, lang);
-    console.log(item);
     return {
       nodes: [
         <div className="h-full w-full bg-background" key={item.id + "image"}>
@@ -155,7 +153,6 @@ const Page: FC<Props> = async ({ params }) => {
           : item.festival_block?.id ?? 0,
     };
   };
-  console.log(films);
   return (
     <>
       <Toaster position="top-right" />
