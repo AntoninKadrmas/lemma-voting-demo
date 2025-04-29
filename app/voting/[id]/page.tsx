@@ -8,6 +8,8 @@ import { cn, parseTranslations } from "@/lib/utils";
 import env from "@/env";
 import { AvailableLocales } from "@/lib/constants";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
+import directusImageLoader from "@/lib/DirectusLoader";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -41,7 +43,16 @@ const Page: FC<Props> = async ({ params }) => {
                 className={cn("h-full w-full object-cover pointer-events-none")}
                 alt={"Background Image"}
               />
-            ) : undefined}
+            ) : (
+              <Image
+                src={`${env.NEXT_PUBLIC_DIRECTUS_URL}assets/4f0da649-2fe3-45a5-902b-68783f04b16b`}
+                loader={directusImageLoader}
+                alt="Fallback Image"
+                width={400}
+                height={400}
+                className={cn("h-full w-full object-cover pointer-events-none")}
+              />
+            )}
           </div>
           <div className="flex flex-col p-2 pl-3">
             <h2 className="truncate text-ellipsis text-xl">{item.name}</h2>
@@ -49,22 +60,18 @@ const Page: FC<Props> = async ({ params }) => {
               {item.genres &&
                 (
                   item.genres as ApiCollections["film_film_genre"][number][]
-                ).map(
-                  (val: ApiCollections["film_film_genre"][number], index) => {
-                    return (
-                      <Badge key={item.id}>
-                        {
-                          parseTranslations<
-                            ApiCollections["film_genre"][number]
-                          >(
-                            val.film_genre_id as ApiCollections["film_genre"][number],
-                            lang
-                          ).name
-                        }
-                      </Badge>
-                    );
-                  }
-                )}
+                ).map((val: ApiCollections["film_film_genre"][number]) => {
+                  return (
+                    <Badge key={item.id}>
+                      {
+                        parseTranslations<ApiCollections["film_genre"][number]>(
+                          val.film_genre_id as ApiCollections["film_genre"][number],
+                          lang
+                        ).name
+                      }
+                    </Badge>
+                  );
+                })}
             </div>
           </div>
         </div>,
