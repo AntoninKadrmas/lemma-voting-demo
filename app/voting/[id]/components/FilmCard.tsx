@@ -95,7 +95,8 @@ export default function DragCarousel({
         state
           ? "saturate-[1.5]"
           : "saturate-[0.2] border-3 border-transparent ",
-        state && "border-3 border-gray-600 dark:border-white",
+        state &&
+          "border-3 border-green-300 shadow-[0_0_10px_4px_rgba(0,0,0,0.8)] shadow-green-300 dark:shadow-white dark:border-white",
         // "[&_.narrow-horizontal-line]:w-1/3 [&_.vertical-line]:h-1/2 [&_.wide-horizontal-line]:w-2/3",
         isDragging ? "cursor-grabbing" : "cursor-pointer",
         "select-none"
