@@ -62,7 +62,7 @@ const Page: FC<Props> = async ({ params }) => {
                   item.genres as ApiCollections["film_film_genre"][number][]
                 ).map((val: ApiCollections["film_film_genre"][number]) => {
                   return (
-                    <Badge key={item.id}>
+                    <Badge key={val.id + "badge_genre"}>
                       {
                         parseTranslations<ApiCollections["film_genre"][number]>(
                           val.film_genre_id as ApiCollections["film_genre"][number],
@@ -106,14 +106,14 @@ const Page: FC<Props> = async ({ params }) => {
                   )
                 );
                 return (
-                  <div key={person.id}>
+                  <div key={person.id + "crew"}>
                     <p className="text-sm font-bold">
                       {person?.first_name} {person?.middle_name}{" "}
                       {person?.last_name}{" "}
                     </p>
                     <div className="ml-2 flex gap-1 flex-wrap w-full">
                       {roles.sort().map((role) => (
-                        <Badge key={role.id}>{role.name}</Badge>
+                        <Badge key={role.id + "crew_role"}>{role.name}</Badge>
                       ))}
                     </div>
                   </div>
@@ -137,7 +137,7 @@ const Page: FC<Props> = async ({ params }) => {
                 const person =
                   connection.film_person_id as ApiCollections["film_person"][number];
                 return (
-                  <div key={person.id}>
+                  <div key={person.id + "actor"}>
                     <p className="text-sm font-bold">
                       {person?.first_name} {person?.middle_name}{" "}
                       {person?.last_name}

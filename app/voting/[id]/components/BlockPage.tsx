@@ -32,7 +32,7 @@ export const BlockPage: FC<BlockPageProps> = ({
         {filteredMovies &&
           filteredMovies.map((item, index) => (
             <DragCarousel
-              key={index}
+              key={item.id+"block"}
               items={item.nodes}
               state={votedFilms.has(item.id)}
               onSelected={() => setVotedFilms(item.id)}

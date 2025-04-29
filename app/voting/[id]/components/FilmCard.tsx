@@ -141,7 +141,7 @@ export default function DragCarousel({
 
           return (
             <Card
-              key={`${index}`}
+              key={`${index + "film_card"}`}
               className={cn(
                 "absolute left-1/2 top-1/2 h-[270px] w-[300px] rounded-none border-none p-0",
                 isDragging
@@ -198,7 +198,7 @@ export default function DragCarousel({
       <div className="absolute bottom-[0.5rem] right-2 z-30 flex transform space-x-1">
         {items.map((_, index) => (
           <button
-            key={index}
+            key={index + "navigation"}
             className={cn(
               "h-2 w-2 rounded-full transition-all",
               index === activeIndex
