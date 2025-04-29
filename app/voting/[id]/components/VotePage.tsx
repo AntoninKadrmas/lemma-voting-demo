@@ -12,7 +12,8 @@ import { areSetsEqual, parseTranslations } from "@/lib/utils";
 import { AvailableLocales } from "@/lib/constants";
 import { BlockPage } from "./BlockPage";
 import { FilmCardSkeletonGroup } from "./FilmCardSkeleton";
-
+import moment from "moment";
+import Countdown from "@/components/element/Countdown";
 export type Movies = {
   nodes: ReactNode[];
   id: number;
@@ -114,11 +115,37 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
   );
 
   let voting = data?.voting_id as ApiCollections["voting"][number] &
-    ApiCollections["voting_translations"][number];
+  ApiCollections["voting_translations"][number];
   voting = parseTranslations<
     ApiCollections["voting"][number] &
       ApiCollections["voting_translations"][number]
   >(voting, lang);
+
+  if(voting && moment(voting.start_date).isAfter(moment())){
+    setTimeout(() => {
+      client.invalidateQueries({
+        queryKey: ["votedFilms", voteId],
+        exact: true,
+      });
+    },moment(voting.start_date).diff(moment()));
+    return <div className="flex flex-col items-center justify-center h-screen w-full">
+      <Countdown end_date={voting.start_date} title={voting.before_start_text} lang={lang}/>
+    </div>
+  } 
+  if(voting && moment(voting.end_date).isBefore(moment())){
+    return <div className="flex flex-col items-center justify-center h-screen w-full">
+      <h4 className={"pb-6 text-xl font-bold sm:text-3xl"}>{voting.after_end_text}</h4>
+    </div>
+  }
+  
+  if(voting){
+    setTimeout(() => {
+      client.invalidateQueries({
+        queryKey: ["votedFilms", voteId],
+        exact: true,
+      });
+    },moment(voting.end_date).diff(moment()));
+  }
 
   const votingFilmsIds: Set<number> = new Set(
     ((voting?.films ?? []) as ApiCollections["vote_film"][number][]).map(
@@ -185,7 +212,6 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
             />
           )}
           <FloatingFilterButton />
-          <ModeToggle />
         </div>
       )}
       {isError && (

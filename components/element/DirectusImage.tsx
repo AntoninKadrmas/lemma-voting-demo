@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+ 
 import ExportedImage, {
   type ExportedImageProps,
 } from "next-image-export-optimizer";

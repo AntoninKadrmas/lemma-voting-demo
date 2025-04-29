@@ -10,6 +10,7 @@ import { AvailableLocales } from "@/lib/constants";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import directusImageLoader from "@/lib/DirectusLoader";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -161,6 +162,8 @@ const Page: FC<Props> = async ({ params }) => {
   return (
     <>
       <Toaster position="top-right" />
+      <ModeToggle />
+
       {
         <Suspense fallback={<FilmCardSkeletonGroup />}>
           <VotePage

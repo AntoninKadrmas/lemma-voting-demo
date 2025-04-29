@@ -30,7 +30,7 @@ export const BlockPage: FC<BlockPageProps> = ({
       <h2>{block.name}</h2>
       <div className="flex flex-col sm:flex-row sm:flex-wrap gap-6 z-10">
         {filteredMovies &&
-          filteredMovies.map((item, index) => (
+          filteredMovies.map((item) => (
             <DragCarousel
               key={item.id+"block"}
               items={item.nodes}
