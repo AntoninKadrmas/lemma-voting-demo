@@ -1,31 +1,35 @@
 "use client";
 import { FC, HTMLAttributes, ReactNode, useCallback, useState } from "react";
 import DragCarousel from "./FilmCard";
-import { useSearchParams } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { debounce } from "lodash";
 import { toast } from "sonner";
-import { VoteType } from "./FilmType";
 import { FilmCardSkeletonGroup } from "./FilmCardSkeleton";
 import { FloatingFilterButton } from "./FloatingFilterButton";
-import { SaveButton } from "./SaveButton";
+import { SaveButton, SaveButtonFallback } from "./SaveButton";
 import { ModeToggle } from "@/components/ui/mode-toggle";
+import { ApiCollections } from "@/types/api-collection";
+import env from "@/env";
+import { areSetsEqual, parseTranslations } from "@/lib/utils";
+import { AvailableLocales } from "@/lib/constants";
 type VotePageProps = {
   className?: string;
-  firstBlock?: { nodes: ReactNode[]; id: number }[];
-  secondBlock?: { nodes: ReactNode[]; id: number }[];
+  voteId?: string;
+  movies?: { nodes: ReactNode[]; id: number }[];
+  lang: AvailableLocales;
 } & HTMLAttributes<HTMLOrSVGElement>;
 
-export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
+export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
   const client = useQueryClient();
   const [votedFilms, setVotedFilms] = useState<Set<number>>(new Set());
-  const searchParams = useSearchParams();
-  const voteId = searchParams.get("voteId");
-  const { data, isLoading, isError, isFetching } = useQuery<VoteType>({
+
+  const { data, isLoading, isError, isFetching } = useQuery<
+    ApiCollections["vote"][number]
+  >({
     queryKey: ["votedFilms", voteId],
     queryFn: async () => {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL || ""}/vote/${voteId}`,
+        `${env.NEXT_PUBLIC_API_URL || ""}/vote/${voteId}`,
         {
           method: "GET",
           headers: {
@@ -35,8 +39,14 @@ export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
       );
       const data = await response.json();
       try {
-        if (data && data.films && Array.isArray(JSON.parse(data.films))) {
-          setVotedFilms(new Set(JSON.parse(data.films)));
+        if (data && data.films) {
+          setVotedFilms(
+            new Set(
+              data.films.map(
+                (item: ApiCollections["vote_film"][number]) => item.film_id
+              )
+            )
+          );
         }
       } catch (e) {
         console.error(e);
@@ -44,6 +54,7 @@ export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
       return data;
     },
   });
+
   const { mutate, isPending } = useMutation({
     mutationFn: async (films: Set<number>) => {
       const response = await fetch(
@@ -82,7 +93,7 @@ export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
         },
       });
       client.invalidateQueries({
-        queryKey: ["votedFilms", voteId],
+        queryKey: ["vrotedFilms", voteId],
         exact: true,
       });
     },
@@ -95,33 +106,38 @@ export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
     [votedFilms]
   );
 
-  const xor = (arr1: number[], arr2: number[]) => {
-    return [
-      ...arr1.filter((x) => !arr2.includes(x)),
-      ...arr2.filter((x) => !arr1.includes(x)),
-    ];
-  };
-  let changesAmount = votedFilms.size;
-  if (data) {
-    try {
-      changesAmount = xor(
-        Array.from(votedFilms),
-        Array.from(JSON.parse(data.films))
-      ).length;
-    } catch (e) {
-      console.error(e);
-    }
-  }
+  let voting = data?.voting_id as ApiCollections["voting"][number] &
+    ApiCollections["voting_translations"][number];
+  voting = parseTranslations<
+    ApiCollections["voting"][number] &
+      ApiCollections["voting_translations"][number]
+  >(voting, lang);
 
+  let votingFilmsIds: Set<number> = new Set(
+    ((voting?.films ?? []) as ApiCollections["vote_film"][number][]).map(
+      (item: ApiCollections["vote_film"][number]) => item.film_id as number
+    )
+  );
+
+  let userVotedId = new Set(
+    ((data?.films ?? []) as ApiCollections["vote_film"][number][]).map(
+      (item: ApiCollections["vote_film"][number]) => item.film_id as number
+    )
+  );
+
+  let filteredMovies = movies?.filter((item) => {
+    return votingFilmsIds.has(item.id);
+  });
+  console.log(votedFilms, userVotedId, areSetsEqual(votedFilms, userVotedId));
   return (
     <>
       {!isError && (
         <div className="flex flex-col w-full gap-20 p-10 items-center h-screen overflow-y-auto ">
           <h2>First block</h2>
           <div className="flex flex-col sm:flex-row sm:flex-wrap gap-6 z-10">
-            {firstBlock &&
+            {filteredMovies &&
               data &&
-              firstBlock.map((item, index) => (
+              filteredMovies.map((item, index) => (
                 <DragCarousel
                   key={index}
                   items={item.nodes}
@@ -138,15 +154,21 @@ export const VotePage: FC<VotePageProps> = ({ firstBlock }) => {
                   }}
                 />
               ))}
-            {(!firstBlock || !data) && <FilmCardSkeletonGroup />}
+            {(!movies || !data) && <FilmCardSkeletonGroup />}
           </div>
-          <SaveButton
-            isFetching={isFetching}
-            isLoading={isLoading}
-            isPending={isPending}
-            onSubmit={onSubmit}
-            changesAmount={changesAmount}
-          />
+          {!voting && <SaveButtonFallback />}
+          {!!voting && (
+            <SaveButton
+              isFetching={isFetching}
+              isLoading={isLoading}
+              isPending={isPending}
+              onSubmit={onSubmit}
+              maxAmount={votingFilmsIds?.size ?? 0}
+              actualAmount={votedFilms.size}
+              changed={!areSetsEqual(votedFilms, userVotedId)}
+              voteMessage={voting?.submit_text ?? "SAVE/ULOŽIT"}
+            />
+          )}
           <FloatingFilterButton />
           <ModeToggle />
         </div>

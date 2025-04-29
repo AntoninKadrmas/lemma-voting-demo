@@ -1,10 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { readItem, triggerFlow } from "@directus/sdk";
 import { directus } from "../../utils/directusConst";
+import { voteFragment } from "@/types/directus-fragemnt";
 
 export async function GET(req: NextRequest) {
   const id = req.nextUrl.pathname.split("/").pop()!;
-  const data = await directus.request(readItem("vote", id));
+  const data = await directus.request(
+    readItem("vote", id, {
+      fields: voteFragment.vote,
+    })
+  );
   if (!data) {
     return NextResponse.error();
   }

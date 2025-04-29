@@ -13,12 +13,15 @@ export const FilmCardSkeleton: FC<FilmCardSkeletonProps> = ({}) => {
 
 export const FilmCardSkeletonGroup: FC<FilmCardSkeletonProps> = ({}) => {
   return (
-    <>
-      {Array(10)
-        .fill(0)
-        .map((data, index) => {
-          return <FilmCardSkeleton key={data + index} />;
-        })}
-    </>
+    <div className="flex flex-col w-full gap-20 p-10 items-center ">
+      <h2>First block</h2>
+      <div className="flex flex-col sm:flex-row sm:flex-wrap gap-6 ">
+        {Array(10)
+          .fill(0)
+          .map((data, index) => {
+            return <FilmCardSkeleton key={data + index} />;
+          })}
+      </div>
+    </div>
   );
 };
