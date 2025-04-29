@@ -135,9 +135,11 @@ const Page: FC<Props> = async ({ params }) => {
                       {person?.first_name} {person?.middle_name}{" "}
                       {person?.last_name}
                     </p>
-                    <div className="ml-2 flex gap-1 flex-wrap w-full">
-                      <Badge>{connection.character}</Badge>
-                    </div>
+                    {connection.character && (
+                      <div className="ml-2 flex gap-1 flex-wrap w-full">
+                        <Badge>{connection.character}</Badge>
+                      </div>
+                    )}
                   </div>
                 );
               }
