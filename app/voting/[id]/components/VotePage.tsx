@@ -11,6 +11,7 @@ import env from "@/env";
 import { areSetsEqual, parseTranslations } from "@/lib/utils";
 import { AvailableLocales } from "@/lib/constants";
 import { BlockPage } from "./BlockPage";
+import { FilmCardSkeletonGroup } from "./FilmCardSkeleton";
 
 export type Movies = {
   nodes: ReactNode[];
@@ -169,7 +170,7 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
               />
             );
           })}
-
+          {!data && <FilmCardSkeletonGroup />}
           {!voting && <SaveButtonFallback />}
           {!!voting && (
             <SaveButton

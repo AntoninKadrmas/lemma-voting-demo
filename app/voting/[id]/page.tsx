@@ -43,16 +43,16 @@ const Page: FC<Props> = async ({ params }) => {
               />
             ) : undefined}
           </div>
-          <div className="flex flex-col p-2 pl-4">
+          <div className="flex flex-col p-2 pl-3">
             <h2 className="truncate text-ellipsis text-xl">{item.name}</h2>
-            <p className="text-sm font-light">
+            <div className="text-sm font-light flex gap-1">
               {item.genres &&
                 (
                   item.genres as ApiCollections["film_film_genre"][number][]
                 ).map(
                   (val: ApiCollections["film_film_genre"][number], index) => {
                     return (
-                      <span key={val.id}>
+                      <Badge key={item.id}>
                         {
                           parseTranslations<
                             ApiCollections["film_genre"][number]
@@ -61,12 +61,11 @@ const Page: FC<Props> = async ({ params }) => {
                             lang
                           ).name
                         }
-                        {index + 1 < (item.genres ?? []).length && ", "}
-                      </span>
+                      </Badge>
                     );
                   }
                 )}
-            </p>
+            </div>
           </div>
         </div>,
         <div
@@ -81,7 +80,7 @@ const Page: FC<Props> = async ({ params }) => {
           key={item.id + "crew"}
         >
           <p className="tex-lg font-extrabold">Crew</p>
-          <div className="ml-2">
+          <div className="ml-2 flex-col flex gap-1">
             {(
               item.crew as ApiCollections["film_crew_film_person"][number][]
             ).map(
@@ -105,11 +104,11 @@ const Page: FC<Props> = async ({ params }) => {
                       {person?.first_name} {person?.middle_name}{" "}
                       {person?.last_name}{" "}
                     </p>
-                    {roles.sort().map((role) => (
-                      <span className="ml-2 text-sm font-light" key={role.id}>
-                        <Badge>{role.name}</Badge>
-                      </span>
-                    ))}
+                    <div className="ml-2 flex gap-1 flex-wrap w-full">
+                      {roles.sort().map((role) => (
+                        <Badge key={role.id}>{role.name}</Badge>
+                      ))}
+                    </div>
                   </div>
                 );
               }
@@ -121,7 +120,7 @@ const Page: FC<Props> = async ({ params }) => {
           key={item.id + "crew"}
         >
           <p className="tex-lg font-extrabold">Actors</p>
-          <div className="ml-2">
+          <div className="ml-2 flex-col flex gap-1">
             {(
               item.actors as ApiCollections["film_crew_film_person"][number][]
             ).map(
@@ -134,11 +133,11 @@ const Page: FC<Props> = async ({ params }) => {
                   <div key={person.id}>
                     <p className="text-sm font-bold">
                       {person?.first_name} {person?.middle_name}{" "}
-                      {person?.last_name}{" "}
+                      {person?.last_name}
                     </p>
-                    <span className="ml-2 text-sm font-light">
+                    <div className="ml-2 flex gap-1 flex-wrap w-full">
                       <Badge>{connection.character}</Badge>
-                    </span>
+                    </div>
                   </div>
                 );
               }

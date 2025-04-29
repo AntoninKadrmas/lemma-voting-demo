@@ -94,7 +94,7 @@ export default function DragCarousel({
         "transition-all duration-100 ease-in-out",
         state
           ? "saturate-[1.5]"
-          : "saturate-[0.2] border-3 border-transparent ",
+          : "saturate-[0.2] border-3  border-gray-200 dark:border-gray-800 shadow-[0_0_10px_4px_rgba(0,0,0,0.8)] shadow-gray-200 dark:shadow-gray-800",
         state &&
           "border-3 border-green-300 shadow-[0_0_10px_4px_rgba(0,0,0,0.8)] shadow-green-300 dark:shadow-white dark:border-white",
         // "[&_.narrow-horizontal-line]:w-1/3 [&_.vertical-line]:h-1/2 [&_.wide-horizontal-line]:w-2/3",
@@ -154,7 +154,6 @@ export default function DragCarousel({
                 opacity,
               }}
             >
-              {" "}
               <CardContent className="flex h-full items-center justify-between p-0 text-2xl font-bold dark:text-white">
                 <>
                   {index != 0 && (
@@ -169,7 +168,7 @@ export default function DragCarousel({
                         onSelected(!state);
                       }}
                     >
-                      <LuChevronLeft className="h-8 w-8" />
+                      <LuChevronLeft className="h-8 w-8 text-white" />
                     </div>
                   )}
                   {item}
@@ -185,7 +184,7 @@ export default function DragCarousel({
                         onSelected(!state);
                       }}
                     >
-                      <LuChevronRight className="h-8 w-8" />
+                      <LuChevronRight className="h-8 w-8 text-white" />
                     </div>
                   )}
                 </>
@@ -196,7 +195,7 @@ export default function DragCarousel({
       </div>
 
       {/* Navigation dots */}
-      <div className="absolute bottom-4 right-4 z-30 flex transform space-x-2">
+      <div className="absolute bottom-[0.5rem] right-2 z-30 flex transform space-x-1">
         {items.map((_, index) => (
           <button
             key={index}

@@ -1,5 +1,4 @@
 import { FC, HTMLAttributes } from "react";
-import { FilmCardSkeletonGroup } from "./FilmCardSkeleton";
 import DragCarousel from "./FilmCard";
 import { Movies } from "./VotePage";
 import { ApiCollections } from "@/types/api-collection";
@@ -39,7 +38,6 @@ export const BlockPage: FC<BlockPageProps> = ({
               onSelected={() => setVotedFilms(item.id)}
             />
           ))}
-        {!filteredMovies && <FilmCardSkeletonGroup />}
       </div>
     </>
   );
