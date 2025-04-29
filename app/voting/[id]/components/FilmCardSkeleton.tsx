@@ -14,7 +14,7 @@ export const FilmCardSkeleton: FC<FilmCardSkeletonProps> = ({}) => {
 export const FilmCardSkeletonGroup: FC<FilmCardSkeletonProps> = ({}) => {
   return (
     <div className="flex flex-col w-full gap-20 p-10 items-center ">
-      <h2>First block</h2>
+      <Skeleton className="w-40 h-10" />
       <div className="flex flex-col sm:flex-row sm:flex-wrap gap-6 ">
         {Array(10)
           .fill(0)

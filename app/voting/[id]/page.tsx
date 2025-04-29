@@ -1,5 +1,5 @@
 import { FC, Suspense } from "react";
-import { VotePage } from "./components/VotePage";
+import { Movies, VotePage } from "./components/VotePage";
 import { Toaster } from "@/components/ui/sonner";
 import { FilmCardSkeletonGroup } from "./components/FilmCardSkeleton";
 import { ApiCollections } from "@/types/api-collection";
@@ -81,7 +81,7 @@ const Page: FC<Props> = async ({ params }) => {
           key={item.id + "crew"}
         >
           <p className="tex-lg font-extrabold">Crew</p>
-          <p className="ml-2">
+          <div className="ml-2">
             {(
               item.crew as ApiCollections["film_crew_film_person"][number][]
             ).map(
@@ -100,7 +100,7 @@ const Page: FC<Props> = async ({ params }) => {
                   )
                 );
                 return (
-                  <p key={person.id}>
+                  <div key={person.id}>
                     <p className="text-sm font-bold">
                       {person?.first_name} {person?.middle_name}{" "}
                       {person?.last_name}{" "}
@@ -110,11 +110,11 @@ const Page: FC<Props> = async ({ params }) => {
                         <Badge>{role.name}</Badge>
                       </span>
                     ))}
-                  </p>
+                  </div>
                 );
               }
             )}
-          </p>
+          </div>
         </div>,
         <div
           className="h-full w-full overflow-auto bg-background p-5 px-8"
@@ -147,10 +147,7 @@ const Page: FC<Props> = async ({ params }) => {
         </div>,
       ],
       id: item.id ?? 0,
-      block:
-        typeof item.festival_block === "number"
-          ? item.festival_block
-          : item.festival_block?.id ?? 0,
+      block: item.festival_block as ApiCollections["festival_block"][number],
     };
   };
   return (
@@ -160,7 +157,9 @@ const Page: FC<Props> = async ({ params }) => {
         <Suspense fallback={<FilmCardSkeletonGroup />}>
           <VotePage
             voteId={id}
-            movies={films ? films.map(getFimComponent) : undefined}
+            movies={
+              films ? (films.map(getFimComponent) as Movies[]) : undefined
+            }
             lang={lang}
           />
         </Suspense>

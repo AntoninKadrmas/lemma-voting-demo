@@ -12,10 +12,18 @@ import { ApiCollections } from "@/types/api-collection";
 import env from "@/env";
 import { areSetsEqual, parseTranslations } from "@/lib/utils";
 import { AvailableLocales } from "@/lib/constants";
+import { BlockPage } from "./BlockPage";
+
+export type Movies = {
+  nodes: ReactNode[];
+  id: number;
+  block: ApiCollections["festival_block"][number];
+};
+
 type VotePageProps = {
   className?: string;
   voteId?: string;
-  movies?: { nodes: ReactNode[]; id: number }[];
+  movies?: Movies[];
   lang: AvailableLocales;
 } & HTMLAttributes<HTMLOrSVGElement>;
 
@@ -125,36 +133,45 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
     )
   );
 
-  let filteredMovies = movies?.filter((item) => {
-    return votingFilmsIds.has(item.id);
+  const orderedByBlockMovies = new Map<string, Movies[]>();
+
+  (movies ?? []).forEach((element: Movies) => {
+    if (!orderedByBlockMovies.has(JSON.stringify(element.block))) {
+      orderedByBlockMovies.set(JSON.stringify(element.block), []);
+    }
+    if (votingFilmsIds.has(element.id))
+      orderedByBlockMovies.get(JSON.stringify(element.block))!.push(element);
+    if (orderedByBlockMovies.get(JSON.stringify(element.block))!.length == 0) {
+      orderedByBlockMovies.delete(JSON.stringify(element.block));
+    }
   });
+
   return (
     <>
       {!isError && (
         <div className="flex flex-col w-full gap-20 p-10 items-center h-screen overflow-y-auto ">
-          <h2>First block</h2>
-          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-6 z-10">
-            {filteredMovies &&
-              data &&
-              filteredMovies.map((item, index) => (
-                <DragCarousel
-                  key={index}
-                  items={item.nodes}
-                  state={votedFilms.has(item.id)}
-                  onSelected={(state) => {
-                    if (state) {
-                      setVotedFilms((prev) => new Set(prev.add(item.id)));
-                    } else {
-                      setVotedFilms((prev) => {
-                        prev.delete(item.id);
-                        return new Set(prev);
-                      });
-                    }
-                  }}
-                />
-              ))}
-            {(!movies || !data) && <FilmCardSkeletonGroup />}
-          </div>
+          {Array.from(orderedByBlockMovies.keys()).map((item) => {
+            return (
+              <BlockPage
+                key={item}
+                block={JSON.parse(item)}
+                lang={lang}
+                filteredMovies={orderedByBlockMovies.get(item)}
+                votedFilms={votedFilms}
+                setVotedFilms={(id: number) => {
+                  if (!votedFilms.has(id)) {
+                    setVotedFilms((prev) => new Set(prev.add(id)));
+                  } else {
+                    setVotedFilms((prev) => {
+                      prev.delete(id);
+                      return new Set(prev);
+                    });
+                  }
+                }}
+              />
+            );
+          })}
+
           {!voting && <SaveButtonFallback />}
           {!!voting && (
             <SaveButton
