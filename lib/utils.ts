@@ -57,16 +57,20 @@ export const getAssetUrl = (
 };
 
 export function parseTranslations<
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
   T extends Partial<{ translations: any[] | undefined | null }>
 >(value: T | undefined, lang: AvailableLocales): Omit<T, "translations"> {
   if (!value) {
-    return value as any as T;
+    return value as any as T; // eslint-disable-line @typescript-eslint/no-explicit-any
   }
+
   const { translations, ...other } = value;
   return {
     ...other,
     ...(translations
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ?.filter?.((t: any) => t.languages_code === lang)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
       .map(({ id, ...t }: any) => t)[0] as T),
   } as T;
 }

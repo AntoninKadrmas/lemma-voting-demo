@@ -8,7 +8,6 @@ export const env = createEnv({
    */
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
-    DIRECTUS_URL: z.string().endsWith("/"),
     DIRECTUS_SECRET_TOKEN: z.string(),
     DIRECTUS_USERNAME: z.string().optional(),
     DIRECTUS_PASSWORD: z.string().optional(),
@@ -31,7 +30,6 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
-    DIRECTUS_URL: process.env.DIRECTUS_URL,
     DIRECTUS_SECRET_TOKEN: process.env.DIRECTUS_SECRET_TOKEN,
     NEXT_PUBLIC_DIRECTUS_URL: process.env.NEXT_PUBLIC_DIRECTUS_URL,
     DIRECTUS_PASSWORD: process.env.DIRECTUS_PASSWORD,

@@ -1,10 +1,8 @@
 "use client";
 import { FC, HTMLAttributes, ReactNode, useCallback, useState } from "react";
-import DragCarousel from "./FilmCard";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { debounce } from "lodash";
 import { toast } from "sonner";
-import { FilmCardSkeletonGroup } from "./FilmCardSkeleton";
 import { FloatingFilterButton } from "./FloatingFilterButton";
 import { SaveButton, SaveButtonFallback } from "./SaveButton";
 import { ModeToggle } from "@/components/ui/mode-toggle";
@@ -121,13 +119,13 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
       ApiCollections["voting_translations"][number]
   >(voting, lang);
 
-  let votingFilmsIds: Set<number> = new Set(
+  const votingFilmsIds: Set<number> = new Set(
     ((voting?.films ?? []) as ApiCollections["vote_film"][number][]).map(
       (item: ApiCollections["vote_film"][number]) => item.film_id as number
     )
   );
 
-  let userVotedId = new Set(
+  const userVotedId = new Set(
     ((data?.films ?? []) as ApiCollections["vote_film"][number][]).map(
       (item: ApiCollections["vote_film"][number]) => item.film_id as number
     )

@@ -10,7 +10,7 @@ import { AvailableLocales } from "@/lib/constants";
 import { Badge } from "@/components/ui/badge";
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 const Page: FC<Props> = async ({ params }) => {
@@ -105,7 +105,7 @@ const Page: FC<Props> = async ({ params }) => {
                       {person?.first_name} {person?.middle_name}{" "}
                       {person?.last_name}{" "}
                     </p>
-                    {roles.sort().map((role, index) => (
+                    {roles.sort().map((role) => (
                       <span className="ml-2 text-sm font-light" key={role.id}>
                         <Badge>{role.name}</Badge>
                       </span>

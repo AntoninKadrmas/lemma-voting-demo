@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { FC, HTMLAttributes } from "react";
-import { LuLoader, LuSave } from "react-icons/lu";
+import { LuLoader } from "react-icons/lu";
 
 type SaveButtonProps = {
   className?: string;
