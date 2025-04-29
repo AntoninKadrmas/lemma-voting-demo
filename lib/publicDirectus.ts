@@ -3,7 +3,7 @@ import { type ApiCollections } from "@/types/api-collection";
 import { env } from "@/env";
 
 const publicDirectus = createDirectus<ApiCollections>(
-  env.NEXT_PUBLIC_DIRECTUS_URL
+  env.NEXT_PUBLIC_DIRECTUS_URL,
 ).with(
   rest({
     onRequest: (options) => ({
@@ -11,14 +11,14 @@ const publicDirectus = createDirectus<ApiCollections>(
       cache: "force-cache",
       mode: "no-cors",
     }),
-  })
+  }),
 );
 
 export default publicDirectus;
 
 export const getFileDataMetadata = async (id: string) => {
   const { width, height, ...props } = await publicDirectus.request(
-    readFile(id)
+    readFile(id),
   );
 
   return width && height

@@ -33,7 +33,7 @@ const MultipleSelect = forwardRef<HTMLDivElement, ISelectProps>(
       selectedOptions: selectedItems,
       setSelectedOptions: setSelectedItems,
     },
-    ref: ForwardedRef<HTMLDivElement>
+    ref: ForwardedRef<HTMLDivElement>,
   ) => {
     const [open, setOpen] = useState(false);
 
@@ -75,7 +75,7 @@ const MultipleSelect = forwardRef<HTMLDivElement, ISelectProps>(
             {
               "h-auto w-full opacity-100 p-2": open,
               "h-0 w-0 overflow-hidden opacity-0": !open,
-            }
+            },
           )}
         >
           {values.map((value) => (
@@ -84,7 +84,7 @@ const MultipleSelect = forwardRef<HTMLDivElement, ISelectProps>(
               className={cn(
                 "relative flex cursor-default select-none items-center rounded-sm py-2 pl-8 pr-2 text-sm outline-none hover:bg-accent hover:text-accent-foreground transition-all duration-100 ease-in-out",
                 selectedItems.includes(value.value) &&
-                  "bg-accent text-accent-foreground"
+                  "bg-accent text-accent-foreground",
               )}
               onClick={() => handleSelect(value.value)}
             >
@@ -93,7 +93,7 @@ const MultipleSelect = forwardRef<HTMLDivElement, ISelectProps>(
                   "absolute left-2 flex h-3.5 w-3.5 items-center justify-center",
                   selectedItems.includes(value.value)
                     ? "opacity-100"
-                    : "opacity-0"
+                    : "opacity-0",
                 )}
               >
                 <LuCheck className="h-4 w-4" />
@@ -104,7 +104,7 @@ const MultipleSelect = forwardRef<HTMLDivElement, ISelectProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 
 MultipleSelect.displayName = "MultipleSelect";

@@ -43,7 +43,7 @@ type CountdownProps = BlockBaseProps &
 const getDateSuffix = (
   lang: AvailableLocales,
   amount: number,
-  customPluralSuffix?: string | null
+  customPluralSuffix?: string | null,
 ) => {
   switch (lang) {
     case "cz-CZ":
@@ -60,7 +60,7 @@ function localizedText(
   lang: AvailableLocales,
   dateKind: DateKind,
   amount: number,
-  customPluralSuffix?: string | null
+  customPluralSuffix?: string | null,
 ) {
   const dateExceptionFunction = DATES_EXCEPTIONS[lang]?.[dateKind];
   if (dateExceptionFunction) {
@@ -77,7 +77,7 @@ const Countdown: FC<CountdownProps> = ({
   title,
   end_date: endDateString,
   hide_date: hideDateString,
-   
+
   custom_plural_date_suffix: customPluralSuffix,
   lang,
 }) => {
@@ -118,7 +118,7 @@ const Countdown: FC<CountdownProps> = ({
         lang,
         "minute",
         timer.getMinutes(),
-        customPluralSuffix
+        customPluralSuffix,
       ),
       amount: timer.getMinutes(),
     },
@@ -128,7 +128,7 @@ const Countdown: FC<CountdownProps> = ({
         lang,
         "second",
         timer.getSeconds(),
-        customPluralSuffix
+        customPluralSuffix,
       ),
       amount: timer.getSeconds(),
     },

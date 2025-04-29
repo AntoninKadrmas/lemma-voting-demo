@@ -51,14 +51,14 @@ export function getBackgroundImage(imageProps: {
 export const getAssetUrl = (
   id?: string,
   key?: TransformationPresets,
-  url = env.NEXT_PUBLIC_DIRECTUS_URL
+  url = env.NEXT_PUBLIC_DIRECTUS_URL,
 ) => {
   return id ? parseUrl(`${url}assets/${id}`, key) : "";
 };
 
 export function parseTranslations<
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-  T extends Partial<{ translations: any[] | undefined | null }>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  T extends Partial<{ translations: any[] | undefined | null }>,
 >(value: T | undefined, lang: AvailableLocales): Omit<T, "translations"> {
   if (!value) {
     return value as any as T; // eslint-disable-line @typescript-eslint/no-explicit-any

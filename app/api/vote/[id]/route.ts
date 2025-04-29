@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
   const data = await directus.request(
     readItem("vote", id, {
       fields: voteFragment.vote,
-    })
+    }),
   );
   if (!data) {
     return NextResponse.error();
@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
   }
 
   const data: TriggerFlowResponse = (await directus.request(
-    triggerFlow("POST", "f2b48e63-1368-4324-ac9c-09f26c70be0c", body)
+    triggerFlow("POST", "f2b48e63-1368-4324-ac9c-09f26c70be0c", body),
   )) as TriggerFlowResponse;
 
   if (!data || data.error) {

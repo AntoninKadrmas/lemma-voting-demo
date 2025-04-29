@@ -13,6 +13,8 @@ import { BlockPage } from "./BlockPage";
 import { FilmCardSkeletonGroup } from "./FilmCardSkeleton";
 import moment from "moment";
 import Countdown from "@/components/element/Countdown";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 export type Movies = {
   nodes: ReactNode[];
   id: number;
@@ -42,7 +44,7 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       const data = await response.json();
       try {
@@ -50,9 +52,9 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
           setVotedFilms(
             new Set(
               data.films.map(
-                (item: ApiCollections["vote_film"][number]) => item.film_id
-              )
-            )
+                (item: ApiCollections["vote_film"][number]) => item.film_id,
+              ),
+            ),
           );
         }
       } catch (e) {
@@ -76,7 +78,7 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
             films: JSON.stringify(Array.from(films)),
             timestamp: new Date().toISOString(),
           }),
-        }
+        },
       );
       return await response.json();
     },
@@ -110,52 +112,62 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
     debounce(() => {
       mutate(votedFilms);
     }, 200),
-    [votedFilms]
+    [votedFilms],
   );
 
   let voting = data?.voting_id as ApiCollections["voting"][number] &
-  ApiCollections["voting_translations"][number];
+    ApiCollections["voting_translations"][number];
   voting = parseTranslations<
     ApiCollections["voting"][number] &
       ApiCollections["voting_translations"][number]
   >(voting, lang);
 
-  if(voting && moment(voting.start_date).isAfter(moment())){
+  if (voting && moment(voting.start_date).isAfter(moment())) {
     setTimeout(() => {
       client.invalidateQueries({
         queryKey: ["votedFilms", voteId],
         exact: true,
       });
-    },moment(voting.start_date).diff(moment()));
-    return <div className="flex flex-col items-center justify-center h-screen w-full">
-      <Countdown end_date={voting.start_date} title={voting.before_start_text} lang={lang}/>
-    </div>
-  } 
-  if(voting && moment(voting.end_date).isBefore(moment())){
-    return <div className="flex flex-col items-center justify-center h-screen w-full">
-      <h4 className={"pb-6 text-xl font-bold sm:text-3xl"}>{voting.after_end_text}</h4>
-    </div>
+    }, moment(voting.start_date).diff(moment()));
+    return (
+      <div className="flex flex-col items-center justify-center h-screen w-full text-center">
+        <Countdown
+          end_date={voting.start_date}
+          title={voting.before_start_text}
+          lang={lang}
+        />
+      </div>
+    );
+  }
+  if (voting && moment(voting.end_date).isBefore(moment())) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen w-full text-center">
+        <h4 className={"pb-6 text-xl font-bold sm:text-3xl"}>
+          {voting.after_end_text}
+        </h4>
+      </div>
+    );
   }
 
-  if(voting){
+  if (voting) {
     setTimeout(() => {
       client.invalidateQueries({
         queryKey: ["votedFilms", voteId],
         exact: true,
       });
-    },moment(voting.end_date).diff(moment()));
+    }, moment(voting.end_date).diff(moment()));
   }
 
   const votingFilmsIds: Set<number> = new Set(
     ((voting?.films ?? []) as ApiCollections["vote_film"][number][]).map(
-      (item: ApiCollections["vote_film"][number]) => item.film_id as number
-    )
+      (item: ApiCollections["vote_film"][number]) => item.film_id as number,
+    ),
   );
 
   const userVotedId = new Set(
     ((data?.films ?? []) as ApiCollections["vote_film"][number][]).map(
-      (item: ApiCollections["vote_film"][number]) => item.film_id as number
-    )
+      (item: ApiCollections["vote_film"][number]) => item.film_id as number,
+    ),
   );
 
   const orderedByBlockMovies = new Map<string, Movies[]>();
@@ -214,9 +226,42 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
         </div>
       )}
       {isError && (
-        <p className="flex justify-center items-center">
-          You have incorrect voteId in url.
-        </p>
+        <div className="w-screen h-screen justify-center items-center flex text-center flex-col gap-2">
+          {lang == "en-US" && (
+            <>
+              <p className="flex justify-center items-center p-2 text-2xl">
+                This voteId does not exists.
+              </p>
+              <p className="flex justify-center items-center p-2 text-2xl">
+                Try to scan it again or ask for a new one. With this screen
+                message.
+              </p>
+              <Link
+                href={"/en/voting"}
+                className={buttonVariants({ variant: "outline" })}
+              >
+                Return home
+              </Link>
+            </>
+          )}
+          {lang == "cz-CZ" && (
+            <>
+              <p className="flex justify-center items-center p-2 text-2xl">
+                Toto voteId neexistuje.
+              </p>
+              <p className="flex justify-center items-center p-2 text-2xl">
+                Zkuste ho naskenovat znova nebo si zažádejte o nový s touto
+                obrazovkou.
+              </p>
+              <Link
+                href={"/cz/voting"}
+                className={buttonVariants({ variant: "outline" })}
+              >
+                Návrat domů
+              </Link>
+            </>
+          )}
+        </div>
       )}
     </>
   );

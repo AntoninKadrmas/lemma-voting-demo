@@ -1,24 +1,23 @@
 import { FC, Suspense } from "react";
 import { Movies, VotePage } from "./components/VotePage";
-import { Toaster } from "@/components/ui/sonner";
 import { FilmCardSkeletonGroup } from "./components/FilmCardSkeleton";
 import { ApiCollections } from "@/types/api-collection";
 import DirectusImage from "@/components/element/DirectusImage";
 import { cn, parseTranslations } from "@/lib/utils";
 import env from "@/env";
-import { AvailableLocales } from "@/lib/constants";
+import { AVAIL_LOCALES, AvailableLocales } from "@/lib/constants";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import directusImageLoader from "@/lib/DirectusLoader";
-import { ModeToggle } from "@/components/ui/mode-toggle";
 
 type Props = {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string; locale: string }>;
 };
 
 const Page: FC<Props> = async ({ params }) => {
-  const lang: AvailableLocales = "cz-CZ";
-  const { id } = await params;
+  const { id, locale } = await params;
+  const lang = (AVAIL_LOCALES.find((x) => x.startsWith(locale ?? "")) ??
+    "cz-CZ") as AvailableLocales;
   const res = await fetch(`${env.NEXT_PUBLIC_API_URL}/films`, {
     method: "GET",
     cache: "no-store",
@@ -67,7 +66,7 @@ const Page: FC<Props> = async ({ params }) => {
                       {
                         parseTranslations<ApiCollections["film_genre"][number]>(
                           val.film_genre_id as ApiCollections["film_genre"][number],
-                          lang
+                          lang,
                         ).name
                       }
                     </Badge>
@@ -103,8 +102,8 @@ const Page: FC<Props> = async ({ params }) => {
                       ApiCollections["film_crew_role_translations"][number]
                   >(
                     val.film_crew_role_id as ApiCollections["film_crew_role"][number],
-                    lang
-                  )
+                    lang,
+                  ),
                 );
                 return (
                   <div key={person.id + "crew"}>
@@ -119,7 +118,7 @@ const Page: FC<Props> = async ({ params }) => {
                     </div>
                   </div>
                 );
-              }
+              },
             )}
           </div>
         </div>,
@@ -133,7 +132,7 @@ const Page: FC<Props> = async ({ params }) => {
               item.actors as ApiCollections["film_crew_film_person"][number][]
             ).map(
               (
-                connection: ApiCollections["film_actor_film_person"][number]
+                connection: ApiCollections["film_actor_film_person"][number],
               ) => {
                 const person =
                   connection.film_person_id as ApiCollections["film_person"][number];
@@ -150,7 +149,7 @@ const Page: FC<Props> = async ({ params }) => {
                     )}
                   </div>
                 );
-              }
+              },
             )}
           </div>
         </div>,
@@ -161,9 +160,6 @@ const Page: FC<Props> = async ({ params }) => {
   };
   return (
     <>
-      <Toaster position="top-right" />
-      <ModeToggle />
-
       {
         <Suspense fallback={<FilmCardSkeletonGroup />}>
           <VotePage

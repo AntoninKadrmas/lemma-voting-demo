@@ -7,7 +7,7 @@ export async function GET() {
   const data = await directus.request(
     readItems("film", {
       fields: filmFragment.film,
-    })
+    }),
   );
   if (!data) {
     return NextResponse.error();

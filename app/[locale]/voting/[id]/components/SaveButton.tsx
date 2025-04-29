@@ -32,7 +32,7 @@ export const SaveButton: FC<SaveButtonProps> = ({
     <div
       className={cn(
         "absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between right-0 bottom-0 items-end z-20 pb-3 pr-3 sm:pr-8 sm:pb-8",
-        className
+        className,
       )}
       {...props}
     >
@@ -45,7 +45,7 @@ export const SaveButton: FC<SaveButtonProps> = ({
           !changed || isPending || isLoading
             ? "cursor-none brightness-50"
             : "cursor-pointer",
-          "h-14 w-auto relative p-0"
+          "h-14 w-auto relative p-0",
         )}
       >
         <div className="w-full h-full flex justify-center items-center relative m-4 gap-1">
@@ -57,7 +57,7 @@ export const SaveButton: FC<SaveButtonProps> = ({
           className={cn(
             "absolute -top-2 -right-2 px-2 py-1 flex justify-center items-baseline rounded-2xl  font-bold",
             { "bg-destructive dark:bg-destructive text-white": changed },
-            { "bg-black text-white dark:bg-white dark:text-black": !changed }
+            { "bg-black text-white dark:bg-white dark:text-black": !changed },
           )}
         >
           <span className="font-bold">{actualAmount}</span>
@@ -75,7 +75,7 @@ export const SaveButtonFallback: FC<{ className?: string }> = ({
     <div
       className={cn(
         "absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between right-0 bottom-0 items-end z-20 pb-3 pr-3 sm:pr-8 sm:pb-8",
-        className
+        className,
       )}
     >
       <Skeleton className="h-14 w-32" />

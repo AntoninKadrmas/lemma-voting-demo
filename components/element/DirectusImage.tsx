@@ -1,4 +1,3 @@
- 
 import ExportedImage, {
   type ExportedImageProps,
 } from "next-image-export-optimizer";
@@ -28,7 +27,6 @@ export default async function DirectusImage({
   if (metadata) {
     props = {
       ...props,
-
       alt: props.alt ?? metadata.title ?? "",
       src: getAssetUrl(metadata.filename_disk),
       width: props.width ?? metadata.width,
