@@ -5,7 +5,6 @@ import { debounce } from "lodash";
 import { toast } from "sonner";
 import { FloatingFilterButton } from "./FloatingFilterButton";
 import { SaveButton, SaveButtonFallback } from "./SaveButton";
-import { ModeToggle } from "@/components/ui/mode-toggle";
 import { ApiCollections } from "@/types/api-collection";
 import env from "@/env";
 import { areSetsEqual, parseTranslations } from "@/lib/utils";
@@ -137,7 +136,7 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
       <h4 className={"pb-6 text-xl font-bold sm:text-3xl"}>{voting.after_end_text}</h4>
     </div>
   }
-  
+
   if(voting){
     setTimeout(() => {
       client.invalidateQueries({
