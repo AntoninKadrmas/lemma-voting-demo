@@ -18,17 +18,18 @@ export function middleware(request: NextRequest) {
     // Get the locale from cookies or default to 'cz-CZ'
     locale = request.cookies.get("locale")?.value ?? "cz-CZ";
     return NextResponse.redirect(
-      new URL(`/${locale.split("-")[0]}/voting`, request.url),
+      new URL(`/${locale.split("-")[0]}`, request.url)
     );
   }
 
   // Set the locale cookie in the response
   response.cookies.set("locale", locale);
 
-  const isValidPath = /^\/(cz|en)\/voting(\/[^\/]*)?\/?$/.test(pathname);
+  const isValidPath = /^\/(en|cz)(\/voting)?\/?$/.test(pathname);
+  console.log("isValidPath", isValidPath, pathname);
   if (!isValidPath) {
     return NextResponse.redirect(
-      new URL(`/${locale.split("-")[0]}/voting`, request.url),
+      new URL(`/${locale.split("-")[0]}`, request.url)
     );
   }
 
