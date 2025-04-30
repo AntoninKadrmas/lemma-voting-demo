@@ -19,7 +19,7 @@ export function ModeToggle() {
   return (
     <div
       className={cn(
-        "absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between left-4 top-3 sm:left-8 sm:top-8 items-end z-20"
+        "absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between left-4 top-3 sm:left-8 sm:top-8 items-end z-20",
       )}
     >
       <DropdownMenu>
@@ -29,7 +29,7 @@ export function ModeToggle() {
             size="icon"
             className={cn(
               "h-10 w-10 ",
-              "bg-primary text-primary-foreground dark:text-shadow-white"
+              "bg-primary text-primary-foreground dark:text-shadow-white",
             )}
           >
             <LuSun className="!h-5 !w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />

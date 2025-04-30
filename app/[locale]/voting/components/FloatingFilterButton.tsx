@@ -131,7 +131,7 @@ export function FloatingFilterButton() {
       ref={containerRef}
       className={cn(
         "absolute transition-all duration-100 ease-in-out flex flex-col right-4 top-3 sm:right-8 sm:top-8 items-end z-20 ",
-        isFilterExpanded ? "w-screen md:w-[400px]" : "w-auto"
+        isFilterExpanded ? "w-screen md:w-[400px]" : "w-auto",
       )}
     >
       <Button
@@ -166,7 +166,7 @@ export function FloatingFilterButton() {
           "flex flex-col transition-all duration-200 ease-in-out w-full max-w-[400px]",
           isFilterExpanded
             ? "h-fit py-1 pl-1 opacity-100 mt-3 gap-3"
-            : "max-h-[0] pointer-events-none opacity-0"
+            : "max-h-[0] pointer-events-none opacity-0",
         )}
       >
         {/* Name */}
@@ -174,7 +174,7 @@ export function FloatingFilterButton() {
           <div
             className={cn("transition-all duration-200 ease-in-out", {
               "w-[0] opacity-0 pointer-events-none": !checkClosed(
-                filteredSearch.name
+                filteredSearch.name,
               ),
               "w-full opacity-100": checkClosed(filteredSearch.name),
             })}
@@ -211,7 +211,7 @@ export function FloatingFilterButton() {
                 ? checkClosed(filteredSearch.name)
                   ? "bg-primary text-primary-foreground"
                   : ""
-                : "text-shadow-white"
+                : "text-shadow-white",
             )}
             onClick={() => toggleSearch("name")}
           >
@@ -224,7 +224,7 @@ export function FloatingFilterButton() {
           <div
             className={cn("transition-all duration-200 ease-in-out", {
               "w-[0] opacity-0 pointer-events-none": !checkClosed(
-                filteredSearch.author
+                filteredSearch.author,
               ),
               "w-full opacity-100": checkClosed(filteredSearch.author),
             })}
@@ -261,7 +261,7 @@ export function FloatingFilterButton() {
                 ? checkClosed(filteredSearch.author)
                   ? "bg-primary text-primary-foreground"
                   : ""
-                : "text-shadow-white"
+                : "text-shadow-white",
             )}
             onClick={() => toggleSearch("author")}
           >
@@ -277,7 +277,7 @@ export function FloatingFilterButton() {
           <div
             className={cn("transition-all duration-200 ease-in-out", {
               "w-[0] opacity-0 pointer-events-none": !checkClosed(
-                filteredSearch.genre
+                filteredSearch.genre,
               ),
               "w-full opacity-100": checkClosed(filteredSearch.genre),
             })}
@@ -317,7 +317,7 @@ export function FloatingFilterButton() {
                 ? checkClosed(filteredSearch.genre)
                   ? "bg-primary text-primary-foreground"
                   : ""
-                : "text-shadow-white"
+                : "text-shadow-white",
             )}
             onClick={() => toggleSearch("genre")}
           >
@@ -331,7 +331,7 @@ export function FloatingFilterButton() {
             "flex items-center justify-end",
             hasAnyFilter
               ? "h-auto opacity-100"
-              : "h-[0] overflow-hidden opacity-0"
+              : "h-[0] overflow-hidden opacity-0",
           )}
           onClick={(e) => e.stopPropagation()}
         >

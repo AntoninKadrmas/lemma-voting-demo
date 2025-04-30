@@ -8,6 +8,6 @@ export const directus = createDirectus(env.NEXT_PUBLIC_DIRECTUS_URL || "")
         cache: "force-cache",
         mode: "no-cors",
       }),
-    })
+    }),
   )
   .with(staticToken(env.DIRECTUS_SECRET_TOKEN || ""));

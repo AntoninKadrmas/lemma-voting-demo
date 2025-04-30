@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export const getFimComponent = (
   item: ApiCollections["film"][number],
-  lang: AvailableLocales
+  lang: AvailableLocales,
 ) => {
   item = parseTranslations<
     ApiCollections["film"][number] & ApiCollections["film_translations"][number]
@@ -43,12 +43,12 @@ export const getFimComponent = (
                       {
                         parseTranslations<ApiCollections["film_genre"][number]>(
                           val.film_genre_id as ApiCollections["film_genre"][number],
-                          lang
+                          lang,
                         ).name
                       }
                     </Badge>
                   );
-                }
+                },
               )}
           </div>
         </div>
@@ -78,8 +78,8 @@ export const getFimComponent = (
                     ApiCollections["film_crew_role_translations"][number]
                 >(
                   val.film_crew_role_id as ApiCollections["film_crew_role"][number],
-                  lang
-                )
+                  lang,
+                ),
               );
               return (
                 <div key={person.id + "crew"}>
@@ -94,7 +94,7 @@ export const getFimComponent = (
                   </div>
                 </div>
               );
-            }
+            },
           )}
         </div>
       </div>,
@@ -123,7 +123,7 @@ export const getFimComponent = (
                   )}
                 </div>
               );
-            }
+            },
           )}
         </div>
       </div>,
