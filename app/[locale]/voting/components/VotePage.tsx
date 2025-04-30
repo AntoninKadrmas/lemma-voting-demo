@@ -44,7 +44,7 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
           headers: {
             "Content-Type": "application/json",
           },
-        },
+        }
       );
       const data = await response.json();
       try {
@@ -52,9 +52,9 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
           setVotedFilms(
             new Set(
               data.films.map(
-                (item: ApiCollections["vote_film"][number]) => item.film_id,
-              ),
-            ),
+                (item: ApiCollections["vote_film"][number]) => item.film_id
+              )
+            )
           );
         }
       } catch (e) {
@@ -78,7 +78,7 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
             films: JSON.stringify(Array.from(films)),
             timestamp: new Date().toISOString(),
           }),
-        },
+        }
       );
       return await response.json();
     },
@@ -112,7 +112,7 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
     debounce(() => {
       mutate(votedFilms);
     }, 200),
-    [votedFilms],
+    [votedFilms]
   );
 
   let voting = data?.voting_id as ApiCollections["voting"][number] &
@@ -160,14 +160,14 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
 
   const votingFilmsIds: Set<number> = new Set(
     ((voting?.films ?? []) as ApiCollections["vote_film"][number][]).map(
-      (item: ApiCollections["vote_film"][number]) => item.film_id as number,
-    ),
+      (item: ApiCollections["vote_film"][number]) => item.film_id as number
+    )
   );
 
   const userVotedId = new Set(
     ((data?.films ?? []) as ApiCollections["vote_film"][number][]).map(
-      (item: ApiCollections["vote_film"][number]) => item.film_id as number,
-    ),
+      (item: ApiCollections["vote_film"][number]) => item.film_id as number
+    )
   );
 
   const orderedByBlockMovies = new Map<string, Movies[]>();
@@ -185,6 +185,9 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
 
   return (
     <>
+      {!data && <FilmCardSkeletonGroup />}
+      {!data && <FilmCardSkeletonGroup />}
+      {!voting && <SaveButtonFallback />}
       {!isError && (
         <div className="flex flex-col w-full gap-20 p-10 items-center h-screen overflow-y-auto ">
           {Array.from(orderedByBlockMovies.keys()).map((item) => {
@@ -208,8 +211,6 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
               />
             );
           })}
-          {!data && <FilmCardSkeletonGroup />}
-          {!voting && <SaveButtonFallback />}
           {!!voting && (
             <SaveButton
               isFetching={isFetching}

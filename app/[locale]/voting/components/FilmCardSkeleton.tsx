@@ -16,7 +16,7 @@ export const FilmCardSkeletonGroup: FC<FilmCardSkeletonProps> = ({}) => {
     <div className="flex flex-col w-full gap-20 p-10 items-center ">
       <Skeleton className="w-40 h-10" />
       <div className="flex flex-col sm:flex-row sm:flex-wrap gap-6 ">
-        {Array(10)
+        {Array(6)
           .fill(0)
           .map((_, index) => {
             return <FilmCardSkeleton key={index + "film_card_skeleton"} />;

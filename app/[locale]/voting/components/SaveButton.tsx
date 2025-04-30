@@ -74,7 +74,7 @@ export const SaveButtonFallback: FC<{ className?: string }> = ({
   return (
     <div
       className={cn(
-        "absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between right-0 bottom-0 items-end z-20 pb-3 pr-3 sm:pr-8 sm:pb-8",
+        "absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between right-0 bottom-3 sm:right-4 sm:bottom-8 items-end z-20",
         className
       )}
     >
