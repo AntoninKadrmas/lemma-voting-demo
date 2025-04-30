@@ -31,7 +31,7 @@ export const SaveButton: FC<SaveButtonProps> = ({
   return (
     <div
       className={cn(
-        "absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between right-2 bottom-3 sm:right-8 sm:bottom-8 items-end z-20",
+        "absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between right-4 bottom-3 sm:right-8 sm:bottom-8 items-end z-20",
         className
       )}
       {...props}

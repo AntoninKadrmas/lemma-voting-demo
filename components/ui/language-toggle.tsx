@@ -20,7 +20,7 @@ export function LanguageToggle({ lang }: { lang?: AvailableLocales }) {
   return (
     <div
       className={cn(
-        "absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between left-14 top-3 sm:left-20 sm:top-8 items-end z-20"
+        "absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between left-16 top-3 sm:left-20 sm:top-8 items-end z-20"
       )}
     >
       <DropdownMenu>
