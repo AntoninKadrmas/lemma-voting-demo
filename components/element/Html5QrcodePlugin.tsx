@@ -57,6 +57,10 @@ const Html5QrcodePlugin: FC<Html5QrcodePluginProps> = ({ ...props }) => {
         if (!isMounted) return;
 
         if (devices && devices.length) {
+          const frontCamera = devices.find((d) => /front|user/i.test(d.label));
+
+          const selectedDeviceId = frontCamera?.id ?? devices[0].id;
+
           const config: Html5QrcodeCameraScanConfig = {
             fps: props.fps ?? 10,
             qrbox: qrboxFunction,
@@ -66,7 +70,7 @@ const Html5QrcodePlugin: FC<Html5QrcodePluginProps> = ({ ...props }) => {
 
           html5QrRef.current = new Html5Qrcode(qrcodeRegionId);
           await html5QrRef.current.start(
-            devices[0].id,
+            selectedDeviceId,
             config,
             props.qrCodeSuccessCallback,
             props.qrCodeErrorCallback
