@@ -57,16 +57,18 @@ const Html5QrcodePlugin: FC<Html5QrcodePluginProps> = ({ ...props }) => {
         if (!isMounted) return;
 
         if (devices && devices.length) {
-          const frontCamera = devices.find((d) => /front|user/i.test(d.label));
-
-          const selectedDeviceId = frontCamera?.id ?? devices[0].id;
-
           const config: Html5QrcodeCameraScanConfig = {
             fps: props.fps ?? 10,
             qrbox: qrboxFunction,
             aspectRatio: props.aspectRatio ?? 1.0,
             disableFlip: props.disableFlip ?? false,
           };
+
+          const backCamera = devices.find((d) =>
+            /back|environment/i.test(d.label)
+          );
+
+          const selectedDeviceId = backCamera?.id ?? devices[0].id;
 
           html5QrRef.current = new Html5Qrcode(qrcodeRegionId);
           await html5QrRef.current.start(
