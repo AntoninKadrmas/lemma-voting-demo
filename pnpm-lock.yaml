@@ -44,6 +44,9 @@ importers:
       directus-typescript-gen:
         specifier: ^1.0.0
         version: 1.0.0
+      html5-qrcode:
+        specifier: 2.2.7
+        version: 2.2.7
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -1778,6 +1781,9 @@ packages:
   home-or-tmp@2.0.0:
     resolution: {integrity: sha512-ycURW7oUxE2sNiPVw1HVEFsW+ecOpJ5zaj7eC0RlwhibhRBod20muUN8qu/gzx956YrLolVvs1MTXwKgC2rVEg==}
     engines: {node: '>=0.10.0'}
+
+  html5-qrcode@2.2.7:
+    resolution: {integrity: sha512-I305tAmziN1lQxWxxGc3cRUhhHmfa1/P0/4pgM7tMSgUE1WY2Sd5G7B1YpVzDnFSBRRfkhd05s/Byjr8NjaJPg==}
 
   ignore@5.3.2:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
@@ -4788,6 +4794,8 @@ snapshots:
     dependencies:
       os-homedir: 1.0.2
       os-tmpdir: 1.0.2
+
+  html5-qrcode@2.2.7: {}
 
   ignore@5.3.2: {}
 
