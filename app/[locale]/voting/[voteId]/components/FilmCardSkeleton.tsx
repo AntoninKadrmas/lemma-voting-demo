@@ -7,7 +7,7 @@ type FilmCardSkeletonProps = {
 
 export const FilmCardSkeleton: FC<FilmCardSkeletonProps> = ({}) => {
   return (
-    <Skeleton className="group relative mx-auto h-[270px] w-[300px] max-w-lg" />
+    <Skeleton className="relative mx-auto h-[270px] w-[300px] max-w-lg" />
   );
 };
 

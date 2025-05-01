@@ -1,52 +1,36 @@
-import { FC, Suspense } from "react";
-import { Movies, VotePage } from "./components/VotePage";
-import { FilmCardSkeletonGroup } from "./components/FilmCardSkeleton";
-import { ApiCollections } from "@/types/api-collection";
 import env from "@/env";
 import { AVAIL_LOCALES, AvailableLocales } from "@/lib/constants";
-import { getFimComponent } from "./components/FilmCardContent";
-import { SaveButtonFallback } from "./components/SaveButton";
+import { FC } from "react";
 
 type Props = {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-const Page: FC<Props> = async ({ params, searchParams }) => {
+const Page: FC<Props> = async ({ params }) => {
   const { locale } = await params;
-  const { voteId } = await searchParams;
   const lang = (AVAIL_LOCALES.find((x) => x.startsWith(locale ?? "")) ??
     "cz-CZ") as AvailableLocales;
-  const res = await fetch(`${env.NEXT_PUBLIC_API_URL}/films`, {
-    method: "GET",
-  });
-  if (res.status != 200) return "Error during film fetching";
-  const films: ApiCollections["film"][number][] = await res.json();
-
   return (
-    <>
-      {
-        <Suspense
-          fallback={
-            <>
-              <FilmCardSkeletonGroup />
-              <FilmCardSkeletonGroup />
-              <SaveButtonFallback />
-            </>
-          }
-        >
-          <VotePage
-            voteId={voteId as string}
-            movies={
-              films
-                ? (films.map((item) => getFimComponent(item, lang)) as Movies[])
-                : undefined
-            }
-            lang={lang}
-          />
-        </Suspense>
-      }
-    </>
+    <div className="w-screen h-screen justify-center items-center flex text-center flex-col gap-2">
+      {lang == "en-US" && (
+        <>
+          <p>
+            For voting continue to the {env.NEXT_PUBLIC_API_URL}
+            /en/voting/[voteId]
+          </p>
+          <p>Where [voteId] is your unique identification.</p>
+        </>
+      )}
+      {lang == "cz-CZ" && (
+        <>
+          <p>
+            Pro hlasování pokračujte na {env.NEXT_PUBLIC_API_URL}
+            /cz/voting/[voteId]
+          </p>
+          <p>Kde [voteId] je váš unikátní identifikátor.</p>
+        </>
+      )}
+    </div>
   );
 };
 

@@ -99,7 +99,7 @@ export default function DragCarousel({
           "border-3 border-green-300 shadow-[0_0_10px_4px_rgba(0,0,0,0.8)] shadow-green-300 dark:shadow-white dark:border-white",
         // "[&_.narrow-horizontal-line]:w-1/3 [&_.vertical-line]:h-1/2 [&_.wide-horizontal-line]:w-2/3",
         isDragging ? "cursor-grabbing" : "cursor-pointer",
-        "select-none",
+        "select-none"
       )}
       ref={containerRef}
     >
@@ -146,7 +146,7 @@ export default function DragCarousel({
                 "absolute left-1/2 top-1/2 h-[270px] w-[300px] rounded-none border-none p-0",
                 isDragging
                   ? "transition-none"
-                  : "transition-all duration-100 ease-out",
+                  : "transition-all duration-100 ease-out"
               )}
               style={{
                 transform: `translate(-50%, -50%) translateX(${x}px) scale(${scale})`,
@@ -203,7 +203,7 @@ export default function DragCarousel({
               "h-2 w-2 rounded-full transition-all",
               index === activeIndex
                 ? "w-4 bg-gray-800 dark:bg-white"
-                : "bg-gray-400 white:bg-gray-400",
+                : "bg-gray-400 white:bg-gray-400"
             )}
             onClick={() => setActiveIndex(index)}
             aria-label={`Go to slide ${index + 1}`}
