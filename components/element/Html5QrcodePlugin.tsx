@@ -4,6 +4,7 @@ import { Html5Qrcode } from "html5-qrcode";
 import { FC, useEffect, useRef, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
 import { Html5QrcodeResult } from "html5-qrcode/esm/core";
+import { Html5QrcodeCameraScanConfig } from "html5-qrcode/esm/html5-qrcode";
 
 const qrcodeRegionId = "html5qr-code-full-region";
 
@@ -16,21 +17,21 @@ interface Html5QrcodePluginProps {
     decodedText: string,
     result: Html5QrcodeResult
   ) => void;
-  qrCodeErrorCallback: (error: any) => void;
+  qrCodeErrorCallback: (error: string) => void;
 }
 
 const Html5QrcodePlugin: FC<Html5QrcodePluginProps> = ({ ...props }) => {
   const html5QrRef = useRef<Html5Qrcode | null>(null);
   const [permissionDenied, setPermissionDenied] = useState(false);
 
-  let qrboxFunction = function (
+  const qrboxFunction = function (
     viewfinderWidth: number,
     viewfinderHeight: number
   ) {
     console.log(viewfinderHeight, viewfinderWidth);
-    let minEdgePercentage = 0.9; // 70%
-    let minEdgeSize = Math.min(viewfinderWidth, viewfinderHeight);
-    let qrboxSize = Math.floor(minEdgeSize * minEdgePercentage);
+    const minEdgePercentage = 0.9; // 70%
+    const minEdgeSize = Math.min(viewfinderWidth, viewfinderHeight);
+    const qrboxSize = Math.floor(minEdgeSize * minEdgePercentage);
     return {
       width: qrboxSize,
       height: qrboxSize,
@@ -56,10 +57,9 @@ const Html5QrcodePlugin: FC<Html5QrcodePluginProps> = ({ ...props }) => {
         if (!isMounted) return;
 
         if (devices && devices.length) {
-          const config: any = {
+          const config: Html5QrcodeCameraScanConfig = {
             fps: props.fps ?? 10,
             qrbox: qrboxFunction,
-            rememberLastUsedCamera: true,
             aspectRatio: props.aspectRatio ?? 1.0,
             disableFlip: props.disableFlip ?? false,
           };

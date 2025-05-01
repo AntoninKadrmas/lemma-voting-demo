@@ -1,4 +1,3 @@
-import Html5QrcodePlugin from "@/components/element/Html5QrcodePlugin";
 import Html5QrcodeWrapper from "@/components/element/Html5QrcodeWrapper";
 import env from "@/env";
 import { AVAIL_LOCALES, AvailableLocales } from "@/lib/constants";
