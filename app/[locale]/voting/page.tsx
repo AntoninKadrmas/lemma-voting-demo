@@ -1,6 +1,8 @@
+"use client";
 import env from "@/env";
 import { AVAIL_LOCALES, AvailableLocales } from "@/lib/constants";
 import { FC } from "react";
+import { LastVoteIdButton } from "./components/LastVoteIdButton";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -12,6 +14,7 @@ const Page: FC<Props> = async ({ params }) => {
     "cz-CZ") as AvailableLocales;
   return (
     <div className="w-screen h-screen justify-center items-center flex text-center flex-col gap-2">
+      <LastVoteIdButton lang={lang} />
       {lang == "en-US" && (
         <>
           <p>

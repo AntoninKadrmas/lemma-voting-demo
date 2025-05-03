@@ -15,6 +15,7 @@ import moment from "moment";
 import Countdown from "@/components/element/Countdown";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import { LastVoteIdButton } from "../../components/LastVoteIdButton";
 export type Movies = {
   nodes: ReactNode[];
   id: number;
@@ -121,6 +122,10 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
     ApiCollections["voting"][number] &
       ApiCollections["voting_translations"][number]
   >(voting, lang);
+
+  if (voting) {
+    localStorage.setItem("voteId", voteId!);
+  }
 
   if (voting && moment(voting.start_date).isAfter(moment())) {
     setTimeout(() => {
@@ -233,6 +238,7 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
               <p className="flex justify-center items-center p-2 text-2xl">
                 This voteId does not exists.
               </p>
+              <LastVoteIdButton lang={lang} />
               <p className="flex justify-center items-center p-2 text-2xl">
                 Try to scan it again or ask for a new one. With this screen
                 message.
@@ -250,6 +256,7 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
               <p className="flex justify-center items-center p-2 text-2xl">
                 Toto voteId neexistuje.
               </p>
+              <LastVoteIdButton lang={lang} />
               <p className="flex justify-center items-center p-2 text-2xl">
                 Zkuste ho naskenovat znova nebo si zažádejte o nový s touto
                 obrazovkou.
