@@ -15,9 +15,8 @@ export function TimeToggle({
   onClick?: () => void;
   className?: string;
   endTime: string;
-  icon  : ReactNode;
+  icon: ReactNode;
 }) {
-  const Icon = icon;
   return (
     <div
       className={cn(

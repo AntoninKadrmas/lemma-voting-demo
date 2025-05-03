@@ -7,7 +7,6 @@ import {
   CSSProperties,
 } from "react";
 import moment from "moment";
-import { useTheme } from "next-themes";
 
 type CountdownStylerProps = {
   endTime: string;
@@ -19,7 +18,6 @@ export default function CountdownStyler({
   children,
 }: CountdownStylerProps) {
   const [timeLeft, setTimeLeft] = useState(moment(endTime).diff(moment()));
-  const { theme } = useTheme(); // light | dark | system
 
   useEffect(() => {
     const interval = setInterval(() => {
