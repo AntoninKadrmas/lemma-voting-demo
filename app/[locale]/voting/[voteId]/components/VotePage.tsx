@@ -1,5 +1,12 @@
 "use client";
-import { FC, HTMLAttributes, ReactNode, useCallback, useState } from "react";
+import {
+  FC,
+  HTMLAttributes,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { debounce } from "lodash";
 import { toast } from "sonner";
@@ -16,6 +23,8 @@ import Countdown from "@/components/element/Countdown";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { LastVoteIdButton } from "../../components/LastVoteIdButton";
+import { TimeToggle } from "@/components/ui/time-toggle";
+import { LuClock } from "react-icons/lu";
 export type Movies = {
   nodes: ReactNode[];
   id: number;
@@ -127,6 +136,30 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
     localStorage.setItem("voteId", voteId!);
   }
 
+  useEffect(() => {
+    if (voting && !localStorage.getItem("dismissed")) {
+      showRemainingTime();
+    }
+  }, [voting]);
+
+  const showRemainingTime = useCallback(() => {
+    toast.info(
+      <Countdown
+        end_date={voting.end_date}
+        title={"time till voting end"}
+        compact
+      />,
+      {
+        duration: Infinity,
+        id: "unique-toast",
+        closeButton: true,
+        onDismiss: () => {
+          localStorage.setItem("dismissed", "true");
+        },
+      }
+    );
+  }, [voting]);
+
   if (voting && moment(voting.start_date).isAfter(moment())) {
     setTimeout(() => {
       client.invalidateQueries({
@@ -229,6 +262,16 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
             />
           )}
           <FloatingFilterButton />
+          {voting && (
+            <TimeToggle
+              endTime={voting?.end_date ?? ""}
+              className={"left-[7rem] top-3 sm:left-[8rem] sm:top-8"}
+              icon={<LuClock />}
+              onClick={() => {
+                showRemainingTime();
+              }}
+            />
+          )}
         </div>
       )}
       {isError && (

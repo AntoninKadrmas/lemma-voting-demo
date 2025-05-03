@@ -158,3 +158,8 @@
 .richtext p {
   margin-bottom: 1rem;
 }
+
+div[data-content] {
+  /* your styles here */
+  width: 100% !important;
+}

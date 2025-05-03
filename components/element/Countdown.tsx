@@ -37,13 +37,14 @@ const DATES_EXCEPTIONS: Partial<
   },
 };
 
-type CountdownProps = BlockBaseProps &
-  ApiCollections["block_countdown"][number];
+type CountdownProps = BlockBaseProps & {
+  compact?: boolean;
+} & ApiCollections["block_countdown"][number];
 
 const getDateSuffix = (
   lang: AvailableLocales,
   amount: number,
-  customPluralSuffix?: string | null,
+  customPluralSuffix?: string | null
 ) => {
   switch (lang) {
     case "cz-CZ":
@@ -60,7 +61,7 @@ function localizedText(
   lang: AvailableLocales,
   dateKind: DateKind,
   amount: number,
-  customPluralSuffix?: string | null,
+  customPluralSuffix?: string | null
 ) {
   const dateExceptionFunction = DATES_EXCEPTIONS[lang]?.[dateKind];
   if (dateExceptionFunction) {
@@ -77,7 +78,7 @@ const Countdown: FC<CountdownProps> = ({
   title,
   end_date: endDateString,
   hide_date: hideDateString,
-
+  compact = false,
   custom_plural_date_suffix: customPluralSuffix,
   lang,
 }) => {
@@ -118,7 +119,7 @@ const Countdown: FC<CountdownProps> = ({
         lang,
         "minute",
         timer.getMinutes(),
-        customPluralSuffix,
+        customPluralSuffix
       ),
       amount: timer.getMinutes(),
     },
@@ -128,7 +129,7 @@ const Countdown: FC<CountdownProps> = ({
         lang,
         "second",
         timer.getSeconds(),
-        customPluralSuffix,
+        customPluralSuffix
       ),
       amount: timer.getSeconds(),
     },
@@ -138,22 +139,50 @@ const Countdown: FC<CountdownProps> = ({
     displayDataArray.shift();
   }
   return (
-    <div className={cn("my-12 text-center")}>
+    <div className={cn("h-fit text-center w-full")}>
       {currDate < hideDate ? (
-        <div className="m-auto flex h-20 flex-col items-center sm:h-24 md:h-32 md:gap-4 lg:h-40 xl:h-auto">
-          <h4 className={"pb-6 text-xl font-bold sm:text-3xl"}>{title}</h4>
+        <div
+          className={cn("w-full h-fit m-auto flex flex-col items-center", {
+            "sm:h-24 md:h-32 md:gap-4 lg:h-40 xl:h-auto": !compact,
+          })}
+        >
+          <h4
+            className={cn(
+              "text-xl font-bold ",
+              { "sm:text-3xl pb-6 ": !compact },
+              { "pb-2": compact }
+            )}
+          >
+            {title}
+          </h4>
 
-          <div className="flex flex-row justify-center gap-4 font-bold sm:gap-6 md:gap-8 lg:gap-12 xl:gap-16">
+          <div
+            className={cn(
+              "flex flex-row justify-center gap-4 font-bold w-full",
+              { "sm:gap-6 md:gap-8 lg:gap-12 xl:gap-16 ": !compact }
+            )}
+          >
             {displayDataArray.map(({ id, amount, text }) => (
               <div
                 className="flex h-full w-full items-center justify-center font-title"
                 key={id}
               >
-                <div className="flex flex-col items-center justify-center text-3xl xl:text-6xl">
+                <div
+                  className={cn(
+                    "flex flex-col items-center justify-center text-3xl ",
+                    { "xl:text-6xl": !compact }
+                  )}
+                >
                   <span className="countdown">
                     <span style={{ "--value": amount } as CSSProperties}></span>
                   </span>
-                  <div className="md:text-md text-sm xl:text-xl">{text}</div>
+                  <div
+                    className={cn(" text-sm", {
+                      "md:text-md xl:text-xl": !compact,
+                    })}
+                  >
+                    {text}
+                  </div>
                 </div>
               </div>
             ))}
