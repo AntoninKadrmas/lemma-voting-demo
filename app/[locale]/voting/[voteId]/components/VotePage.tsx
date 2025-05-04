@@ -92,6 +92,7 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (films: Set<number>) => {
+      setCounter(0);
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL || ""}/vote/${voteId}`,
         {
