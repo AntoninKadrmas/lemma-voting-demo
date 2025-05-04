@@ -32,7 +32,7 @@ export function SimpleProgressivePulse({
     setTimeout(() => {
       setShouldStart(true);
     }, moment(endDate).diff(moment().add(progressionDuration, "seconds")));
-  }, [endDate]);
+  }, [endDate, progressionDuration]);
 
   // Start the progression animation
   useEffect(() => {

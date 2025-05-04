@@ -3,7 +3,6 @@ import {
   FC,
   HTMLAttributes,
   ReactNode,
-  use,
   useCallback,
   useEffect,
   useState,
@@ -143,24 +142,6 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
     localStorage.setItem("voteId", voteId!);
   }
 
-  useEffect(() => {
-    if (
-      voting &&
-      (!localStorage.getItem("dismissed") ||
-        (moment().add(1, "minute").isAfter(moment(voting.end_date)) &&
-          moment().isBefore(moment(voting.end_date))))
-    ) {
-      showRemainingTime();
-    }
-    let timeout: NodeJS.Timeout;
-    if (voting && moment().isBefore(moment(voting.end_date))) {
-      timeout = setTimeout(() => {
-        showRemainingTime();
-      }, moment(voting.end_date).diff(moment().add(1, "minute")));
-    }
-    return () => clearTimeout(timeout);
-  }, [voting]);
-
   const showRemainingTime = useCallback(() => {
     toast.info(
       <Countdown
@@ -179,7 +160,25 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
         },
       }
     );
-  }, [voting]);
+  }, [voting, lang]);
+
+  useEffect(() => {
+    if (
+      voting &&
+      (!localStorage.getItem("dismissed") ||
+        (moment().add(1, "minute").isAfter(moment(voting.end_date)) &&
+          moment().isBefore(moment(voting.end_date))))
+    ) {
+      showRemainingTime();
+    }
+    let timeout: NodeJS.Timeout;
+    if (voting && moment().isBefore(moment(voting.end_date))) {
+      timeout = setTimeout(() => {
+        showRemainingTime();
+      }, moment(voting.end_date).diff(moment().add(1, "minute")));
+    }
+    return () => clearTimeout(timeout);
+  }, [voting, showRemainingTime]);
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -189,7 +188,7 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
       }, 30 * 1000);
     }
     return () => clearTimeout(timeout);
-  }, [votedFilms]);
+  }, [votedFilms, mutate]);
 
   if (voting && moment(voting.start_date).isAfter(moment())) {
     setTimeout(() => {
