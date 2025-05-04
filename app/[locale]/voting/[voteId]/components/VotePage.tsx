@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { debounce, set } from "lodash";
+import { debounce } from "lodash";
 import { toast } from "sonner";
 import { FloatingFilterButton } from "./FloatingFilterButton";
 import { SaveButton, SaveButtonFallback } from "./SaveButton";
