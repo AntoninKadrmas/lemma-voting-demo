@@ -4,6 +4,7 @@ import { useState, useRef, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
+import moment from "moment";
 interface CarouselProps {
   items: ReactNode[];
   state: boolean;
@@ -16,6 +17,7 @@ export default function DragCarousel({
   onSelected,
 }: CarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [startTime, setStartTime] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [startY, setStartY] = useState(0);
@@ -24,13 +26,14 @@ export default function DragCarousel({
 
   const containerRef = useRef<HTMLDivElement>(null);
   const cardWidth = 350;
-  const threshold = cardWidth / 5;
+  const threshold = cardWidth / 4;
   const limitToTapX = window.innerWidth < 800 ? 15 : 10;
   const limitToTapY = window.innerWidth < 800 ? 12 : 7;
 
   // Handle drag start
   const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
     e.stopPropagation();
+    setStartTime(moment().valueOf());
     setIsDragging(true);
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
     setStartX(clientX);
@@ -57,8 +60,14 @@ export default function DragCarousel({
   // Handle drag end
   const handleDragEnd = () => {
     if (!isDragging) return;
-    const dragDistanceX = startX - currentX;
-    const dragDistanceY = startY - currentY;
+    let dragDistanceX = startX - currentX;
+    let dragDistanceY = startY - currentY;
+    const time = moment().valueOf() - startTime;
+    if (time > 0) {
+      dragDistanceX *= time / 100;
+      dragDistanceY *= time / 100;
+    }
+    console.log(moment().valueOf() - startTime);
     if (dragDistanceX > threshold && activeIndex < items.length - 1) {
       // Dragged left (next card)
       setActiveIndex(activeIndex + 1);
