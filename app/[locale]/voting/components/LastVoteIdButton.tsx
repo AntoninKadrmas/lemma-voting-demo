@@ -2,7 +2,7 @@
 import { buttonVariants } from "@/components/ui/button";
 import { AvailableLocales } from "@/lib/constants";
 import Link from "next/link";
-import { FC, HTMLAttributes } from "react";
+import { FC, HTMLAttributes, useEffect, useState } from "react";
 
 type LastVoteIdButtonProps = {
   className?: string;
@@ -10,25 +10,25 @@ type LastVoteIdButtonProps = {
 } & HTMLAttributes<HTMLOrSVGElement>;
 
 export const LastVoteIdButton: FC<LastVoteIdButtonProps> = ({ lang }) => {
-  const voteId = localStorage.getItem("voteId") || undefined;
+  const [voteId, setVoteId] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    const storedVoteId = localStorage.getItem("voteId");
+    if (storedVoteId) {
+      setVoteId(storedVoteId);
+    }
+  }, []);
+
+  if (!voteId) return null;
+
+  const href =
+    lang === "cz-CZ" ? `/cz/voting/${voteId}` : `/en/voting/${voteId}`;
+  const label =
+    lang === "cz-CZ" ? "Poslední funkční hlasování" : "Last working voting";
+
   return (
-    <>
-      {voteId && lang == "en-US" && (
-        <Link
-          href={"/en/voting/" + voteId}
-          className={buttonVariants({ variant: "outline" })}
-        >
-          Last working voting
-        </Link>
-      )}
-      {voteId && lang == "cz-CZ" && (
-        <Link
-          href={"/cz/voting/" + voteId}
-          className={buttonVariants({ variant: "outline" })}
-        >
-          Poslední funkční hlasování
-        </Link>
-      )}
-    </>
+    <Link href={href} className={buttonVariants({ variant: "outline" })}>
+      {label}
+    </Link>
   );
 };
