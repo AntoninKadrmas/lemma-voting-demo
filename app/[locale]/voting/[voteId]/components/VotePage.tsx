@@ -3,6 +3,7 @@ import {
   FC,
   HTMLAttributes,
   ReactNode,
+  use,
   useCallback,
   useEffect,
   useState,
@@ -179,6 +180,16 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
       }
     );
   }, [voting]);
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (!areSetsEqual(votedFilms, userVotedId)) {
+      timeout = setTimeout(() => {
+        mutate(votedFilms);
+      }, 30 * 1000);
+    }
+    return () => clearTimeout(timeout);
+  }, [votedFilms]);
 
   if (voting && moment(voting.start_date).isAfter(moment())) {
     setTimeout(() => {
