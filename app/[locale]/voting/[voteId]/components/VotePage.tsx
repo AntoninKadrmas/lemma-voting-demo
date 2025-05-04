@@ -93,9 +93,12 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
       return await response.json();
     },
     onSuccess: () => {
-      toast.success("Your work has been submitted", {
+      toast.success("Success", {
         className: "dark:text-white",
-        description: "Your vote has been submitted successfully.",
+        description:
+          lang == "en-US"
+            ? "Your vote has been submitted successfully."
+            : "Váš hlas byl úspěšně odeslán.",
       });
       client.invalidateQueries({
         queryKey: ["votedFilms", voteId],
@@ -105,9 +108,12 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
     onError: () => {
       toast.error("Error", {
         className: "dark:text-white",
-        description: "There was an error submitting your vote.",
+        description:
+          lang == "en-US"
+            ? "There was an error submitting your vote."
+            : "Došlo k chybě při odesílání vašeho hlasu.",
         action: {
-          label: "Try again",
+          label: lang == "en-US" ? "Try again" : "Zkusit znovu",
           onClick: onSubmit,
         },
       });
@@ -158,7 +164,9 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
     toast.info(
       <Countdown
         end_date={voting.end_date}
-        title={"time till voting end"}
+        title={
+          lang == "en-US" ? "Time till voting end." : "Čas do konce hlasování"
+        }
         compact
       />,
       {

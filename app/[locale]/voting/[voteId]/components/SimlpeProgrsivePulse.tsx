@@ -16,7 +16,7 @@ interface SimpleProgressivePulseProps {
 export function SimpleProgressivePulse({
   children,
   className,
-  pulseSpeed = 5,
+  pulseSpeed = 2,
   progressionDuration = 60 * 5,
   endDate,
 }: SimpleProgressivePulseProps) {
@@ -51,8 +51,7 @@ export function SimpleProgressivePulse({
       setProgress(newProgress);
 
       if (newProgress < 100) {
-        const nextPulseSpeed = pulseSpeed * (1 - newProgress / 100); // seconds
-        timeoutId = setTimeout(updateProgress, nextPulseSpeed * 1000);
+        timeoutId = setTimeout(updateProgress, pulseSpeed * 1000);
       }
     };
 
@@ -63,7 +62,6 @@ export function SimpleProgressivePulse({
 
   const greenValue = Math.round(255 * (1 - progress / 100));
   const currentColor = `rgb(255, ${greenValue}, 0)`;
-  const currentPulseSpeed = pulseSpeed * (1 - progress / 100);
   return (
     <div className="space-y-2">
       <div
@@ -74,7 +72,7 @@ export function SimpleProgressivePulse({
         style={
           {
             "--pulse-color": currentColor,
-            "--pulse-speed": `${currentPulseSpeed}s`,
+            "--pulse-speed": `${pulseSpeed}s`,
           } as React.CSSProperties
         }
       >
