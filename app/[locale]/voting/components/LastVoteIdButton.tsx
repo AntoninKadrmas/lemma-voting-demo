@@ -1,3 +1,4 @@
+"use client";
 import { buttonVariants } from "@/components/ui/button";
 import { AvailableLocales } from "@/lib/constants";
 import Link from "next/link";
