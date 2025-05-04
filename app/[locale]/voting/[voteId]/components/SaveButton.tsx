@@ -66,7 +66,7 @@ export const SaveButton: FC<SaveButtonProps> = ({
           <span className="font-bold">{actualAmount}</span>
           <span className="font-light text-[12px]">/{maxAmount}</span>
         </div>
-        {changed && changed && (
+        {changed && counter && counter > 0 && (
           <div
             className={cn(
               "absolute -top-3 -left-2 px-2 py-1 h-[27.5px] flex justify-center items-center rounded-2xl font-bold",
