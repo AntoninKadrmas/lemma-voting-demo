@@ -40,8 +40,10 @@ export function SimpleProgressivePulse({
 
     const startTime = moment(endDate).subtract(progressionDuration, "seconds");
 
+    let timeoutId: NodeJS.Timeout;
+
     const updateProgress = () => {
-      const elapsedTime = moment().diff(moment(startTime), "seconds"); // in seconds
+      const elapsedTime = moment().diff(startTime, "seconds");
       const newProgress = Math.min(
         100,
         (elapsedTime / progressionDuration) * 100
@@ -49,13 +51,15 @@ export function SimpleProgressivePulse({
       setProgress(newProgress);
 
       if (newProgress < 100) {
-        requestAnimationFrame(updateProgress);
+        const nextPulseSpeed = pulseSpeed * (1 - newProgress / 100); // seconds
+        timeoutId = setTimeout(updateProgress, nextPulseSpeed * 1000);
       }
     };
 
-    const animationFrame = requestAnimationFrame(updateProgress);
-    return () => cancelAnimationFrame(animationFrame);
-  }, [shouldStart, progressionDuration]);
+    updateProgress(); // Initial call
+
+    return () => clearTimeout(timeoutId);
+  }, [shouldStart, progressionDuration, pulseSpeed, endDate]);
 
   const greenValue = Math.round(255 * (1 - progress / 100));
   const currentColor = `rgb(255, ${greenValue}, 0)`;
