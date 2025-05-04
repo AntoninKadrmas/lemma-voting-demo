@@ -1,6 +1,6 @@
 "use client";
 
-import CountdownWrapper from "@/app/[locale]/voting/[voteId]/components/CountdownWrapper";
+import { SimpleProgressivePulse } from "@/app/[locale]/voting/[voteId]/components/SimlpeProgrsivePulse";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
@@ -24,19 +24,19 @@ export function TimeToggle({
         "absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between items-end z-20"
       )}
     >
-      <CountdownWrapper endTime={endTime}>
+      <SimpleProgressivePulse className="bg-white" endDate={endTime}>
         <Button
           variant="secondary"
           size="icon"
           onClick={onClick}
           className={cn(
-            "h-10 w-10 ",
+            "h-10 w-10 bg-transparent!",
             "bg-primary text-primary-foreground dark:text-shadow-white"
           )}
         >
           {icon ?? <LuInfo className="w-5 h-5" />}
         </Button>
-      </CountdownWrapper>
+      </SimpleProgressivePulse>
     </div>
   );
 }

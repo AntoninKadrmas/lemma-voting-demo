@@ -141,7 +141,6 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
       showRemainingTime();
     }
   }, [voting]);
-
   const showRemainingTime = useCallback(() => {
     toast.info(
       <Countdown
@@ -178,6 +177,7 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
     );
   }
   if (voting && moment(voting.end_date).isBefore(moment())) {
+    toast.dismiss();
     return (
       <div className="flex flex-col items-center justify-center h-screen w-full text-center">
         <h4 className={"pb-6 text-xl font-bold sm:text-3xl"}>

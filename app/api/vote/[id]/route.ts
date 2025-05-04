@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { readItem, triggerFlow } from "@directus/sdk";
-import { directus } from "../../utils/directusConst";
+import { directusNoCashing } from "../../utils/directusConst";
 import { voteFragment } from "@/types/directus-fragemnt";
 
 export async function GET(req: NextRequest) {
   const id = req.nextUrl.pathname.split("/").pop()!;
-  const data = await directus.request(
+  const data = await directusNoCashing.request(
     readItem("vote", id, {
       fields: voteFragment.vote,
-    }),
+    })
   );
   if (!data) {
     return NextResponse.error();
@@ -24,8 +24,8 @@ export async function POST(req: NextRequest) {
     [key: string]: unknown;
   }
 
-  const data: TriggerFlowResponse = (await directus.request(
-    triggerFlow("POST", "f2b48e63-1368-4324-ac9c-09f26c70be0c", body),
+  const data: TriggerFlowResponse = (await directusNoCashing.request(
+    triggerFlow("POST", "f2b48e63-1368-4324-ac9c-09f26c70be0c", body)
   )) as TriggerFlowResponse;
 
   if (!data || data.error) {
