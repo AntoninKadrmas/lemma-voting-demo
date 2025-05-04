@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { debounce } from "lodash";
+import { debounce, set } from "lodash";
 import { toast } from "sonner";
 import { FloatingFilterButton } from "./FloatingFilterButton";
 import { SaveButton, SaveButtonFallback } from "./SaveButton";
@@ -41,7 +41,7 @@ type VotePageProps = {
 export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
   const client = useQueryClient();
   const [votedFilms, setVotedFilms] = useState<Set<number>>(new Set());
-
+  const [counter, setCounter] = useState(0);
   const { data, isLoading, isError, isFetching } = useQuery<
     ApiCollections["vote"][number]
   >({
@@ -73,6 +73,22 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
       return data;
     },
   });
+
+  useEffect(() => {
+    if (counter > 0) {
+      const interval = setInterval(() => {
+        setCounter(function (value) {
+          if (value > 0) {
+            return value - 1;
+          }
+          return 0;
+        });
+      }, 1000);
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [counter]);
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (films: Set<number>) => {
@@ -180,12 +196,19 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
     return () => clearTimeout(timeout);
   }, [voting, showRemainingTime]);
 
+  const userVotedId = new Set(
+    ((data?.films ?? []) as ApiCollections["vote_film"][number][]).map(
+      (item: ApiCollections["vote_film"][number]) => item.film_id as number
+    )
+  );
+
   useEffect(() => {
     let timeout: NodeJS.Timeout;
-    if (!areSetsEqual(votedFilms, userVotedId)) {
+    if (votedFilms && !areSetsEqual(votedFilms, userVotedId)) {
+      setCounter(30);
       timeout = setTimeout(() => {
         mutate(votedFilms);
-      }, 30 * 1000);
+      }, 33 * 1000);
     }
     return () => clearTimeout(timeout);
   }, [votedFilms, mutate]);
@@ -229,12 +252,6 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
 
   const votingFilmsIds: Set<number> = new Set(
     ((voting?.films ?? []) as ApiCollections["vote_film"][number][]).map(
-      (item: ApiCollections["vote_film"][number]) => item.film_id as number
-    )
-  );
-
-  const userVotedId = new Set(
-    ((data?.films ?? []) as ApiCollections["vote_film"][number][]).map(
       (item: ApiCollections["vote_film"][number]) => item.film_id as number
     )
   );
@@ -288,6 +305,7 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
               onSubmit={onSubmit}
               maxAmount={votingFilmsIds?.size ?? 0}
               actualAmount={votedFilms.size}
+              counter={counter}
               changed={!areSetsEqual(votedFilms, userVotedId)}
               voteMessage={voting?.submit_text ?? "SAVE/ULOŽIT"}
             />

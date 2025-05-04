@@ -1,7 +1,8 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
-import { FC, HTMLAttributes } from "react";
+import { CSSProperties, FC, HTMLAttributes, useEffect, useState } from "react";
 import { LuLoader } from "react-icons/lu";
 
 type SaveButtonProps = {
@@ -14,6 +15,7 @@ type SaveButtonProps = {
   maxAmount?: number;
   actualAmount?: number;
   voteMessage?: string;
+  counter?: number;
 } & HTMLAttributes<HTMLOrSVGElement>;
 
 export const SaveButton: FC<SaveButtonProps> = ({
@@ -26,13 +28,14 @@ export const SaveButton: FC<SaveButtonProps> = ({
   maxAmount,
   actualAmount,
   voteMessage,
+  counter,
   ...props
 }) => {
   return (
     <div
       className={cn(
         "absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between right-4 bottom-3 sm:right-8 sm:bottom-8 items-end z-20",
-        className,
+        className
       )}
       {...props}
     >
@@ -45,7 +48,7 @@ export const SaveButton: FC<SaveButtonProps> = ({
           !changed || isPending || isLoading
             ? "cursor-none brightness-50"
             : "cursor-pointer",
-          "h-14 w-auto relative p-0",
+          "h-14 w-auto relative p-0"
         )}
       >
         <div className="w-full h-full flex justify-center items-center relative m-4 gap-1">
@@ -55,14 +58,26 @@ export const SaveButton: FC<SaveButtonProps> = ({
         </div>
         <div
           className={cn(
-            "absolute -top-2 -right-2 px-2 py-1 flex justify-center items-baseline rounded-2xl  font-bold",
+            "absolute -top-3 -right-2 px-2 py-1 h-[27.5px] flex justify-center items-baseline rounded-2xl  font-bold",
             { "bg-destructive dark:bg-destructive text-white": changed },
-            { "bg-black text-white dark:bg-white dark:text-black": !changed },
+            { "bg-black text-white dark:bg-white dark:text-black": !changed }
           )}
         >
           <span className="font-bold">{actualAmount}</span>
           <span className="font-light text-[12px]">/{maxAmount}</span>
         </div>
+        {changed && changed && (
+          <div
+            className={cn(
+              "absolute -top-3 -left-2 px-2 py-1 h-[27.5px] flex justify-center items-center rounded-2xl font-bold",
+              "bg-black text-white dark:bg-white dark:text-black"
+            )}
+          >
+            <span className="countdown font-bold">
+              <span style={{ "--value": counter } as CSSProperties}>30</span>
+            </span>
+          </div>
+        )}
       </Button>
     </div>
   );
@@ -75,7 +90,7 @@ export const SaveButtonFallback: FC<{ className?: string }> = ({
     <div
       className={cn(
         "absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between right-0 bottom-3 sm:right-4 sm:bottom-8 items-end z-20",
-        className,
+        className
       )}
     >
       <Skeleton className="h-14 w-32" />
