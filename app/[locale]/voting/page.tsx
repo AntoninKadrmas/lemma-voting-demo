@@ -1,4 +1,3 @@
-"use client";
 import env from "@/env";
 import { AVAIL_LOCALES, AvailableLocales } from "@/lib/constants";
 import { FC } from "react";
