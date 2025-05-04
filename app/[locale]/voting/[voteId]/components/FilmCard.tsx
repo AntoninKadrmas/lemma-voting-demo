@@ -25,8 +25,8 @@ export default function DragCarousel({
   const containerRef = useRef<HTMLDivElement>(null);
   const cardWidth = 350;
   const threshold = cardWidth / 4;
-  const limitToTapX = window.innerWidth < 800 ? 25 : 12;
-  const limitToTapY = window.innerWidth < 800 ? 25 : 12;
+  const limitToTapX = window.innerWidth < 800 ? 15 : 7.5;
+  const limitToTapY = window.innerWidth < 800 ? 15 : 4.5;
 
   // Handle drag start
   const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
