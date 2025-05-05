@@ -24,7 +24,10 @@ export function TimeToggle({
         "absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between items-end z-20"
       )}
     >
-      <SimpleProgressivePulse className="bg-white" endDate={endTime}>
+      <SimpleProgressivePulse
+        className="bg-black dar:bg-white"
+        endDate={endTime}
+      >
         <Button
           variant="secondary"
           size="icon"
