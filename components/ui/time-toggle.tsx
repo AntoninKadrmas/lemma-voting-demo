@@ -25,7 +25,7 @@ export function TimeToggle({
       )}
     >
       <SimpleProgressivePulse
-        className="bg-black dar:bg-white"
+        className="bg-black dark:bg-white"
         endDate={endTime}
       >
         <Button
