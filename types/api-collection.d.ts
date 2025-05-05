@@ -3,6 +3,7 @@
  * Do not make direct changes to the file.
  */
 
+
 export interface paths {
   "/assets/{id}": {
     /**
@@ -550,45 +551,6 @@ export interface paths {
      */
     post: operations["meTfaDisable"];
   };
-  "/items/vote_film": {
-    /**
-     * List Items
-     * @description List the vote_film items.
-     */
-    get: operations["readItemsVoteFilm"];
-    /**
-     * Create an Item
-     * @description Create a new vote_film item.
-     */
-    post: operations["createItemsVoteFilm"];
-    /**
-     * Delete Multiple Items
-     * @description Delete multiple existing vote_film items.
-     */
-    delete: operations["deleteItemsVoteFilm"];
-    /**
-     * Update Multiple Items
-     * @description Update multiple vote_film items at the same time.
-     */
-    patch: operations["updateItemsVoteFilm"];
-  };
-  "/items/vote_film/{id}": {
-    /**
-     * Retrieve an Item
-     * @description Retrieve a single vote_film item by unique identifier.
-     */
-    get: operations["readSingleItemsVoteFilm"];
-    /**
-     * Delete an Item
-     * @description Delete an existing vote_film item.
-     */
-    delete: operations["deleteSingleItemsVoteFilm"];
-    /**
-     * Update an Item
-     * @description Update an existing vote_film item.
-     */
-    patch: operations["updateSingleItemsVoteFilm"];
-  };
   "/relations": {
     /**
      * List Relations
@@ -710,6 +672,18 @@ export interface paths {
      */
     patch: operations["updateOperation"];
   };
+  "/settings": {
+    /**
+     * Retrieve Settings
+     * @description List the settings.
+     */
+    get: operations["getSettings"];
+    /**
+     * Update Settings
+     * @description Update the settings
+     */
+    patch: operations["updateSetting"];
+  };
   "/webhooks": {
     /**
      * List Webhooks
@@ -769,18 +743,6 @@ export interface paths {
      * @description Update an existing extension.
      */
     patch: operations["updateExtensionBundle"];
-  };
-  "/settings": {
-    /**
-     * Retrieve Settings
-     * @description List the settings.
-     */
-    get: operations["getSettings"];
-    /**
-     * Update Settings
-     * @description Update the settings
-     */
-    patch: operations["updateSetting"];
   };
   "/versions": {
     /**
@@ -920,45 +882,6 @@ export interface paths {
      */
     patch: operations["updateSingleItemsFilmFilmGenre"];
   };
-  "/items/voting_translations": {
-    /**
-     * List Items
-     * @description List the voting_translations items.
-     */
-    get: operations["readItemsVotingTranslations"];
-    /**
-     * Create an Item
-     * @description Create a new voting_translations item.
-     */
-    post: operations["createItemsVotingTranslations"];
-    /**
-     * Delete Multiple Items
-     * @description Delete multiple existing voting_translations items.
-     */
-    delete: operations["deleteItemsVotingTranslations"];
-    /**
-     * Update Multiple Items
-     * @description Update multiple voting_translations items at the same time.
-     */
-    patch: operations["updateItemsVotingTranslations"];
-  };
-  "/items/voting_translations/{id}": {
-    /**
-     * Retrieve an Item
-     * @description Retrieve a single voting_translations item by unique identifier.
-     */
-    get: operations["readSingleItemsVotingTranslations"];
-    /**
-     * Delete an Item
-     * @description Delete an existing voting_translations item.
-     */
-    delete: operations["deleteSingleItemsVotingTranslations"];
-    /**
-     * Update an Item
-     * @description Update an existing voting_translations item.
-     */
-    patch: operations["updateSingleItemsVotingTranslations"];
-  };
   "/items/block_button": {
     /**
      * List Items
@@ -997,6 +920,45 @@ export interface paths {
      * @description Update an existing block_button item.
      */
     patch: operations["updateSingleItemsBlockButton"];
+  };
+  "/items/voting_translations": {
+    /**
+     * List Items
+     * @description List the voting_translations items.
+     */
+    get: operations["readItemsVotingTranslations"];
+    /**
+     * Create an Item
+     * @description Create a new voting_translations item.
+     */
+    post: operations["createItemsVotingTranslations"];
+    /**
+     * Delete Multiple Items
+     * @description Delete multiple existing voting_translations items.
+     */
+    delete: operations["deleteItemsVotingTranslations"];
+    /**
+     * Update Multiple Items
+     * @description Update multiple voting_translations items at the same time.
+     */
+    patch: operations["updateItemsVotingTranslations"];
+  };
+  "/items/voting_translations/{id}": {
+    /**
+     * Retrieve an Item
+     * @description Retrieve a single voting_translations item by unique identifier.
+     */
+    get: operations["readSingleItemsVotingTranslations"];
+    /**
+     * Delete an Item
+     * @description Delete an existing voting_translations item.
+     */
+    delete: operations["deleteSingleItemsVotingTranslations"];
+    /**
+     * Update an Item
+     * @description Update an existing voting_translations item.
+     */
+    patch: operations["updateSingleItemsVotingTranslations"];
   };
   "/items/block_divider": {
     /**
@@ -2753,6 +2715,45 @@ export interface paths {
      */
     patch: operations["updateSingleItemsBlockCardTranslations"];
   };
+  "/items/block_brochure": {
+    /**
+     * List Items
+     * @description List the block_brochure items.
+     */
+    get: operations["readItemsBlockBrochure"];
+    /**
+     * Create an Item
+     * @description Create a new block_brochure item.
+     */
+    post: operations["createItemsBlockBrochure"];
+    /**
+     * Delete Multiple Items
+     * @description Delete multiple existing block_brochure items.
+     */
+    delete: operations["deleteItemsBlockBrochure"];
+    /**
+     * Update Multiple Items
+     * @description Update multiple block_brochure items at the same time.
+     */
+    patch: operations["updateItemsBlockBrochure"];
+  };
+  "/items/block_brochure/{id}": {
+    /**
+     * Retrieve an Item
+     * @description Retrieve a single block_brochure item by unique identifier.
+     */
+    get: operations["readSingleItemsBlockBrochure"];
+    /**
+     * Delete an Item
+     * @description Delete an existing block_brochure item.
+     */
+    delete: operations["deleteSingleItemsBlockBrochure"];
+    /**
+     * Update an Item
+     * @description Update an existing block_brochure item.
+     */
+    patch: operations["updateSingleItemsBlockBrochure"];
+  };
   "/items/block_lightbox": {
     /**
      * List Items
@@ -3025,6 +3026,45 @@ export interface paths {
      * @description Update an existing block_locationanddate_translations item.
      */
     patch: operations["updateSingleItemsBlockLocationanddateTranslations"];
+  };
+  "/items/block_brochure_translations": {
+    /**
+     * List Items
+     * @description List the block_brochure_translations items.
+     */
+    get: operations["readItemsBlockBrochureTranslations"];
+    /**
+     * Create an Item
+     * @description Create a new block_brochure_translations item.
+     */
+    post: operations["createItemsBlockBrochureTranslations"];
+    /**
+     * Delete Multiple Items
+     * @description Delete multiple existing block_brochure_translations items.
+     */
+    delete: operations["deleteItemsBlockBrochureTranslations"];
+    /**
+     * Update Multiple Items
+     * @description Update multiple block_brochure_translations items at the same time.
+     */
+    patch: operations["updateItemsBlockBrochureTranslations"];
+  };
+  "/items/block_brochure_translations/{id}": {
+    /**
+     * Retrieve an Item
+     * @description Retrieve a single block_brochure_translations item by unique identifier.
+     */
+    get: operations["readSingleItemsBlockBrochureTranslations"];
+    /**
+     * Delete an Item
+     * @description Delete an existing block_brochure_translations item.
+     */
+    delete: operations["deleteSingleItemsBlockBrochureTranslations"];
+    /**
+     * Update an Item
+     * @description Update an existing block_brochure_translations item.
+     */
+    patch: operations["updateSingleItemsBlockBrochureTranslations"];
   };
   "/items/block_bannerhero": {
     /**
@@ -3299,45 +3339,6 @@ export interface paths {
      */
     patch: operations["updateSingleItemsBlockVideoTrailer"];
   };
-  "/items/block_button_translations": {
-    /**
-     * List Items
-     * @description List the block_button_translations items.
-     */
-    get: operations["readItemsBlockButtonTranslations"];
-    /**
-     * Create an Item
-     * @description Create a new block_button_translations item.
-     */
-    post: operations["createItemsBlockButtonTranslations"];
-    /**
-     * Delete Multiple Items
-     * @description Delete multiple existing block_button_translations items.
-     */
-    delete: operations["deleteItemsBlockButtonTranslations"];
-    /**
-     * Update Multiple Items
-     * @description Update multiple block_button_translations items at the same time.
-     */
-    patch: operations["updateItemsBlockButtonTranslations"];
-  };
-  "/items/block_button_translations/{id}": {
-    /**
-     * Retrieve an Item
-     * @description Retrieve a single block_button_translations item by unique identifier.
-     */
-    get: operations["readSingleItemsBlockButtonTranslations"];
-    /**
-     * Delete an Item
-     * @description Delete an existing block_button_translations item.
-     */
-    delete: operations["deleteSingleItemsBlockButtonTranslations"];
-    /**
-     * Update an Item
-     * @description Update an existing block_button_translations item.
-     */
-    patch: operations["updateSingleItemsBlockButtonTranslations"];
-  };
   "/items/film_crew_film_person": {
     /**
      * List Items
@@ -3376,6 +3377,45 @@ export interface paths {
      * @description Update an existing film_crew_film_person item.
      */
     patch: operations["updateSingleItemsFilmCrewFilmPerson"];
+  };
+  "/items/block_button_translations": {
+    /**
+     * List Items
+     * @description List the block_button_translations items.
+     */
+    get: operations["readItemsBlockButtonTranslations"];
+    /**
+     * Create an Item
+     * @description Create a new block_button_translations item.
+     */
+    post: operations["createItemsBlockButtonTranslations"];
+    /**
+     * Delete Multiple Items
+     * @description Delete multiple existing block_button_translations items.
+     */
+    delete: operations["deleteItemsBlockButtonTranslations"];
+    /**
+     * Update Multiple Items
+     * @description Update multiple block_button_translations items at the same time.
+     */
+    patch: operations["updateItemsBlockButtonTranslations"];
+  };
+  "/items/block_button_translations/{id}": {
+    /**
+     * Retrieve an Item
+     * @description Retrieve a single block_button_translations item by unique identifier.
+     */
+    get: operations["readSingleItemsBlockButtonTranslations"];
+    /**
+     * Delete an Item
+     * @description Delete an existing block_button_translations item.
+     */
+    delete: operations["deleteSingleItemsBlockButtonTranslations"];
+    /**
+     * Update an Item
+     * @description Update an existing block_button_translations item.
+     */
+    patch: operations["updateSingleItemsBlockButtonTranslations"];
   };
   "/items/page_blocks_background": {
     /**
@@ -3689,45 +3729,6 @@ export interface paths {
      */
     patch: operations["updateSingleItemsFilmCrewFilmPersonFilmCrewRole"];
   };
-  "/items/vote": {
-    /**
-     * List Items
-     * @description List the vote items.
-     */
-    get: operations["readItemsVote"];
-    /**
-     * Create an Item
-     * @description Create a new vote item.
-     */
-    post: operations["createItemsVote"];
-    /**
-     * Delete Multiple Items
-     * @description Delete multiple existing vote items.
-     */
-    delete: operations["deleteItemsVote"];
-    /**
-     * Update Multiple Items
-     * @description Update multiple vote items at the same time.
-     */
-    patch: operations["updateItemsVote"];
-  };
-  "/items/vote/{id}": {
-    /**
-     * Retrieve an Item
-     * @description Retrieve a single vote item by unique identifier.
-     */
-    get: operations["readSingleItemsVote"];
-    /**
-     * Delete an Item
-     * @description Delete an existing vote item.
-     */
-    delete: operations["deleteSingleItemsVote"];
-    /**
-     * Update an Item
-     * @description Update an existing vote item.
-     */
-    patch: operations["updateSingleItemsVote"];
-  };
   "/items/block_patron_translations": {
     /**
      * List Items
@@ -3805,6 +3806,45 @@ export interface paths {
      * @description Update an existing voting item.
      */
     patch: operations["updateSingleItemsVoting"];
+  };
+  "/items/vote": {
+    /**
+     * List Items
+     * @description List the vote items.
+     */
+    get: operations["readItemsVote"];
+    /**
+     * Create an Item
+     * @description Create a new vote item.
+     */
+    post: operations["createItemsVote"];
+    /**
+     * Delete Multiple Items
+     * @description Delete multiple existing vote items.
+     */
+    delete: operations["deleteItemsVote"];
+    /**
+     * Update Multiple Items
+     * @description Update multiple vote items at the same time.
+     */
+    patch: operations["updateItemsVote"];
+  };
+  "/items/vote/{id}": {
+    /**
+     * Retrieve an Item
+     * @description Retrieve a single vote item by unique identifier.
+     */
+    get: operations["readSingleItemsVote"];
+    /**
+     * Delete an Item
+     * @description Delete an existing vote item.
+     */
+    delete: operations["deleteSingleItemsVote"];
+    /**
+     * Update an Item
+     * @description Update an existing vote item.
+     */
+    patch: operations["updateSingleItemsVote"];
   };
   "/items/block_patron": {
     /**
@@ -5337,20 +5377,20 @@ export interface components {
       hash?: string;
       diff?: {
         collections?: {
-          collection?: string;
-          diff?: Record<string, never>[];
-        }[];
+            collection?: string;
+            diff?: Record<string, never>[];
+          }[];
         fields?: {
-          collection?: string;
-          field?: string;
-          diff?: Record<string, never>[];
-        }[];
+            collection?: string;
+            field?: string;
+            diff?: Record<string, never>[];
+          }[];
         relations?: {
-          collection?: string;
-          field?: string;
-          related_collection?: string;
-          diff?: Record<string, never>[];
-        }[];
+            collection?: string;
+            field?: string;
+            related_collection?: string;
+            diff?: Record<string, never>[];
+          }[];
       };
     };
     Files: {
@@ -5493,9 +5533,9 @@ export interface components {
       /** @description $t:field_options.directus_roles.parent_note */
       parent?: string | components["schemas"]["Roles"] | null;
       /** @description $t:field_options.directus_roles.children_note */
-      children?: (string | components["schemas"]["Roles"])[] | null;
+      children?: ((string | components["schemas"]["Roles"])[]) | null;
       policies?: unknown;
-      users?: (string | components["schemas"]["Users"])[] | null;
+      users?: ((string | components["schemas"]["Users"])[]) | null;
     };
     Schema: {
       /** @example 1 */
@@ -5690,7 +5730,7 @@ export interface components {
        * @example https://directus.io
        */
       origin?: string;
-      revisions?: (number | components["schemas"]["Revisions"])[] | null;
+      revisions?: ((number | components["schemas"]["Revisions"])[]) | null;
     };
     Permissions: {
       /**
@@ -5836,11 +5876,6 @@ export interface components {
       filter?: unknown;
       icon?: string | null;
       color?: string | null;
-    };
-    ItemsVoteFilm: {
-      id?: number;
-      vote_id?: string | components["schemas"]["ItemsVote"] | null;
-      film_id?: number | components["schemas"]["ItemsFilm"] | null;
     };
     Relations: {
       /**
@@ -5988,7 +6023,7 @@ export interface components {
        * @example 63716273-0f29-4648-8a2a-2af2948f6f78
        */
       user_created?: string | components["schemas"]["Users"];
-      operations?: (string | components["schemas"]["Operations"])[] | null;
+      operations?: ((string | components["schemas"]["Operations"])[]) | null;
     };
     Operations: {
       /**
@@ -6048,59 +6083,6 @@ export interface components {
        * @example 63716273-0f29-4648-8a2a-2af2948f6f78
        */
       user_created?: string | components["schemas"]["Users"];
-    };
-    Webhooks: {
-      /**
-       * @description The index of the webhook.
-       * @example 1
-       */
-      id?: number;
-      /**
-       * @description The name of the webhook.
-       * @example create articles
-       */
-      name?: string;
-      /**
-       * @description Method used in the webhook.
-       * @example POST
-       */
-      method?: string;
-      /**
-       * @description The url of the webhook.
-       * @example null
-       */
-      url?: string | null;
-      /**
-       * @description The status of the webhook.
-       * @example inactive
-       */
-      status?: string;
-      /**
-       * @description If yes, send the content of what was done
-       * @example true
-       */
-      data?: boolean;
-      /**
-       * @description The actions that triggers this webhook.
-       * @example null
-       */
-      actions?: string[] | null;
-      collections?: string[];
-      headers?: unknown;
-      was_active_before_deprecation?: boolean;
-      migrated_flow?: string | components["schemas"]["Flows"] | null;
-    };
-    Extensions: {
-      enabled?: boolean;
-      /** Format: uuid */
-      id?: string;
-      folder?: string;
-      source?: string;
-      /**
-       * @description Name of the bundle the extension is in.
-       * @example directus-extension-my-bundle
-       */
-      bundle?: string | null;
     };
     Settings: {
       /**
@@ -6163,44 +6145,38 @@ export interface components {
        * @description Array of allowed
        * @example null
        */
-      storage_asset_presets?:
-        | {
-            /** @description Key for the asset. Used in the assets endpoint. */
-            key?: string;
-            /**
-             * @description Whether to crop the thumbnail to match the size, or maintain the aspect ratio.
-             * @enum {string}
-             */
-            fit?: "cover" | "contain" | "inside" | "outside";
-            /** @description Width of the thumbnail. */
-            width?: number;
-            /** @description Height of the thumbnail. */
-            height?: number;
-            /** @description No image upscale */
-            withoutEnlargement?: boolean;
-            /** @description Quality of the compression used. */
-            quality?: number;
-            /**
-             * @description Reformat output image
-             * @enum {string}
-             */
-            format?: "" | "jpeg" | "png" | "webp" | "tiff" | "avif";
-            /** @description Additional transformations to apply */
-            transforms?:
-              | {
-                  /** @description The Sharp method name */
-                  method?: string;
-                  /** @description A list of arguments to pass to the Sharp method */
-                  arguments?:
-                    | {
-                        /** @description A JSON representation of the argument value */
-                        argument?: string;
-                      }[]
-                    | null;
-                }[]
-              | null;
-          }[]
-        | null;
+      storage_asset_presets?: (({
+          /** @description Key for the asset. Used in the assets endpoint. */
+          key?: string;
+          /**
+           * @description Whether to crop the thumbnail to match the size, or maintain the aspect ratio.
+           * @enum {string}
+           */
+          fit?: "cover" | "contain" | "inside" | "outside";
+          /** @description Width of the thumbnail. */
+          width?: number;
+          /** @description Height of the thumbnail. */
+          height?: number;
+          /** @description No image upscale */
+          withoutEnlargement?: boolean;
+          /** @description Quality of the compression used. */
+          quality?: number;
+          /**
+           * @description Reformat output image
+           * @enum {string}
+           */
+          format?: "" | "jpeg" | "png" | "webp" | "tiff" | "avif";
+          /** @description Additional transformations to apply */
+          transforms?: (({
+              /** @description The Sharp method name */
+              method?: string;
+              /** @description A list of arguments to pass to the Sharp method */
+              arguments?: {
+                  /** @description A JSON representation of the argument value */
+                  argument?: string;
+                }[] | null;
+            })[]) | null;
+        })[]) | null;
       custom_css?: string | null;
       /**
        * Format: uuid
@@ -6231,6 +6207,60 @@ export interface components {
       public_registration_role?: string | components["schemas"]["Roles"] | null;
       /** @description $t:fields.directus_settings.public_registration_email_filter_note */
       public_registration_email_filter?: unknown;
+      visual_editor_urls?: unknown;
+    };
+    Webhooks: {
+      /**
+       * @description The index of the webhook.
+       * @example 1
+       */
+      id?: number;
+      /**
+       * @description The name of the webhook.
+       * @example create articles
+       */
+      name?: string;
+      /**
+       * @description Method used in the webhook.
+       * @example POST
+       */
+      method?: string;
+      /**
+       * @description The url of the webhook.
+       * @example null
+       */
+      url?: string | null;
+      /**
+       * @description The status of the webhook.
+       * @example inactive
+       */
+      status?: string;
+      /**
+       * @description If yes, send the content of what was done
+       * @example true
+       */
+      data?: boolean;
+      /**
+       * @description The actions that triggers this webhook.
+       * @example null
+       */
+      actions?: string[] | null;
+      collections?: string[];
+      headers?: unknown;
+      was_active_before_deprecation?: boolean;
+      migrated_flow?: string | components["schemas"]["Flows"] | null;
+    };
+    Extensions: {
+      enabled?: boolean;
+      /** Format: uuid */
+      id?: string;
+      folder?: string;
+      source?: string;
+      /**
+       * @description Name of the bundle the extension is in.
+       * @example directus-extension-my-bundle
+       */
+      bundle?: string | null;
     };
     Versions: {
       /**
@@ -6338,15 +6368,6 @@ export interface components {
       film_id?: number | components["schemas"]["ItemsFilm"] | null;
       film_genre_id?: number | components["schemas"]["ItemsFilmGenre"] | null;
     };
-    ItemsVotingTranslations: {
-      id?: number;
-      voting_id?: string | components["schemas"]["ItemsVoting"] | null;
-      languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
-      before_start_text?: string | null;
-      after_end_text?: string | null;
-      title?: string | null;
-      submit_text?: string | null;
-    };
     ItemsBlockButton: {
       /** Format: uuid */
       id: string;
@@ -6364,9 +6385,16 @@ export interface components {
       label?: string | null;
       color?: string | null;
       variant?: string | null;
-      translations?:
-        | (number | components["schemas"]["ItemsBlockButtonTranslations"])[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsBlockButtonTranslations"])[]) | null;
+    };
+    ItemsVotingTranslations: {
+      id?: number;
+      voting_id?: string | components["schemas"]["ItemsVoting"] | null;
+      languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
+      before_start_text?: string | null;
+      after_end_text?: string | null;
+      title?: string | null;
+      submit_text?: string | null;
     };
     ItemsBlockDivider: {
       /** Format: uuid */
@@ -6386,9 +6414,7 @@ export interface components {
       /** Format: uuid */
       id: string;
       title?: string | null;
-      logos?:
-        | (string | components["schemas"]["ItemsBlockLogocloudLogos"])[]
-        | null;
+      logos?: ((string | components["schemas"]["ItemsBlockLogocloudLogos"])[]) | null;
     };
     ItemsBlockHero: {
       content?: string | null;
@@ -6424,18 +6450,14 @@ export interface components {
       /** Format: uuid */
       id: string;
       background_image?: string | components["schemas"]["Files"] | null;
-      translations?:
-        | (number | components["schemas"]["ItemsBlockRichtextTranslations"])[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsBlockRichtextTranslations"])[]) | null;
     };
     ItemsBlockGallery: {
       headline?: string | null;
       /** Format: uuid */
       id: string;
       title?: string | null;
-      gallery_items?:
-        | (string | components["schemas"]["ItemsBlockGalleryFiles"])[]
-        | null;
+      gallery_items?: ((string | components["schemas"]["ItemsBlockGalleryFiles"])[]) | null;
     };
     ItemsBlockForm: {
       form?: string | components["schemas"]["ItemsForms"] | null;
@@ -6454,10 +6476,7 @@ export interface components {
       user_updated?: string | components["schemas"]["Users"] | null;
       /** Format: timestamp */
       date_updated?: string | null;
-      block_gallery_id?:
-        | string
-        | components["schemas"]["ItemsBlockGallery"]
-        | null;
+      block_gallery_id?: string | components["schemas"]["ItemsBlockGallery"] | null;
       directus_files_id?: string | components["schemas"]["Files"] | null;
     };
     ItemsBlockTestimonials: {
@@ -6465,9 +6484,7 @@ export interface components {
       /** Format: uuid */
       id: string;
       title?: string | null;
-      testimonials?:
-        | (string | components["schemas"]["ItemsBlockTestimonialSliderItems"])[]
-        | null;
+      testimonials?: ((string | components["schemas"]["ItemsBlockTestimonialSliderItems"])[]) | null;
     };
     ItemsBlockTeam: {
       content?: string | null;
@@ -6521,9 +6538,7 @@ export interface components {
       title?: string | null;
       /** @description What's is the base url for the site? */
       url?: string | null;
-      footer_blocks?:
-        | (number | components["schemas"]["ItemsGlobalsFooterBlocks"])[]
-        | null;
+      footer_blocks?: ((number | components["schemas"]["ItemsGlobalsFooterBlocks"])[]) | null;
     };
     ItemsBlockSteps: {
       /** @description If enabled, image position is alternated between left and right. */
@@ -6534,7 +6549,7 @@ export interface components {
       /** @description Show the step numbers on the website. For example: (Step 1, Step 2, etc) */
       show_step_numbers?: boolean | null;
       title?: string | null;
-      steps?: (string | components["schemas"]["ItemsBlockStepItems"])[] | null;
+      steps?: ((string | components["schemas"]["ItemsBlockStepItems"])[]) | null;
     };
     ItemsBlockVideo: {
       headline?: string | null;
@@ -6561,9 +6576,7 @@ export interface components {
       title?: string | null;
       type?: string | null;
       url?: string | null;
-      children?:
-        | (string | components["schemas"]["ItemsNavigationItems"])[]
-        | null;
+      children?: ((string | components["schemas"]["ItemsNavigationItems"])[]) | null;
     };
     ItemsNavigation: {
       /** Format: timestamp */
@@ -6575,7 +6588,7 @@ export interface components {
       title?: string | null;
       user_created?: string | components["schemas"]["Users"] | null;
       user_updated?: string | components["schemas"]["Users"] | null;
-      items?: (string | components["schemas"]["ItemsNavigationItems"])[] | null;
+      items?: ((string | components["schemas"]["ItemsNavigationItems"])[]) | null;
     };
     ItemsForms: {
       /** Format: timestamp */
@@ -6627,7 +6640,7 @@ export interface components {
       status?: string;
       user_created?: string | components["schemas"]["Users"] | null;
       user_updated?: string | components["schemas"]["Users"] | null;
-      posts?: (string | components["schemas"]["ItemsPosts"])[] | null;
+      posts?: ((string | components["schemas"]["ItemsPosts"])[]) | null;
     };
     ItemsPostGalleryItems: {
       /** Format: uuid */
@@ -6688,9 +6701,7 @@ export interface components {
       /** @description What type of post is this? Determines the template used to display the post on the frontend. */
       type?: string | null;
       video_url?: string | null;
-      gallery?:
-        | (string | components["schemas"]["ItemsPostGalleryItems"])[]
-        | null;
+      gallery?: ((string | components["schemas"]["ItemsPostGalleryItems"])[]) | null;
     };
     ItemsBlockCard: {
       id?: number;
@@ -6705,22 +6716,14 @@ export interface components {
       width?: number;
       height?: number;
       align?: string | null;
-      locationAndDate?:
-        | number
-        | components["schemas"]["ItemsBlockLocationanddate"]
-        | null;
-      translations?:
-        | (number | components["schemas"]["ItemsBlockCardTranslations"])[]
-        | null;
+      locationAndDate?: number | components["schemas"]["ItemsBlockLocationanddate"] | null;
+      translations?: ((number | components["schemas"]["ItemsBlockCardTranslations"])[]) | null;
     };
     ItemsBlockLogocloudLogos: {
       /** Format: uuid */
       id: string;
       sort?: number | null;
-      block_logocloud_id?:
-        | string
-        | components["schemas"]["ItemsBlockLogocloud"]
-        | null;
+      block_logocloud_id?: string | components["schemas"]["ItemsBlockLogocloud"] | null;
       directus_files_id?: string | components["schemas"]["Files"] | null;
     };
     ItemsBlockTestimonialSliderItems: {
@@ -6733,14 +6736,8 @@ export interface components {
       user_updated?: string | components["schemas"]["Users"] | null;
       /** Format: timestamp */
       date_updated?: string | null;
-      block_testimonial_slider_id?:
-        | string
-        | components["schemas"]["ItemsBlockTestimonials"]
-        | null;
-      testimonials_id?:
-        | string
-        | components["schemas"]["ItemsTestimonials"]
-        | null;
+      block_testimonial_slider_id?: string | components["schemas"]["ItemsBlockTestimonials"] | null;
+      testimonials_id?: string | components["schemas"]["ItemsTestimonials"] | null;
     };
     ItemsTestimonials: {
       company?: string | null;
@@ -6798,7 +6795,7 @@ export interface components {
       /** @description Start with a slash (/page) and do NOT add a trailing slash (/page/) */
       permalink?: string | null;
       style?: unknown;
-      blocks?: (string | components["schemas"]["ItemsPageBlocks"])[] | null;
+      blocks?: ((string | components["schemas"]["ItemsPageBlocks"])[]) | null;
     };
     ItemsPageBlocks: {
       /** Format: uuid */
@@ -6811,110 +6808,31 @@ export interface components {
       /** Format: timestamp */
       date_updated?: string | null;
       pages_id?: string | components["schemas"]["ItemsPages"] | null;
-      item?:
-        | (
-            | string
-            | components["schemas"]["ItemsBlockDivider"]
-            | components["schemas"]["ItemsBlockFaqs"]
-            | components["schemas"]["ItemsBlockLogocloud"]
-            | components["schemas"]["ItemsBlockHero"]
-            | components["schemas"]["ItemsBlockHTML"]
-            | components["schemas"]["ItemsBlockQuote"]
-            | components["schemas"]["ItemsBlockRichtext"]
-            | components["schemas"]["ItemsBlockGallery"]
-            | components["schemas"]["ItemsBlockForm"]
-            | components["schemas"]["ItemsBlockTestimonials"]
-            | components["schemas"]["ItemsBlockTeam"]
-            | components["schemas"]["ItemsBlockSteps"]
-            | components["schemas"]["ItemsBlockVideo"]
-            | components["schemas"]["ItemsBlockCard"]
-            | components["schemas"]["ItemsBlockImage"]
-            | components["schemas"]["ItemsBlockArchive"]
-            | components["schemas"]["ItemsBlockLayout"]
-            | components["schemas"]["ItemsBlockGap"]
-            | components["schemas"]["ItemsBlockLink"]
-            | components["schemas"]["ItemsBlockLightbox"]
-            | components["schemas"]["ItemsBlockLocationanddate"]
-            | components["schemas"]["ItemsBlockConditionalcard"]
-            | components["schemas"]["ItemsBlockTajenka"]
-            | components["schemas"]["ItemsBlockBannerhero"]
-            | components["schemas"]["ItemsBlockPartner"]
-            | components["schemas"]["ItemsBlockFestivalPoster"]
-            | components["schemas"]["ItemsBlockVideoTrailer"]
-            | components["schemas"]["ItemsBlockCountdown"]
-            | components["schemas"]["ItemsBlockPatron"]
-            | components["schemas"]["ItemsBlockFestivalFooter"]
-            | components["schemas"]["ItemsBlockJury"]
-            | components["schemas"]["ItemsBlockImageRow"]
-            | components["schemas"]["ItemsBlockPartnerRow"]
-            | components["schemas"]["ItemsBlockReferee"]
-            | components["schemas"]["ItemsBlockContact"]
-            | components["schemas"]["ItemsBlockArticle"]
-            | components["schemas"]["ItemsBlockPartnership"]
-          )[]
-        | null;
+      item?: ((string | components["schemas"]["ItemsBlockButton"] | components["schemas"]["ItemsBlockDivider"] | components["schemas"]["ItemsBlockFaqs"] | components["schemas"]["ItemsBlockLogocloud"] | components["schemas"]["ItemsBlockHero"] | components["schemas"]["ItemsBlockHTML"] | components["schemas"]["ItemsBlockQuote"] | components["schemas"]["ItemsBlockRichtext"] | components["schemas"]["ItemsBlockGallery"] | components["schemas"]["ItemsBlockForm"] | components["schemas"]["ItemsBlockTestimonials"] | components["schemas"]["ItemsBlockTeam"] | components["schemas"]["ItemsBlockSteps"] | components["schemas"]["ItemsBlockVideo"] | components["schemas"]["ItemsBlockCard"] | components["schemas"]["ItemsBlockImage"] | components["schemas"]["ItemsBlockArchive"] | components["schemas"]["ItemsBlockLayout"] | components["schemas"]["ItemsBlockGap"] | components["schemas"]["ItemsBlockLink"] | components["schemas"]["ItemsBlockBrochure"] | components["schemas"]["ItemsBlockLightbox"] | components["schemas"]["ItemsBlockLocationanddate"] | components["schemas"]["ItemsBlockConditionalcard"] | components["schemas"]["ItemsBlockTajenka"] | components["schemas"]["ItemsBlockBannerhero"] | components["schemas"]["ItemsBlockPartner"] | components["schemas"]["ItemsBlockFestivalPoster"] | components["schemas"]["ItemsBlockVideoTrailer"] | components["schemas"]["ItemsBlockCountdown"] | components["schemas"]["ItemsBlockPatron"] | components["schemas"]["ItemsBlockFestivalFooter"] | components["schemas"]["ItemsBlockJury"] | components["schemas"]["ItemsBlockImageRow"] | components["schemas"]["ItemsBlockPartnerRow"] | components["schemas"]["ItemsBlockReferee"] | components["schemas"]["ItemsBlockContact"] | components["schemas"]["ItemsBlockArticle"] | components["schemas"]["ItemsBlockPartnership"])[]) | null;
       collection?: string | null;
       /** @description Hide this block on the frontend without having to remove it from your page. */
       hide_block?: boolean | null;
       style?: unknown;
-      background?:
-        | (number | components["schemas"]["ItemsPageBlocksBackground1"])[]
-        | null;
+      background?: ((number | components["schemas"]["ItemsPageBlocksBackground1"])[]) | null;
     };
     ItemsBlockArchiveFiles: {
       id?: number;
-      block_archive_id?:
-        | number
-        | components["schemas"]["ItemsBlockArchive"]
-        | null;
+      block_archive_id?: number | components["schemas"]["ItemsBlockArchive"] | null;
       directus_files_id?: string | components["schemas"]["Files"] | null;
     };
     ItemsGlobalsFooterBlocks: {
       id?: number;
       globals_id?: string | components["schemas"]["ItemsGlobals"] | null;
-      item?:
-        | (
-            | string
-            | components["schemas"]["ItemsBlockHero"]
-            | components["schemas"]["ItemsBlockRichtext"]
-            | components["schemas"]["ItemsBlockCard"]
-            | components["schemas"]["ItemsBlockLink"]
-            | components["schemas"]["ItemsBlockFestivalFooter"]
-          )[]
-        | null;
+      item?: ((string | components["schemas"]["ItemsBlockHero"] | components["schemas"]["ItemsBlockRichtext"] | components["schemas"]["ItemsBlockCard"] | components["schemas"]["ItemsBlockLink"] | components["schemas"]["ItemsBlockFestivalFooter"])[]) | null;
       collection?: string | null;
     };
     ItemsBlockLayoutBlocks1: {
       id?: number;
-      block_layout_id?:
-        | number
-        | components["schemas"]["ItemsBlockLayout"]
-        | null;
-      item?:
-        | (
-            | string
-            | components["schemas"]["ItemsBlockButton"]
-            | components["schemas"]["ItemsBlockRichtext"]
-            | components["schemas"]["ItemsBlockCard"]
-            | components["schemas"]["ItemsBlockImage"]
-            | components["schemas"]["ItemsBlockLayout"]
-            | components["schemas"]["ItemsBlockGap"]
-            | components["schemas"]["ItemsBlockLink"]
-            | components["schemas"]["ItemsBlockLocationanddate"]
-            | components["schemas"]["ItemsBlockLogo"]
-            | components["schemas"]["ItemsBlockContact"]
-            | components["schemas"]["ItemsBlockArticle"]
-            | components["schemas"]["ItemsBlockInfoStack"]
-          )[]
-        | null;
+      block_layout_id?: number | components["schemas"]["ItemsBlockLayout"] | null;
+      item?: ((string | components["schemas"]["ItemsBlockButton"] | components["schemas"]["ItemsBlockRichtext"] | components["schemas"]["ItemsBlockCard"] | components["schemas"]["ItemsBlockImage"] | components["schemas"]["ItemsBlockLayout"] | components["schemas"]["ItemsBlockGap"] | components["schemas"]["ItemsBlockLink"] | components["schemas"]["ItemsBlockLocationanddate"] | components["schemas"]["ItemsBlockLogo"] | components["schemas"]["ItemsBlockContact"] | components["schemas"]["ItemsBlockArticle"] | components["schemas"]["ItemsBlockInfoStack"])[]) | null;
       collection?: string | null;
       sort?: number | null;
-      background?:
-        | (
-            | number
-            | components["schemas"]["ItemsBlockLayoutBlocks1Background"]
-          )[]
-        | null;
+      background?: ((number | components["schemas"]["ItemsBlockLayoutBlocks1Background"])[]) | null;
     };
     ItemsBlockImage: {
       id?: number;
@@ -6926,18 +6844,14 @@ export interface components {
       length?: number;
       extendButton?: string | components["schemas"]["ItemsBlockButton"] | null;
       shrinkButton?: string | components["schemas"]["ItemsBlockButton"] | null;
-      images?:
-        | (number | components["schemas"]["ItemsBlockArchiveFiles"])[]
-        | null;
+      images?: ((number | components["schemas"]["ItemsBlockArchiveFiles"])[]) | null;
     };
     ItemsBlockLayout: {
       id?: number;
       horizontal?: boolean | null;
       separated?: boolean | null;
       full_height?: boolean | null;
-      blocks?:
-        | (number | components["schemas"]["ItemsBlockLayoutBlocks1"])[]
-        | null;
+      blocks?: ((number | components["schemas"]["ItemsBlockLayoutBlocks1"])[]) | null;
     };
     ItemsBlockGap: {
       id?: number;
@@ -6960,16 +6874,11 @@ export interface components {
       size?: string | null;
       title?: string | null;
       type?: string;
-      translations?:
-        | (number | components["schemas"]["ItemsBlockLinkTranslations"])[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsBlockLinkTranslations"])[]) | null;
     };
     ItemsBlockRichtextTranslations: {
       id?: number;
-      block_richtext_id?:
-        | string
-        | components["schemas"]["ItemsBlockRichtext"]
-        | null;
+      block_richtext_id?: string | components["schemas"]["ItemsBlockRichtext"] | null;
       languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
       content?: string | null;
     };
@@ -6980,11 +6889,13 @@ export interface components {
       title?: string | null;
       description?: string | null;
     };
+    ItemsBlockBrochure: {
+      id?: number;
+      translations?: ((number | components["schemas"]["ItemsBlockBrochureTranslations"])[]) | null;
+    };
     ItemsBlockLightbox: {
       id?: number;
-      images?:
-        | (number | components["schemas"]["ItemsBlockLightboxFiles"])[]
-        | null;
+      images?: ((number | components["schemas"]["ItemsBlockLightboxFiles"])[]) | null;
     };
     ItemsBlockLinkTranslations: {
       id?: number;
@@ -6994,19 +6905,11 @@ export interface components {
     };
     ItemsBlockLocationanddate: {
       id?: number;
-      translations?:
-        | (
-            | number
-            | components["schemas"]["ItemsBlockLocationanddateTranslations"]
-          )[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsBlockLocationanddateTranslations"])[]) | null;
     };
     ItemsBlockConditionalcardTranslations: {
       id?: number;
-      block_conditionalcard_id?:
-        | number
-        | components["schemas"]["ItemsBlockConditionalcard"]
-        | null;
+      block_conditionalcard_id?: number | components["schemas"]["ItemsBlockConditionalcard"] | null;
       languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
       card_condition_text?: string | null;
       card_link_subtext?: string | null;
@@ -7015,12 +6918,7 @@ export interface components {
       id?: number;
       card_link?: number | components["schemas"]["ItemsBlockLink"] | null;
       card_link_image?: string | components["schemas"]["Files"] | null;
-      translations?:
-        | (
-            | number
-            | components["schemas"]["ItemsBlockConditionalcardTranslations"]
-          )[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsBlockConditionalcardTranslations"])[]) | null;
     };
     ItemsBlockTajenka: {
       id?: number;
@@ -7028,16 +6926,20 @@ export interface components {
     };
     ItemsBlockLocationanddateTranslations: {
       id?: number;
-      block_locationanddate_id?:
-        | number
-        | components["schemas"]["ItemsBlockLocationanddate"]
-        | null;
+      block_locationanddate_id?: number | components["schemas"]["ItemsBlockLocationanddate"] | null;
       languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
       time?: string | null;
       date?: string | null;
       location1?: string | null;
       location2?: string | null;
       cost_and_subtitles?: string | null;
+    };
+    ItemsBlockBrochureTranslations: {
+      id?: number;
+      block_brochure_id?: number | components["schemas"]["ItemsBlockBrochure"] | null;
+      languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
+      brochure?: string | components["schemas"]["Files"] | null;
+      brochure_link: string;
     };
     ItemsBlockBannerhero: {
       id?: number;
@@ -7047,16 +6949,11 @@ export interface components {
       content?: string | null;
       scroll_target_id?: string | null;
       block_layout?: number | components["schemas"]["ItemsBlockLayout"] | null;
-      translations?:
-        | (number | components["schemas"]["ItemsBlockBannerheroTranslations"])[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsBlockBannerheroTranslations"])[]) | null;
     };
     ItemsBlockBannerheroTranslations: {
       id?: number;
-      block_bannerhero_id?:
-        | number
-        | components["schemas"]["ItemsBlockBannerhero"]
-        | null;
+      block_bannerhero_id?: number | components["schemas"]["ItemsBlockBannerhero"] | null;
       languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
       title?: string | null;
       headline?: string | null;
@@ -7072,29 +6969,18 @@ export interface components {
     ItemsBlockFestivalPoster: {
       id?: number;
       poster: string | components["schemas"]["Files"];
-      translations?:
-        | (
-            | number
-            | components["schemas"]["ItemsBlockFestivalPosterTranslations"]
-          )[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsBlockFestivalPosterTranslations"])[]) | null;
     };
     ItemsBlockVideoTrailerTranslations: {
       id?: number;
-      block_video_trailer_id?:
-        | number
-        | components["schemas"]["ItemsBlockVideoTrailer"]
-        | null;
+      block_video_trailer_id?: number | components["schemas"]["ItemsBlockVideoTrailer"] | null;
       languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
       content?: string | null;
       title?: string | null;
     };
     ItemsBlockFestivalPosterTranslations: {
       id?: number;
-      block_festival_poster_id?:
-        | number
-        | components["schemas"]["ItemsBlockFestivalPoster"]
-        | null;
+      block_festival_poster_id?: number | components["schemas"]["ItemsBlockFestivalPoster"] | null;
       languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
       headline: string;
       description: string;
@@ -7103,32 +6989,20 @@ export interface components {
       id?: number;
       video?: string | components["schemas"]["ItemsBlockVideo"] | null;
       background?: string | components["schemas"]["Files"] | null;
-      translations?:
-        | (
-            | number
-            | components["schemas"]["ItemsBlockVideoTrailerTranslations"]
-          )[]
-        | null;
-    };
-    ItemsBlockButtonTranslations: {
-      id?: number;
-      block_button_id?:
-        | string
-        | components["schemas"]["ItemsBlockButton"]
-        | null;
-      languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
-      label?: string | null;
+      translations?: ((number | components["schemas"]["ItemsBlockVideoTrailerTranslations"])[]) | null;
     };
     ItemsFilmCrewFilmPerson: {
       id?: number;
       film_id?: number | components["schemas"]["ItemsFilm"] | null;
       film_person_id?: number | components["schemas"]["ItemsFilmPerson"] | null;
-      crew_roles?:
-        | (
-            | number
-            | components["schemas"]["ItemsFilmCrewFilmPersonFilmCrewRole"]
-          )[]
-        | null;
+      crew_roles?: ((number | components["schemas"]["ItemsFilmCrewFilmPersonFilmCrewRole"])[]) | null;
+    };
+    ItemsBlockButtonTranslations: {
+      id?: number;
+      block_button_id?: string | components["schemas"]["ItemsBlockButton"] | null;
+      languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
+      label?: string | null;
+      download_url?: string | null;
     };
     ItemsPageBlocksBackground: {
       id?: number;
@@ -7150,21 +7024,18 @@ export interface components {
     ItemsPageBlocksBackground1: {
       id?: number;
       page_blocks_id?: string | components["schemas"]["ItemsPageBlocks"] | null;
-      item?: (string | components["schemas"]["ItemsGradient"])[] | null;
+      item?: ((string | components["schemas"]["ItemsGradient"])[]) | null;
       collection?: string | null;
     };
     ItemsBlockLogoImage: {
       id?: number;
       block_logo_id?: number | components["schemas"]["ItemsBlockLogo"] | null;
-      item?: (string | components["schemas"]["ItemsBlockImage"])[] | null;
+      item?: ((string | components["schemas"]["ItemsBlockImage"])[]) | null;
       collection?: string | null;
     };
     ItemsBlockCountdownTranslations: {
       id?: number;
-      block_countdown_id?:
-        | number
-        | components["schemas"]["ItemsBlockCountdown"]
-        | null;
+      block_countdown_id?: number | components["schemas"]["ItemsBlockCountdown"] | null;
       languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
       title?: string | null;
       custom_plural_date_suffix?: string | null;
@@ -7173,41 +7044,21 @@ export interface components {
       id?: number;
       /** Format: date-time */
       end_date?: string | null;
-      hide_layout_element?:
-        | number
-        | components["schemas"]["ItemsBlockLayout"]
-        | null;
+      hide_layout_element?: number | components["schemas"]["ItemsBlockLayout"] | null;
       /** Format: date-time */
       hide_date?: string | null;
       title?: string | null;
       custom_plural_date_suffix?: string | null;
-      translations?:
-        | (number | components["schemas"]["ItemsBlockCountdownTranslations"])[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsBlockCountdownTranslations"])[]) | null;
     };
     ItemsFilmCrewFilmPersonFilmCrewRole: {
       id?: number;
-      film_crew_film_person_id?:
-        | number
-        | components["schemas"]["ItemsFilmCrewFilmPerson"]
-        | null;
-      film_crew_role_id?:
-        | number
-        | components["schemas"]["ItemsFilmCrewRole"]
-        | null;
-    };
-    ItemsVote: {
-      /** Format: uuid */
-      id: string;
-      voting_id?: string | components["schemas"]["ItemsVoting"] | null;
-      films?: (number | components["schemas"]["ItemsVoteFilm"])[] | null;
+      film_crew_film_person_id?: number | components["schemas"]["ItemsFilmCrewFilmPerson"] | null;
+      film_crew_role_id?: number | components["schemas"]["ItemsFilmCrewRole"] | null;
     };
     ItemsBlockPatronTranslations: {
       id?: number;
-      block_patron_id?:
-        | number
-        | components["schemas"]["ItemsBlockPatron"]
-        | null;
+      block_patron_id?: number | components["schemas"]["ItemsBlockPatron"] | null;
       languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
       role?: string | null;
     };
@@ -7222,25 +7073,26 @@ export interface components {
       before_start_text?: string | null;
       after_end_text?: string | null;
       active?: boolean | null;
-      translations?:
-        | (number | components["schemas"]["ItemsVotingTranslations"])[]
-        | null;
-      films?: (number | components["schemas"]["ItemsVotingFilm"])[] | null;
+      translations?: ((number | components["schemas"]["ItemsVotingTranslations"])[]) | null;
+      films?: ((number | components["schemas"]["ItemsVotingFilm"])[]) | null;
+    };
+    ItemsVote: {
+      /** Format: uuid */
+      id: string;
+      voting_id?: string | components["schemas"]["ItemsVoting"] | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      films?: string | null;
     };
     ItemsBlockPatron: {
       id?: number;
       name?: string | null;
       image?: string | components["schemas"]["Files"] | null;
-      translations?:
-        | (number | components["schemas"]["ItemsBlockPatronTranslations"])[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsBlockPatronTranslations"])[]) | null;
     };
     ItemsBlockFestivalFooterTranslations: {
       id?: number;
-      block_festival_footer_id?:
-        | number
-        | components["schemas"]["ItemsBlockFestivalFooter"]
-        | null;
+      block_festival_footer_id?: number | components["schemas"]["ItemsBlockFestivalFooter"] | null;
       languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
       contactSection?: string | null;
       navigationSection?: string | null;
@@ -7248,23 +7100,14 @@ export interface components {
     };
     ItemsBlockFestivalFooter: {
       id?: number;
-      translations?:
-        | (
-            | number
-            | components["schemas"]["ItemsBlockFestivalFooterTranslations"]
-          )[]
-        | null;
-      socials?:
-        | (number | components["schemas"]["ItemsBlockFestivalFooterSocial"])[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsBlockFestivalFooterTranslations"])[]) | null;
+      socials?: ((number | components["schemas"]["ItemsBlockFestivalFooterSocial"])[]) | null;
     };
     ItemsBlockJury: {
       id?: number;
       name?: string | null;
       image?: string | components["schemas"]["Files"] | null;
-      translations?:
-        | (number | components["schemas"]["ItemsBlockJuryTranslations"])[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsBlockJuryTranslations"])[]) | null;
     };
     ItemsBlockJuryTranslations: {
       id?: number;
@@ -7274,32 +7117,21 @@ export interface components {
     };
     ItemsBlockFestivalFooterBlockSocialMedia: {
       id?: number;
-      block_festival_footer_id?:
-        | number
-        | components["schemas"]["ItemsBlockFestivalFooter"]
-        | null;
+      block_festival_footer_id?: number | components["schemas"]["ItemsBlockFestivalFooter"] | null;
     };
     ItemsBlockFestivalFooterBlockSocialMedia1: {
       id?: number;
-      block_festival_footer_id?:
-        | number
-        | components["schemas"]["ItemsBlockFestivalFooter"]
-        | null;
+      block_festival_footer_id?: number | components["schemas"]["ItemsBlockFestivalFooter"] | null;
     };
     ItemsBlockImageRow: {
       id?: number;
       in_one_row?: number | null;
-      images?:
-        | (number | components["schemas"]["ItemsBlockImageRowFiles"])[]
-        | null;
+      images?: ((number | components["schemas"]["ItemsBlockImageRowFiles"])[]) | null;
     };
     ItemsBlockImageRowImages: {
       id?: number;
-      block_image_row_id?:
-        | number
-        | components["schemas"]["ItemsBlockImageRow"]
-        | null;
-      item?: (string | components["schemas"]["ItemsBlockImage"])[] | null;
+      block_image_row_id?: number | components["schemas"]["ItemsBlockImageRow"] | null;
+      item?: ((string | components["schemas"]["ItemsBlockImage"])[]) | null;
       collection?: string | null;
     };
     ItemsSocial: {
@@ -7309,66 +7141,41 @@ export interface components {
     };
     ItemsBlockFestivalFooterSocial: {
       id?: number;
-      block_festival_footer_id?:
-        | number
-        | components["schemas"]["ItemsBlockFestivalFooter"]
-        | null;
+      block_festival_footer_id?: number | components["schemas"]["ItemsBlockFestivalFooter"] | null;
       social_id?: number | components["schemas"]["ItemsSocial"] | null;
     };
     ItemsBlockImageRowDirectusFiles: {
       id?: number;
-      block_image_row_id?:
-        | number
-        | components["schemas"]["ItemsBlockImageRow"]
-        | null;
+      block_image_row_id?: number | components["schemas"]["ItemsBlockImageRow"] | null;
       directus_files_id?: string | components["schemas"]["Files"] | null;
     };
     ItemsBlockImageRowFiles: {
       id?: number;
-      block_image_row_id?:
-        | number
-        | components["schemas"]["ItemsBlockImageRow"]
-        | null;
+      block_image_row_id?: number | components["schemas"]["ItemsBlockImageRow"] | null;
       directus_files_id?: string | components["schemas"]["Files"] | null;
     };
     ItemsBlockPartnerRowBlockPartner: {
       id?: number;
-      block_partner_row_id?:
-        | number
-        | components["schemas"]["ItemsBlockPartnerRow"]
-        | null;
-      block_partner_id?:
-        | number
-        | components["schemas"]["ItemsBlockPartner"]
-        | null;
+      block_partner_row_id?: number | components["schemas"]["ItemsBlockPartnerRow"] | null;
+      block_partner_id?: number | components["schemas"]["ItemsBlockPartner"] | null;
     };
     ItemsPartnerRowBlockPartner: {
       id?: number;
-      block_partner_id?:
-        | number
-        | components["schemas"]["ItemsBlockPartner"]
-        | null;
+      block_partner_id?: number | components["schemas"]["ItemsBlockPartner"] | null;
     };
     ItemsBlockPartnerRow: {
       id?: number;
-      partners?:
-        | (number | components["schemas"]["ItemsBlockPartnerRowBlockPartner"])[]
-        | null;
+      partners?: ((number | components["schemas"]["ItemsBlockPartnerRowBlockPartner"])[]) | null;
     };
     ItemsBlockReferee: {
       id?: number;
       image?: string | components["schemas"]["Files"] | null;
       name?: string | null;
-      translations?:
-        | (number | components["schemas"]["ItemsBlockRefereeTranslations"])[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsBlockRefereeTranslations"])[]) | null;
     };
     ItemsBlockRefereeTranslations: {
       id?: number;
-      block_referee_id?:
-        | number
-        | components["schemas"]["ItemsBlockReferee"]
-        | null;
+      block_referee_id?: number | components["schemas"]["ItemsBlockReferee"] | null;
       languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
       description?: string | null;
     };
@@ -7379,21 +7186,12 @@ export interface components {
       description?: string | null;
       /** Format: time */
       duration?: string | null;
-      festival_block?:
-        | number
-        | components["schemas"]["ItemsFestivalBlock"]
-        | null;
+      festival_block?: number | components["schemas"]["ItemsFestivalBlock"] | null;
       title_image?: string | components["schemas"]["Files"] | null;
-      translations?:
-        | (number | components["schemas"]["ItemsFilmTranslations"])[]
-        | null;
-      genres?: (number | components["schemas"]["ItemsFilmFilmGenre"])[] | null;
-      crew?:
-        | (number | components["schemas"]["ItemsFilmCrewFilmPerson"])[]
-        | null;
-      actors?:
-        | (number | components["schemas"]["ItemsFilmActorFilmPerson"])[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsFilmTranslations"])[]) | null;
+      genres?: ((number | components["schemas"]["ItemsFilmFilmGenre"])[]) | null;
+      crew?: ((number | components["schemas"]["ItemsFilmCrewFilmPerson"])[]) | null;
+      actors?: ((number | components["schemas"]["ItemsFilmActorFilmPerson"])[]) | null;
     };
     ItemsFilmActorFilmPerson: {
       id?: number;
@@ -7404,68 +7202,47 @@ export interface components {
     ItemsBlockContact: {
       id?: number;
       info?: string | null;
-      translations?:
-        | (number | components["schemas"]["ItemsBlockContactTranslations"])[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsBlockContactTranslations"])[]) | null;
     };
     ItemsBlockArticle: {
       id?: number;
       button_bottom?: boolean | null;
       link?: number | components["schemas"]["ItemsBlockLink"] | null;
-      translations?:
-        | (number | components["schemas"]["ItemsBlockArticleTranslations"])[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsBlockArticleTranslations"])[]) | null;
     };
     ItemsBlockInfoStack: {
       id?: number;
-      translations?:
-        | (number | components["schemas"]["ItemsBlockInfoStackTranslations"])[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsBlockInfoStackTranslations"])[]) | null;
     };
     ItemsBlockArticleTranslations: {
       id?: number;
-      block_article_id?:
-        | number
-        | components["schemas"]["ItemsBlockArticle"]
-        | null;
+      block_article_id?: number | components["schemas"]["ItemsBlockArticle"] | null;
       languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
       title?: string | null;
       description?: string | null;
     };
     ItemsBlockInfoStackTranslations: {
       id?: number;
-      block_info_stack_id?:
-        | number
-        | components["schemas"]["ItemsBlockInfoStack"]
-        | null;
+      block_info_stack_id?: number | components["schemas"]["ItemsBlockInfoStack"] | null;
       languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
       title?: string | null;
       description?: string | null;
     };
     ItemsBlockContactTranslations: {
       id?: number;
-      block_contact_id?:
-        | number
-        | components["schemas"]["ItemsBlockContact"]
-        | null;
+      block_contact_id?: number | components["schemas"]["ItemsBlockContact"] | null;
       languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
       title?: string | null;
     };
     ItemsBlockLayoutBlocks1Background: {
       id?: number;
-      block_layout_blocks_1_id?:
-        | number
-        | components["schemas"]["ItemsBlockLayoutBlocks1"]
-        | null;
-      item?: (string | components["schemas"]["ItemsGradient"])[] | null;
+      block_layout_blocks_1_id?: number | components["schemas"]["ItemsBlockLayoutBlocks1"] | null;
+      item?: ((string | components["schemas"]["ItemsGradient"])[]) | null;
       collection?: string | null;
     };
     ItemsBlockLightboxFiles: {
       id?: number;
-      block_lightbox_id?:
-        | number
-        | components["schemas"]["ItemsBlockLightbox"]
-        | null;
+      block_lightbox_id?: number | components["schemas"]["ItemsBlockLightbox"] | null;
       directus_files_id?: string | components["schemas"]["Files"] | null;
     };
     ItemsVotingFilm: {
@@ -7476,10 +7253,7 @@ export interface components {
     };
     ItemsBlockPartnershipTranslations: {
       id?: number;
-      block_partnership_id?:
-        | number
-        | components["schemas"]["ItemsBlockPartnership"]
-        | null;
+      block_partnership_id?: number | components["schemas"]["ItemsBlockPartnership"] | null;
       languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
       title?: string | null;
     };
@@ -7491,55 +7265,32 @@ export interface components {
     };
     ItemsBlockPartnership: {
       id?: number;
-      translations?:
-        | (
-            | number
-            | components["schemas"]["ItemsBlockPartnershipTranslations"]
-          )[]
-        | null;
-      partners?:
-        | (
-            | number
-            | components["schemas"]["ItemsBlockPartnershipBlockPartner"]
-          )[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsBlockPartnershipTranslations"])[]) | null;
+      partners?: ((number | components["schemas"]["ItemsBlockPartnershipBlockPartner"])[]) | null;
     };
     ItemsFestivalBlockTranslations: {
       id?: number;
-      festival_block_id?:
-        | number
-        | components["schemas"]["ItemsFestivalBlock"]
-        | null;
+      festival_block_id?: number | components["schemas"]["ItemsFestivalBlock"] | null;
       languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
       name?: string | null;
     };
     ItemsBlockPartnershipBlockPartner: {
       id?: number;
-      block_partnership_id?:
-        | number
-        | components["schemas"]["ItemsBlockPartnership"]
-        | null;
-      block_partner_id?:
-        | number
-        | components["schemas"]["ItemsBlockPartner"]
-        | null;
+      block_partnership_id?: number | components["schemas"]["ItemsBlockPartnership"] | null;
+      block_partner_id?: number | components["schemas"]["ItemsBlockPartner"] | null;
       sort?: number | null;
     };
     ItemsFestivalBlock: {
       id?: number;
       name?: string | null;
       sort?: number | null;
-      translations?:
-        | (number | components["schemas"]["ItemsFestivalBlockTranslations"])[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsFestivalBlockTranslations"])[]) | null;
     };
     ItemsFilmGenre: {
       id?: number;
       name?: string | null;
       sort?: number | null;
-      translations?:
-        | (number | components["schemas"]["ItemsFilmGenreTranslations"])[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsFilmGenreTranslations"])[]) | null;
     };
     ItemsFilmPerson: {
       id?: number;
@@ -7550,10 +7301,7 @@ export interface components {
     };
     ItemsFilmCrewRoleTranslations: {
       id?: number;
-      film_crew_role_id?:
-        | number
-        | components["schemas"]["ItemsFilmCrewRole"]
-        | null;
+      film_crew_role_id?: number | components["schemas"]["ItemsFilmCrewRole"] | null;
       languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
       name?: string | null;
     };
@@ -7561,9 +7309,7 @@ export interface components {
       id?: number;
       name?: string | null;
       sort?: number | null;
-      translations?:
-        | (number | components["schemas"]["ItemsFilmCrewRoleTranslations"])[]
-        | null;
+      translations?: ((number | components["schemas"]["ItemsFilmCrewRoleTranslations"])[]) | null;
     };
   };
   responses: {
@@ -7630,6 +7376,7 @@ export type $defs = Record<string, never>;
 export type external = Record<string, never>;
 
 export interface operations {
+
   /**
    * Get an Asset
    * @description Image typed files can be dynamically resized and transformed to fit any need.
@@ -8727,7 +8474,7 @@ export interface operations {
             foreign_key_schema?: string | null;
           };
           /** @description The meta info. */
-          meta?: {
+          meta?: ({
             /**
              * @description Unique identifier for the field in the `directus_fields` collection.
              * @example 3
@@ -8793,13 +8540,7 @@ export interface operations {
              * @example null
              * @enum {string|null}
              */
-            width?:
-              | "half"
-              | "half-left"
-              | "half-right"
-              | "full"
-              | "fill"
-              | null;
+            width?: "half" | "half-left" | "half-right" | "full" | "fill" | null;
             /**
              * @description What field group this field is part of.
              * @example null
@@ -8815,7 +8556,7 @@ export interface operations {
              * @example
              */
             note?: string | null;
-          } | null;
+          }) | null;
         };
       };
     };
@@ -8975,7 +8716,7 @@ export interface operations {
             foreign_key_schema?: string | null;
           };
           /** @description The meta info. */
-          meta?: {
+          meta?: ({
             /**
              * @description Unique identifier for the field in the `directus_fields` collection.
              * @example 3
@@ -9041,13 +8782,7 @@ export interface operations {
              * @example null
              * @enum {string|null}
              */
-            width?:
-              | "half"
-              | "half-left"
-              | "half-right"
-              | "full"
-              | "fill"
-              | null;
+            width?: "half" | "half-left" | "half-right" | "full" | "fill" | null;
             /**
              * @description What field group this field is part of.
              * @example null
@@ -9063,7 +8798,7 @@ export interface operations {
              * @example
              */
             note?: string | null;
-          } | null;
+          }) | null;
         };
       };
     };
@@ -9820,9 +9555,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmTranslations"][]
-          | components["schemas"]["ItemsFilmTranslations"];
+        "application/json": components["schemas"]["ItemsFilmTranslations"][] | components["schemas"]["ItemsFilmTranslations"];
       };
     };
     responses: {
@@ -9830,7 +9563,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmTranslations"][];
           };
         };
       };
@@ -9868,9 +9601,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmTranslations"][]
-          | components["schemas"]["ItemsFilmTranslations"];
+        "application/json": components["schemas"]["ItemsFilmTranslations"][] | components["schemas"]["ItemsFilmTranslations"];
       };
     };
     responses: {
@@ -9878,7 +9609,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmTranslations"][];
           };
         };
       };
@@ -10261,15 +9992,15 @@ export interface operations {
           /** @description What the user searched for in search/filter in the header bar. */
           search?: string;
           filters?: {
-            /** @example aHKLAakdVghzD */
-            key?: string;
-            /** @example rating */
-            field?: string;
-            /** @example gte */
-            operator?: string;
-            /** @example 4.5 */
-            value?: number;
-          }[];
+              /** @example aHKLAakdVghzD */
+              key?: string;
+              /** @example rating */
+              field?: string;
+              /** @example gte */
+              operator?: string;
+              /** @example 4.5 */
+              value?: number;
+            }[];
           /** @description Name of the view type that is used. */
           layout?: string;
           /** @description Layout query that's saved per layout type. Controls what data is fetched on load. These follow the same format as the JS SDK parameters. */
@@ -10343,15 +10074,15 @@ export interface operations {
             /** @description What the user searched for in search/filter in the header bar. */
             search?: string;
             filters?: {
-              /** @example aHKLAakdVghzD */
-              key?: string;
-              /** @example rating */
-              field?: string;
-              /** @example gte */
-              operator?: string;
-              /** @example 4.5 */
-              value?: number;
-            }[];
+                /** @example aHKLAakdVghzD */
+                key?: string;
+                /** @example rating */
+                field?: string;
+                /** @example gte */
+                operator?: string;
+                /** @example 4.5 */
+                value?: number;
+              }[];
             /** @description Name of the view type that is used. */
             layout?: string;
             /** @description Layout query that's saved per layout type. Controls what data is fetched on load. These follow the same format as the JS SDK parameters. */
@@ -10451,13 +10182,13 @@ export interface operations {
           /** @description What the user searched for in search/filter in the header bar. */
           search_query?: string;
           filters?: {
-            /** @example rating */
-            field?: string;
-            /** @example gte */
-            operator?: string;
-            /** @example 4.5 */
-            value?: number;
-          }[];
+              /** @example rating */
+              field?: string;
+              /** @example gte */
+              operator?: string;
+              /** @example 4.5 */
+              value?: number;
+            }[];
           /** @description Name of the view type that is used. Defaults to tabular. */
           view_type?: string;
           /** @description View query that's saved per view type. Controls what data is fetched on load. These follow the same format as the JS SDK parameters. */
@@ -10815,193 +10546,6 @@ export interface operations {
       /** @description Successful request */
       200: {
         content: never;
-      };
-      401: components["responses"]["UnauthorizedError"];
-      404: components["responses"]["NotFoundError"];
-    };
-  };
-  /**
-   * List Items
-   * @description List the vote_film items.
-   */
-  readItemsVoteFilm: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        limit?: components["parameters"]["Limit"];
-        meta?: components["parameters"]["Meta"];
-        offset?: components["parameters"]["Offset"];
-        sort?: components["parameters"]["Sort"];
-        filter?: components["parameters"]["Filter"];
-        search?: components["parameters"]["Search"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: components["schemas"]["ItemsVoteFilm"][];
-            meta?: components["schemas"]["x-metadata"];
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-    };
-  };
-  /**
-   * Create an Item
-   * @description Create a new vote_film item.
-   */
-  createItemsVoteFilm: {
-    parameters: {
-      query?: {
-        meta?: components["parameters"]["Meta"];
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json":
-          | components["schemas"]["ItemsVoteFilm"][]
-          | components["schemas"]["ItemsVoteFilm"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: unknown;
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-    };
-  };
-  /**
-   * Delete Multiple Items
-   * @description Delete multiple existing vote_film items.
-   */
-  deleteItemsVoteFilm: {
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: never;
-      };
-      401: components["responses"]["UnauthorizedError"];
-    };
-  };
-  /**
-   * Update Multiple Items
-   * @description Update multiple vote_film items at the same time.
-   */
-  updateItemsVoteFilm: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        limit?: components["parameters"]["Limit"];
-        meta?: components["parameters"]["Meta"];
-        offset?: components["parameters"]["Offset"];
-        sort?: components["parameters"]["Sort"];
-        filter?: components["parameters"]["Filter"];
-        search?: components["parameters"]["Search"];
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json":
-          | components["schemas"]["ItemsVoteFilm"][]
-          | components["schemas"]["ItemsVoteFilm"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: unknown;
-          };
-        };
-      };
-    };
-  };
-  /**
-   * Retrieve an Item
-   * @description Retrieve a single vote_film item by unique identifier.
-   */
-  readSingleItemsVoteFilm: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        meta?: components["parameters"]["Meta"];
-        version?: components["parameters"]["Version"];
-      };
-      path: {
-        /** @description Index of the item. */
-        id: number | string;
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: components["schemas"]["ItemsVoteFilm"];
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-      404: components["responses"]["NotFoundError"];
-    };
-  };
-  /**
-   * Delete an Item
-   * @description Delete an existing vote_film item.
-   */
-  deleteSingleItemsVoteFilm: {
-    parameters: {
-      path: {
-        /** @description Index of the item. */
-        id: number | string;
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: never;
-      };
-      401: components["responses"]["UnauthorizedError"];
-      404: components["responses"]["NotFoundError"];
-    };
-  };
-  /**
-   * Update an Item
-   * @description Update an existing vote_film item.
-   */
-  updateSingleItemsVoteFilm: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        meta?: components["parameters"]["Meta"];
-      };
-      path: {
-        /** @description Index of the item. */
-        id: number | string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["ItemsVoteFilm"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: components["schemas"]["ItemsVoteFilm"];
-          };
-        };
       };
       401: components["responses"]["UnauthorizedError"];
       404: components["responses"]["NotFoundError"];
@@ -11584,6 +11128,55 @@ export interface operations {
     };
   };
   /**
+   * Retrieve Settings
+   * @description List the settings.
+   */
+  getSettings: {
+    parameters: {
+      query?: {
+        limit?: components["parameters"]["Limit"];
+        offset?: components["parameters"]["Offset"];
+        meta?: components["parameters"]["Meta"];
+        page?: components["parameters"]["Page"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Settings"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Update Settings
+   * @description Update the settings
+   */
+  updateSetting: {
+    requestBody?: {
+      content: {
+        "application/json": Record<string, never>;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Settings"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
    * List Webhooks
    * @description Get all webhooks.
    */
@@ -11947,55 +11540,6 @@ export interface operations {
         content: {
           "application/json": {
             data?: components["schemas"]["Extensions"];
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-      404: components["responses"]["NotFoundError"];
-    };
-  };
-  /**
-   * Retrieve Settings
-   * @description List the settings.
-   */
-  getSettings: {
-    parameters: {
-      query?: {
-        limit?: components["parameters"]["Limit"];
-        offset?: components["parameters"]["Offset"];
-        meta?: components["parameters"]["Meta"];
-        page?: components["parameters"]["Page"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: components["schemas"]["Settings"];
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-      404: components["responses"]["NotFoundError"];
-    };
-  };
-  /**
-   * Update Settings
-   * @description Update the settings
-   */
-  updateSetting: {
-    requestBody?: {
-      content: {
-        "application/json": Record<string, never>;
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: components["schemas"]["Settings"];
           };
         };
       };
@@ -12514,9 +12058,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmFilmGenre"][]
-          | components["schemas"]["ItemsFilmFilmGenre"];
+        "application/json": components["schemas"]["ItemsFilmFilmGenre"][] | components["schemas"]["ItemsFilmFilmGenre"];
       };
     };
     responses: {
@@ -12524,7 +12066,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmFilmGenre"][];
           };
         };
       };
@@ -12562,9 +12104,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmFilmGenre"][]
-          | components["schemas"]["ItemsFilmFilmGenre"];
+        "application/json": components["schemas"]["ItemsFilmFilmGenre"][] | components["schemas"]["ItemsFilmFilmGenre"];
       };
     };
     responses: {
@@ -12572,7 +12112,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmFilmGenre"][];
           };
         };
       };
@@ -12662,193 +12202,6 @@ export interface operations {
   };
   /**
    * List Items
-   * @description List the voting_translations items.
-   */
-  readItemsVotingTranslations: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        limit?: components["parameters"]["Limit"];
-        meta?: components["parameters"]["Meta"];
-        offset?: components["parameters"]["Offset"];
-        sort?: components["parameters"]["Sort"];
-        filter?: components["parameters"]["Filter"];
-        search?: components["parameters"]["Search"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: components["schemas"]["ItemsVotingTranslations"][];
-            meta?: components["schemas"]["x-metadata"];
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-    };
-  };
-  /**
-   * Create an Item
-   * @description Create a new voting_translations item.
-   */
-  createItemsVotingTranslations: {
-    parameters: {
-      query?: {
-        meta?: components["parameters"]["Meta"];
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json":
-          | components["schemas"]["ItemsVotingTranslations"][]
-          | components["schemas"]["ItemsVotingTranslations"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: unknown;
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-    };
-  };
-  /**
-   * Delete Multiple Items
-   * @description Delete multiple existing voting_translations items.
-   */
-  deleteItemsVotingTranslations: {
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: never;
-      };
-      401: components["responses"]["UnauthorizedError"];
-    };
-  };
-  /**
-   * Update Multiple Items
-   * @description Update multiple voting_translations items at the same time.
-   */
-  updateItemsVotingTranslations: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        limit?: components["parameters"]["Limit"];
-        meta?: components["parameters"]["Meta"];
-        offset?: components["parameters"]["Offset"];
-        sort?: components["parameters"]["Sort"];
-        filter?: components["parameters"]["Filter"];
-        search?: components["parameters"]["Search"];
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json":
-          | components["schemas"]["ItemsVotingTranslations"][]
-          | components["schemas"]["ItemsVotingTranslations"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: unknown;
-          };
-        };
-      };
-    };
-  };
-  /**
-   * Retrieve an Item
-   * @description Retrieve a single voting_translations item by unique identifier.
-   */
-  readSingleItemsVotingTranslations: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        meta?: components["parameters"]["Meta"];
-        version?: components["parameters"]["Version"];
-      };
-      path: {
-        /** @description Index of the item. */
-        id: number | string;
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: components["schemas"]["ItemsVotingTranslations"];
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-      404: components["responses"]["NotFoundError"];
-    };
-  };
-  /**
-   * Delete an Item
-   * @description Delete an existing voting_translations item.
-   */
-  deleteSingleItemsVotingTranslations: {
-    parameters: {
-      path: {
-        /** @description Index of the item. */
-        id: number | string;
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: never;
-      };
-      401: components["responses"]["UnauthorizedError"];
-      404: components["responses"]["NotFoundError"];
-    };
-  };
-  /**
-   * Update an Item
-   * @description Update an existing voting_translations item.
-   */
-  updateSingleItemsVotingTranslations: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        meta?: components["parameters"]["Meta"];
-      };
-      path: {
-        /** @description Index of the item. */
-        id: number | string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["ItemsVotingTranslations"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: components["schemas"]["ItemsVotingTranslations"];
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-      404: components["responses"]["NotFoundError"];
-    };
-  };
-  /**
-   * List Items
    * @description List the block_button items.
    */
   readItemsBlockButton: {
@@ -12888,9 +12241,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockButton"][]
-          | components["schemas"]["ItemsBlockButton"];
+        "application/json": components["schemas"]["ItemsBlockButton"][] | components["schemas"]["ItemsBlockButton"];
       };
     };
     responses: {
@@ -12898,7 +12249,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockButton"][];
           };
         };
       };
@@ -12936,9 +12287,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockButton"][]
-          | components["schemas"]["ItemsBlockButton"];
+        "application/json": components["schemas"]["ItemsBlockButton"][] | components["schemas"]["ItemsBlockButton"];
       };
     };
     responses: {
@@ -12946,7 +12295,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockButton"][];
           };
         };
       };
@@ -13036,6 +12385,189 @@ export interface operations {
   };
   /**
    * List Items
+   * @description List the voting_translations items.
+   */
+  readItemsVotingTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsVotingTranslations"][];
+            meta?: components["schemas"]["x-metadata"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Create an Item
+   * @description Create a new voting_translations item.
+   */
+  createItemsVotingTranslations: {
+    parameters: {
+      query?: {
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsVotingTranslations"][] | components["schemas"]["ItemsVotingTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsVotingTranslations"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Delete Multiple Items
+   * @description Delete multiple existing voting_translations items.
+   */
+  deleteItemsVotingTranslations: {
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Update Multiple Items
+   * @description Update multiple voting_translations items at the same time.
+   */
+  updateItemsVotingTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsVotingTranslations"][] | components["schemas"]["ItemsVotingTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsVotingTranslations"][];
+          };
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve an Item
+   * @description Retrieve a single voting_translations item by unique identifier.
+   */
+  readSingleItemsVotingTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+        version?: components["parameters"]["Version"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsVotingTranslations"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Delete an Item
+   * @description Delete an existing voting_translations item.
+   */
+  deleteSingleItemsVotingTranslations: {
+    parameters: {
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Update an Item
+   * @description Update an existing voting_translations item.
+   */
+  updateSingleItemsVotingTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsVotingTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsVotingTranslations"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * List Items
    * @description List the block_divider items.
    */
   readItemsBlockDivider: {
@@ -13075,9 +12607,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockDivider"][]
-          | components["schemas"]["ItemsBlockDivider"];
+        "application/json": components["schemas"]["ItemsBlockDivider"][] | components["schemas"]["ItemsBlockDivider"];
       };
     };
     responses: {
@@ -13085,7 +12615,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockDivider"][];
           };
         };
       };
@@ -13123,9 +12653,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockDivider"][]
-          | components["schemas"]["ItemsBlockDivider"];
+        "application/json": components["schemas"]["ItemsBlockDivider"][] | components["schemas"]["ItemsBlockDivider"];
       };
     };
     responses: {
@@ -13133,7 +12661,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockDivider"][];
           };
         };
       };
@@ -13262,9 +12790,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockFaqs"][]
-          | components["schemas"]["ItemsBlockFaqs"];
+        "application/json": components["schemas"]["ItemsBlockFaqs"][] | components["schemas"]["ItemsBlockFaqs"];
       };
     };
     responses: {
@@ -13272,7 +12798,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockFaqs"][];
           };
         };
       };
@@ -13310,9 +12836,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockFaqs"][]
-          | components["schemas"]["ItemsBlockFaqs"];
+        "application/json": components["schemas"]["ItemsBlockFaqs"][] | components["schemas"]["ItemsBlockFaqs"];
       };
     };
     responses: {
@@ -13320,7 +12844,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockFaqs"][];
           };
         };
       };
@@ -13449,9 +12973,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLogocloud"][]
-          | components["schemas"]["ItemsBlockLogocloud"];
+        "application/json": components["schemas"]["ItemsBlockLogocloud"][] | components["schemas"]["ItemsBlockLogocloud"];
       };
     };
     responses: {
@@ -13459,7 +12981,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLogocloud"][];
           };
         };
       };
@@ -13497,9 +13019,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLogocloud"][]
-          | components["schemas"]["ItemsBlockLogocloud"];
+        "application/json": components["schemas"]["ItemsBlockLogocloud"][] | components["schemas"]["ItemsBlockLogocloud"];
       };
     };
     responses: {
@@ -13507,7 +13027,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLogocloud"][];
           };
         };
       };
@@ -13636,9 +13156,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockHero"][]
-          | components["schemas"]["ItemsBlockHero"];
+        "application/json": components["schemas"]["ItemsBlockHero"][] | components["schemas"]["ItemsBlockHero"];
       };
     };
     responses: {
@@ -13646,7 +13164,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockHero"][];
           };
         };
       };
@@ -13684,9 +13202,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockHero"][]
-          | components["schemas"]["ItemsBlockHero"];
+        "application/json": components["schemas"]["ItemsBlockHero"][] | components["schemas"]["ItemsBlockHero"];
       };
     };
     responses: {
@@ -13694,7 +13210,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockHero"][];
           };
         };
       };
@@ -13823,9 +13339,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockHTML"][]
-          | components["schemas"]["ItemsBlockHTML"];
+        "application/json": components["schemas"]["ItemsBlockHTML"][] | components["schemas"]["ItemsBlockHTML"];
       };
     };
     responses: {
@@ -13833,7 +13347,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockHTML"][];
           };
         };
       };
@@ -13871,9 +13385,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockHTML"][]
-          | components["schemas"]["ItemsBlockHTML"];
+        "application/json": components["schemas"]["ItemsBlockHTML"][] | components["schemas"]["ItemsBlockHTML"];
       };
     };
     responses: {
@@ -13881,7 +13393,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockHTML"][];
           };
         };
       };
@@ -14010,9 +13522,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockStepItems"][]
-          | components["schemas"]["ItemsBlockStepItems"];
+        "application/json": components["schemas"]["ItemsBlockStepItems"][] | components["schemas"]["ItemsBlockStepItems"];
       };
     };
     responses: {
@@ -14020,7 +13530,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockStepItems"][];
           };
         };
       };
@@ -14058,9 +13568,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockStepItems"][]
-          | components["schemas"]["ItemsBlockStepItems"];
+        "application/json": components["schemas"]["ItemsBlockStepItems"][] | components["schemas"]["ItemsBlockStepItems"];
       };
     };
     responses: {
@@ -14068,7 +13576,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockStepItems"][];
           };
         };
       };
@@ -14197,9 +13705,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockQuote"][]
-          | components["schemas"]["ItemsBlockQuote"];
+        "application/json": components["schemas"]["ItemsBlockQuote"][] | components["schemas"]["ItemsBlockQuote"];
       };
     };
     responses: {
@@ -14207,7 +13713,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockQuote"][];
           };
         };
       };
@@ -14245,9 +13751,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockQuote"][]
-          | components["schemas"]["ItemsBlockQuote"];
+        "application/json": components["schemas"]["ItemsBlockQuote"][] | components["schemas"]["ItemsBlockQuote"];
       };
     };
     responses: {
@@ -14255,7 +13759,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockQuote"][];
           };
         };
       };
@@ -14384,9 +13888,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockRichtext"][]
-          | components["schemas"]["ItemsBlockRichtext"];
+        "application/json": components["schemas"]["ItemsBlockRichtext"][] | components["schemas"]["ItemsBlockRichtext"];
       };
     };
     responses: {
@@ -14394,7 +13896,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockRichtext"][];
           };
         };
       };
@@ -14432,9 +13934,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockRichtext"][]
-          | components["schemas"]["ItemsBlockRichtext"];
+        "application/json": components["schemas"]["ItemsBlockRichtext"][] | components["schemas"]["ItemsBlockRichtext"];
       };
     };
     responses: {
@@ -14442,7 +13942,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockRichtext"][];
           };
         };
       };
@@ -14571,9 +14071,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockGallery"][]
-          | components["schemas"]["ItemsBlockGallery"];
+        "application/json": components["schemas"]["ItemsBlockGallery"][] | components["schemas"]["ItemsBlockGallery"];
       };
     };
     responses: {
@@ -14581,7 +14079,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockGallery"][];
           };
         };
       };
@@ -14619,9 +14117,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockGallery"][]
-          | components["schemas"]["ItemsBlockGallery"];
+        "application/json": components["schemas"]["ItemsBlockGallery"][] | components["schemas"]["ItemsBlockGallery"];
       };
     };
     responses: {
@@ -14629,7 +14125,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockGallery"][];
           };
         };
       };
@@ -14758,9 +14254,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockForm"][]
-          | components["schemas"]["ItemsBlockForm"];
+        "application/json": components["schemas"]["ItemsBlockForm"][] | components["schemas"]["ItemsBlockForm"];
       };
     };
     responses: {
@@ -14768,7 +14262,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockForm"][];
           };
         };
       };
@@ -14806,9 +14300,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockForm"][]
-          | components["schemas"]["ItemsBlockForm"];
+        "application/json": components["schemas"]["ItemsBlockForm"][] | components["schemas"]["ItemsBlockForm"];
       };
     };
     responses: {
@@ -14816,7 +14308,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockForm"][];
           };
         };
       };
@@ -14945,9 +14437,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockGalleryFiles"][]
-          | components["schemas"]["ItemsBlockGalleryFiles"];
+        "application/json": components["schemas"]["ItemsBlockGalleryFiles"][] | components["schemas"]["ItemsBlockGalleryFiles"];
       };
     };
     responses: {
@@ -14955,7 +14445,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockGalleryFiles"][];
           };
         };
       };
@@ -14993,9 +14483,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockGalleryFiles"][]
-          | components["schemas"]["ItemsBlockGalleryFiles"];
+        "application/json": components["schemas"]["ItemsBlockGalleryFiles"][] | components["schemas"]["ItemsBlockGalleryFiles"];
       };
     };
     responses: {
@@ -15003,7 +14491,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockGalleryFiles"][];
           };
         };
       };
@@ -15132,9 +14620,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockTestimonials"][]
-          | components["schemas"]["ItemsBlockTestimonials"];
+        "application/json": components["schemas"]["ItemsBlockTestimonials"][] | components["schemas"]["ItemsBlockTestimonials"];
       };
     };
     responses: {
@@ -15142,7 +14628,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockTestimonials"][];
           };
         };
       };
@@ -15180,9 +14666,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockTestimonials"][]
-          | components["schemas"]["ItemsBlockTestimonials"];
+        "application/json": components["schemas"]["ItemsBlockTestimonials"][] | components["schemas"]["ItemsBlockTestimonials"];
       };
     };
     responses: {
@@ -15190,7 +14674,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockTestimonials"][];
           };
         };
       };
@@ -15319,9 +14803,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockTeam"][]
-          | components["schemas"]["ItemsBlockTeam"];
+        "application/json": components["schemas"]["ItemsBlockTeam"][] | components["schemas"]["ItemsBlockTeam"];
       };
     };
     responses: {
@@ -15329,7 +14811,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockTeam"][];
           };
         };
       };
@@ -15367,9 +14849,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockTeam"][]
-          | components["schemas"]["ItemsBlockTeam"];
+        "application/json": components["schemas"]["ItemsBlockTeam"][] | components["schemas"]["ItemsBlockTeam"];
       };
     };
     responses: {
@@ -15377,7 +14857,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockTeam"][];
           };
         };
       };
@@ -15506,9 +14986,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsCategories"][]
-          | components["schemas"]["ItemsCategories"];
+        "application/json": components["schemas"]["ItemsCategories"][] | components["schemas"]["ItemsCategories"];
       };
     };
     responses: {
@@ -15516,7 +14994,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsCategories"][];
           };
         };
       };
@@ -15554,9 +15032,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsCategories"][]
-          | components["schemas"]["ItemsCategories"];
+        "application/json": components["schemas"]["ItemsCategories"][] | components["schemas"]["ItemsCategories"];
       };
     };
     responses: {
@@ -15564,7 +15040,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsCategories"][];
           };
         };
       };
@@ -15693,9 +15169,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsInbox"][]
-          | components["schemas"]["ItemsInbox"];
+        "application/json": components["schemas"]["ItemsInbox"][] | components["schemas"]["ItemsInbox"];
       };
     };
     responses: {
@@ -15703,7 +15177,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsInbox"][];
           };
         };
       };
@@ -15741,9 +15215,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsInbox"][]
-          | components["schemas"]["ItemsInbox"];
+        "application/json": components["schemas"]["ItemsInbox"][] | components["schemas"]["ItemsInbox"];
       };
     };
     responses: {
@@ -15751,7 +15223,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsInbox"][];
           };
         };
       };
@@ -15860,7 +15332,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: components["schemas"]["ItemsGlobals"][];
+            data?: components["schemas"]["ItemsGlobals"];
             meta?: components["schemas"]["x-metadata"];
           };
         };
@@ -15880,9 +15352,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsGlobals"][]
-          | components["schemas"]["ItemsGlobals"];
+        "application/json": components["schemas"]["ItemsGlobals"][] | components["schemas"]["ItemsGlobals"];
       };
     };
     responses: {
@@ -15890,7 +15360,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsGlobals"];
           };
         };
       };
@@ -15928,9 +15398,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsGlobals"][]
-          | components["schemas"]["ItemsGlobals"];
+        "application/json": components["schemas"]["ItemsGlobals"][] | components["schemas"]["ItemsGlobals"];
       };
     };
     responses: {
@@ -15938,7 +15406,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsGlobals"];
           };
         };
       };
@@ -16067,9 +15535,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockSteps"][]
-          | components["schemas"]["ItemsBlockSteps"];
+        "application/json": components["schemas"]["ItemsBlockSteps"][] | components["schemas"]["ItemsBlockSteps"];
       };
     };
     responses: {
@@ -16077,7 +15543,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockSteps"][];
           };
         };
       };
@@ -16115,9 +15581,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockSteps"][]
-          | components["schemas"]["ItemsBlockSteps"];
+        "application/json": components["schemas"]["ItemsBlockSteps"][] | components["schemas"]["ItemsBlockSteps"];
       };
     };
     responses: {
@@ -16125,7 +15589,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockSteps"][];
           };
         };
       };
@@ -16254,9 +15718,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockVideo"][]
-          | components["schemas"]["ItemsBlockVideo"];
+        "application/json": components["schemas"]["ItemsBlockVideo"][] | components["schemas"]["ItemsBlockVideo"];
       };
     };
     responses: {
@@ -16264,7 +15726,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockVideo"][];
           };
         };
       };
@@ -16302,9 +15764,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockVideo"][]
-          | components["schemas"]["ItemsBlockVideo"];
+        "application/json": components["schemas"]["ItemsBlockVideo"][] | components["schemas"]["ItemsBlockVideo"];
       };
     };
     responses: {
@@ -16312,7 +15772,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockVideo"][];
           };
         };
       };
@@ -16441,9 +15901,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsNavigationItems"][]
-          | components["schemas"]["ItemsNavigationItems"];
+        "application/json": components["schemas"]["ItemsNavigationItems"][] | components["schemas"]["ItemsNavigationItems"];
       };
     };
     responses: {
@@ -16451,7 +15909,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsNavigationItems"][];
           };
         };
       };
@@ -16489,9 +15947,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsNavigationItems"][]
-          | components["schemas"]["ItemsNavigationItems"];
+        "application/json": components["schemas"]["ItemsNavigationItems"][] | components["schemas"]["ItemsNavigationItems"];
       };
     };
     responses: {
@@ -16499,7 +15955,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsNavigationItems"][];
           };
         };
       };
@@ -16628,9 +16084,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsNavigation"][]
-          | components["schemas"]["ItemsNavigation"];
+        "application/json": components["schemas"]["ItemsNavigation"][] | components["schemas"]["ItemsNavigation"];
       };
     };
     responses: {
@@ -16638,7 +16092,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsNavigation"][];
           };
         };
       };
@@ -16676,9 +16130,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsNavigation"][]
-          | components["schemas"]["ItemsNavigation"];
+        "application/json": components["schemas"]["ItemsNavigation"][] | components["schemas"]["ItemsNavigation"];
       };
     };
     responses: {
@@ -16686,7 +16138,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsNavigation"][];
           };
         };
       };
@@ -16815,9 +16267,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsForms"][]
-          | components["schemas"]["ItemsForms"];
+        "application/json": components["schemas"]["ItemsForms"][] | components["schemas"]["ItemsForms"];
       };
     };
     responses: {
@@ -16825,7 +16275,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsForms"][];
           };
         };
       };
@@ -16863,9 +16313,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsForms"][]
-          | components["schemas"]["ItemsForms"];
+        "application/json": components["schemas"]["ItemsForms"][] | components["schemas"]["ItemsForms"];
       };
     };
     responses: {
@@ -16873,7 +16321,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsForms"][];
           };
         };
       };
@@ -17002,9 +16450,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsRedirects"][]
-          | components["schemas"]["ItemsRedirects"];
+        "application/json": components["schemas"]["ItemsRedirects"][] | components["schemas"]["ItemsRedirects"];
       };
     };
     responses: {
@@ -17012,7 +16458,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsRedirects"][];
           };
         };
       };
@@ -17050,9 +16496,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsRedirects"][]
-          | components["schemas"]["ItemsRedirects"];
+        "application/json": components["schemas"]["ItemsRedirects"][] | components["schemas"]["ItemsRedirects"];
       };
     };
     responses: {
@@ -17060,7 +16504,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsRedirects"][];
           };
         };
       };
@@ -17189,9 +16633,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsTeam"][]
-          | components["schemas"]["ItemsTeam"];
+        "application/json": components["schemas"]["ItemsTeam"][] | components["schemas"]["ItemsTeam"];
       };
     };
     responses: {
@@ -17199,7 +16641,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsTeam"][];
           };
         };
       };
@@ -17237,9 +16679,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsTeam"][]
-          | components["schemas"]["ItemsTeam"];
+        "application/json": components["schemas"]["ItemsTeam"][] | components["schemas"]["ItemsTeam"];
       };
     };
     responses: {
@@ -17247,7 +16687,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsTeam"][];
           };
         };
       };
@@ -17376,9 +16816,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsPostGalleryItems"][]
-          | components["schemas"]["ItemsPostGalleryItems"];
+        "application/json": components["schemas"]["ItemsPostGalleryItems"][] | components["schemas"]["ItemsPostGalleryItems"];
       };
     };
     responses: {
@@ -17386,7 +16824,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsPostGalleryItems"][];
           };
         };
       };
@@ -17424,9 +16862,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsPostGalleryItems"][]
-          | components["schemas"]["ItemsPostGalleryItems"];
+        "application/json": components["schemas"]["ItemsPostGalleryItems"][] | components["schemas"]["ItemsPostGalleryItems"];
       };
     };
     responses: {
@@ -17434,7 +16870,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsPostGalleryItems"][];
           };
         };
       };
@@ -17543,7 +16979,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: components["schemas"]["ItemsPagesBlog"][];
+            data?: components["schemas"]["ItemsPagesBlog"];
             meta?: components["schemas"]["x-metadata"];
           };
         };
@@ -17563,9 +16999,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsPagesBlog"][]
-          | components["schemas"]["ItemsPagesBlog"];
+        "application/json": components["schemas"]["ItemsPagesBlog"][] | components["schemas"]["ItemsPagesBlog"];
       };
     };
     responses: {
@@ -17573,7 +17007,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsPagesBlog"];
           };
         };
       };
@@ -17611,9 +17045,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsPagesBlog"][]
-          | components["schemas"]["ItemsPagesBlog"];
+        "application/json": components["schemas"]["ItemsPagesBlog"][] | components["schemas"]["ItemsPagesBlog"];
       };
     };
     responses: {
@@ -17621,7 +17053,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsPagesBlog"];
           };
         };
       };
@@ -17750,9 +17182,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockColumnsRows"][]
-          | components["schemas"]["ItemsBlockColumnsRows"];
+        "application/json": components["schemas"]["ItemsBlockColumnsRows"][] | components["schemas"]["ItemsBlockColumnsRows"];
       };
     };
     responses: {
@@ -17760,7 +17190,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockColumnsRows"][];
           };
         };
       };
@@ -17798,9 +17228,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockColumnsRows"][]
-          | components["schemas"]["ItemsBlockColumnsRows"];
+        "application/json": components["schemas"]["ItemsBlockColumnsRows"][] | components["schemas"]["ItemsBlockColumnsRows"];
       };
     };
     responses: {
@@ -17808,7 +17236,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockColumnsRows"][];
           };
         };
       };
@@ -17937,9 +17365,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsPosts"][]
-          | components["schemas"]["ItemsPosts"];
+        "application/json": components["schemas"]["ItemsPosts"][] | components["schemas"]["ItemsPosts"];
       };
     };
     responses: {
@@ -17947,7 +17373,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsPosts"][];
           };
         };
       };
@@ -17985,9 +17411,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsPosts"][]
-          | components["schemas"]["ItemsPosts"];
+        "application/json": components["schemas"]["ItemsPosts"][] | components["schemas"]["ItemsPosts"];
       };
     };
     responses: {
@@ -17995,7 +17419,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsPosts"][];
           };
         };
       };
@@ -18124,9 +17548,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockCard"][]
-          | components["schemas"]["ItemsBlockCard"];
+        "application/json": components["schemas"]["ItemsBlockCard"][] | components["schemas"]["ItemsBlockCard"];
       };
     };
     responses: {
@@ -18134,7 +17556,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockCard"][];
           };
         };
       };
@@ -18172,9 +17594,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockCard"][]
-          | components["schemas"]["ItemsBlockCard"];
+        "application/json": components["schemas"]["ItemsBlockCard"][] | components["schemas"]["ItemsBlockCard"];
       };
     };
     responses: {
@@ -18182,7 +17602,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockCard"][];
           };
         };
       };
@@ -18311,9 +17731,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLogocloudLogos"][]
-          | components["schemas"]["ItemsBlockLogocloudLogos"];
+        "application/json": components["schemas"]["ItemsBlockLogocloudLogos"][] | components["schemas"]["ItemsBlockLogocloudLogos"];
       };
     };
     responses: {
@@ -18321,7 +17739,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLogocloudLogos"][];
           };
         };
       };
@@ -18359,9 +17777,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLogocloudLogos"][]
-          | components["schemas"]["ItemsBlockLogocloudLogos"];
+        "application/json": components["schemas"]["ItemsBlockLogocloudLogos"][] | components["schemas"]["ItemsBlockLogocloudLogos"];
       };
     };
     responses: {
@@ -18369,7 +17785,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLogocloudLogos"][];
           };
         };
       };
@@ -18498,9 +17914,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockTestimonialSliderItems"][]
-          | components["schemas"]["ItemsBlockTestimonialSliderItems"];
+        "application/json": components["schemas"]["ItemsBlockTestimonialSliderItems"][] | components["schemas"]["ItemsBlockTestimonialSliderItems"];
       };
     };
     responses: {
@@ -18508,7 +17922,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockTestimonialSliderItems"][];
           };
         };
       };
@@ -18546,9 +17960,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockTestimonialSliderItems"][]
-          | components["schemas"]["ItemsBlockTestimonialSliderItems"];
+        "application/json": components["schemas"]["ItemsBlockTestimonialSliderItems"][] | components["schemas"]["ItemsBlockTestimonialSliderItems"];
       };
     };
     responses: {
@@ -18556,7 +17968,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockTestimonialSliderItems"][];
           };
         };
       };
@@ -18685,9 +18097,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsTestimonials"][]
-          | components["schemas"]["ItemsTestimonials"];
+        "application/json": components["schemas"]["ItemsTestimonials"][] | components["schemas"]["ItemsTestimonials"];
       };
     };
     responses: {
@@ -18695,7 +18105,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsTestimonials"][];
           };
         };
       };
@@ -18733,9 +18143,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsTestimonials"][]
-          | components["schemas"]["ItemsTestimonials"];
+        "application/json": components["schemas"]["ItemsTestimonials"][] | components["schemas"]["ItemsTestimonials"];
       };
     };
     responses: {
@@ -18743,7 +18151,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsTestimonials"][];
           };
         };
       };
@@ -18872,9 +18280,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsSEO"][]
-          | components["schemas"]["ItemsSEO"];
+        "application/json": components["schemas"]["ItemsSEO"][] | components["schemas"]["ItemsSEO"];
       };
     };
     responses: {
@@ -18882,7 +18288,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsSEO"][];
           };
         };
       };
@@ -18920,9 +18326,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsSEO"][]
-          | components["schemas"]["ItemsSEO"];
+        "application/json": components["schemas"]["ItemsSEO"][] | components["schemas"]["ItemsSEO"];
       };
     };
     responses: {
@@ -18930,7 +18334,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsSEO"][];
           };
         };
       };
@@ -19059,9 +18463,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsPages"][]
-          | components["schemas"]["ItemsPages"];
+        "application/json": components["schemas"]["ItemsPages"][] | components["schemas"]["ItemsPages"];
       };
     };
     responses: {
@@ -19069,7 +18471,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsPages"][];
           };
         };
       };
@@ -19107,9 +18509,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsPages"][]
-          | components["schemas"]["ItemsPages"];
+        "application/json": components["schemas"]["ItemsPages"][] | components["schemas"]["ItemsPages"];
       };
     };
     responses: {
@@ -19117,7 +18517,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsPages"][];
           };
         };
       };
@@ -19246,9 +18646,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsPageBlocks"][]
-          | components["schemas"]["ItemsPageBlocks"];
+        "application/json": components["schemas"]["ItemsPageBlocks"][] | components["schemas"]["ItemsPageBlocks"];
       };
     };
     responses: {
@@ -19256,7 +18654,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsPageBlocks"][];
           };
         };
       };
@@ -19294,9 +18692,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsPageBlocks"][]
-          | components["schemas"]["ItemsPageBlocks"];
+        "application/json": components["schemas"]["ItemsPageBlocks"][] | components["schemas"]["ItemsPageBlocks"];
       };
     };
     responses: {
@@ -19304,7 +18700,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsPageBlocks"][];
           };
         };
       };
@@ -19433,9 +18829,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockArchiveFiles"][]
-          | components["schemas"]["ItemsBlockArchiveFiles"];
+        "application/json": components["schemas"]["ItemsBlockArchiveFiles"][] | components["schemas"]["ItemsBlockArchiveFiles"];
       };
     };
     responses: {
@@ -19443,7 +18837,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockArchiveFiles"][];
           };
         };
       };
@@ -19481,9 +18875,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockArchiveFiles"][]
-          | components["schemas"]["ItemsBlockArchiveFiles"];
+        "application/json": components["schemas"]["ItemsBlockArchiveFiles"][] | components["schemas"]["ItemsBlockArchiveFiles"];
       };
     };
     responses: {
@@ -19491,7 +18883,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockArchiveFiles"][];
           };
         };
       };
@@ -19620,9 +19012,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsGlobalsFooterBlocks"][]
-          | components["schemas"]["ItemsGlobalsFooterBlocks"];
+        "application/json": components["schemas"]["ItemsGlobalsFooterBlocks"][] | components["schemas"]["ItemsGlobalsFooterBlocks"];
       };
     };
     responses: {
@@ -19630,7 +19020,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsGlobalsFooterBlocks"][];
           };
         };
       };
@@ -19668,9 +19058,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsGlobalsFooterBlocks"][]
-          | components["schemas"]["ItemsGlobalsFooterBlocks"];
+        "application/json": components["schemas"]["ItemsGlobalsFooterBlocks"][] | components["schemas"]["ItemsGlobalsFooterBlocks"];
       };
     };
     responses: {
@@ -19678,7 +19066,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsGlobalsFooterBlocks"][];
           };
         };
       };
@@ -19807,9 +19195,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLayoutBlocks1"][]
-          | components["schemas"]["ItemsBlockLayoutBlocks1"];
+        "application/json": components["schemas"]["ItemsBlockLayoutBlocks1"][] | components["schemas"]["ItemsBlockLayoutBlocks1"];
       };
     };
     responses: {
@@ -19817,7 +19203,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLayoutBlocks1"][];
           };
         };
       };
@@ -19855,9 +19241,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLayoutBlocks1"][]
-          | components["schemas"]["ItemsBlockLayoutBlocks1"];
+        "application/json": components["schemas"]["ItemsBlockLayoutBlocks1"][] | components["schemas"]["ItemsBlockLayoutBlocks1"];
       };
     };
     responses: {
@@ -19865,7 +19249,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLayoutBlocks1"][];
           };
         };
       };
@@ -19994,9 +19378,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockImage"][]
-          | components["schemas"]["ItemsBlockImage"];
+        "application/json": components["schemas"]["ItemsBlockImage"][] | components["schemas"]["ItemsBlockImage"];
       };
     };
     responses: {
@@ -20004,7 +19386,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockImage"][];
           };
         };
       };
@@ -20042,9 +19424,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockImage"][]
-          | components["schemas"]["ItemsBlockImage"];
+        "application/json": components["schemas"]["ItemsBlockImage"][] | components["schemas"]["ItemsBlockImage"];
       };
     };
     responses: {
@@ -20052,7 +19432,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockImage"][];
           };
         };
       };
@@ -20181,9 +19561,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockArchive"][]
-          | components["schemas"]["ItemsBlockArchive"];
+        "application/json": components["schemas"]["ItemsBlockArchive"][] | components["schemas"]["ItemsBlockArchive"];
       };
     };
     responses: {
@@ -20191,7 +19569,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockArchive"][];
           };
         };
       };
@@ -20229,9 +19607,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockArchive"][]
-          | components["schemas"]["ItemsBlockArchive"];
+        "application/json": components["schemas"]["ItemsBlockArchive"][] | components["schemas"]["ItemsBlockArchive"];
       };
     };
     responses: {
@@ -20239,7 +19615,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockArchive"][];
           };
         };
       };
@@ -20368,9 +19744,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLayout"][]
-          | components["schemas"]["ItemsBlockLayout"];
+        "application/json": components["schemas"]["ItemsBlockLayout"][] | components["schemas"]["ItemsBlockLayout"];
       };
     };
     responses: {
@@ -20378,7 +19752,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLayout"][];
           };
         };
       };
@@ -20416,9 +19790,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLayout"][]
-          | components["schemas"]["ItemsBlockLayout"];
+        "application/json": components["schemas"]["ItemsBlockLayout"][] | components["schemas"]["ItemsBlockLayout"];
       };
     };
     responses: {
@@ -20426,7 +19798,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLayout"][];
           };
         };
       };
@@ -20555,9 +19927,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockGap"][]
-          | components["schemas"]["ItemsBlockGap"];
+        "application/json": components["schemas"]["ItemsBlockGap"][] | components["schemas"]["ItemsBlockGap"];
       };
     };
     responses: {
@@ -20565,7 +19935,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockGap"][];
           };
         };
       };
@@ -20603,9 +19973,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockGap"][]
-          | components["schemas"]["ItemsBlockGap"];
+        "application/json": components["schemas"]["ItemsBlockGap"][] | components["schemas"]["ItemsBlockGap"];
       };
     };
     responses: {
@@ -20613,7 +19981,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockGap"][];
           };
         };
       };
@@ -20742,9 +20110,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsLanguages"][]
-          | components["schemas"]["ItemsLanguages"];
+        "application/json": components["schemas"]["ItemsLanguages"][] | components["schemas"]["ItemsLanguages"];
       };
     };
     responses: {
@@ -20752,7 +20118,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsLanguages"][];
           };
         };
       };
@@ -20790,9 +20156,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsLanguages"][]
-          | components["schemas"]["ItemsLanguages"];
+        "application/json": components["schemas"]["ItemsLanguages"][] | components["schemas"]["ItemsLanguages"];
       };
     };
     responses: {
@@ -20800,7 +20164,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsLanguages"][];
           };
         };
       };
@@ -20929,9 +20293,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLink"][]
-          | components["schemas"]["ItemsBlockLink"];
+        "application/json": components["schemas"]["ItemsBlockLink"][] | components["schemas"]["ItemsBlockLink"];
       };
     };
     responses: {
@@ -20939,7 +20301,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLink"][];
           };
         };
       };
@@ -20977,9 +20339,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLink"][]
-          | components["schemas"]["ItemsBlockLink"];
+        "application/json": components["schemas"]["ItemsBlockLink"][] | components["schemas"]["ItemsBlockLink"];
       };
     };
     responses: {
@@ -20987,7 +20347,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLink"][];
           };
         };
       };
@@ -21116,9 +20476,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockRichtextTranslations"][]
-          | components["schemas"]["ItemsBlockRichtextTranslations"];
+        "application/json": components["schemas"]["ItemsBlockRichtextTranslations"][] | components["schemas"]["ItemsBlockRichtextTranslations"];
       };
     };
     responses: {
@@ -21126,7 +20484,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockRichtextTranslations"][];
           };
         };
       };
@@ -21164,9 +20522,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockRichtextTranslations"][]
-          | components["schemas"]["ItemsBlockRichtextTranslations"];
+        "application/json": components["schemas"]["ItemsBlockRichtextTranslations"][] | components["schemas"]["ItemsBlockRichtextTranslations"];
       };
     };
     responses: {
@@ -21174,7 +20530,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockRichtextTranslations"][];
           };
         };
       };
@@ -21303,9 +20659,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockCardTranslations"][]
-          | components["schemas"]["ItemsBlockCardTranslations"];
+        "application/json": components["schemas"]["ItemsBlockCardTranslations"][] | components["schemas"]["ItemsBlockCardTranslations"];
       };
     };
     responses: {
@@ -21313,7 +20667,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockCardTranslations"][];
           };
         };
       };
@@ -21351,9 +20705,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockCardTranslations"][]
-          | components["schemas"]["ItemsBlockCardTranslations"];
+        "application/json": components["schemas"]["ItemsBlockCardTranslations"][] | components["schemas"]["ItemsBlockCardTranslations"];
       };
     };
     responses: {
@@ -21361,7 +20713,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockCardTranslations"][];
           };
         };
       };
@@ -21451,6 +20803,189 @@ export interface operations {
   };
   /**
    * List Items
+   * @description List the block_brochure items.
+   */
+  readItemsBlockBrochure: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBlockBrochure"][];
+            meta?: components["schemas"]["x-metadata"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Create an Item
+   * @description Create a new block_brochure item.
+   */
+  createItemsBlockBrochure: {
+    parameters: {
+      query?: {
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsBlockBrochure"][] | components["schemas"]["ItemsBlockBrochure"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBlockBrochure"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Delete Multiple Items
+   * @description Delete multiple existing block_brochure items.
+   */
+  deleteItemsBlockBrochure: {
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Update Multiple Items
+   * @description Update multiple block_brochure items at the same time.
+   */
+  updateItemsBlockBrochure: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsBlockBrochure"][] | components["schemas"]["ItemsBlockBrochure"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBlockBrochure"][];
+          };
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve an Item
+   * @description Retrieve a single block_brochure item by unique identifier.
+   */
+  readSingleItemsBlockBrochure: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+        version?: components["parameters"]["Version"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBlockBrochure"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Delete an Item
+   * @description Delete an existing block_brochure item.
+   */
+  deleteSingleItemsBlockBrochure: {
+    parameters: {
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Update an Item
+   * @description Update an existing block_brochure item.
+   */
+  updateSingleItemsBlockBrochure: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsBlockBrochure"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBlockBrochure"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * List Items
    * @description List the block_lightbox items.
    */
   readItemsBlockLightbox: {
@@ -21490,9 +21025,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLightbox"][]
-          | components["schemas"]["ItemsBlockLightbox"];
+        "application/json": components["schemas"]["ItemsBlockLightbox"][] | components["schemas"]["ItemsBlockLightbox"];
       };
     };
     responses: {
@@ -21500,7 +21033,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLightbox"][];
           };
         };
       };
@@ -21538,9 +21071,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLightbox"][]
-          | components["schemas"]["ItemsBlockLightbox"];
+        "application/json": components["schemas"]["ItemsBlockLightbox"][] | components["schemas"]["ItemsBlockLightbox"];
       };
     };
     responses: {
@@ -21548,7 +21079,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLightbox"][];
           };
         };
       };
@@ -21677,9 +21208,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLinkTranslations"][]
-          | components["schemas"]["ItemsBlockLinkTranslations"];
+        "application/json": components["schemas"]["ItemsBlockLinkTranslations"][] | components["schemas"]["ItemsBlockLinkTranslations"];
       };
     };
     responses: {
@@ -21687,7 +21216,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLinkTranslations"][];
           };
         };
       };
@@ -21725,9 +21254,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLinkTranslations"][]
-          | components["schemas"]["ItemsBlockLinkTranslations"];
+        "application/json": components["schemas"]["ItemsBlockLinkTranslations"][] | components["schemas"]["ItemsBlockLinkTranslations"];
       };
     };
     responses: {
@@ -21735,7 +21262,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLinkTranslations"][];
           };
         };
       };
@@ -21864,9 +21391,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLocationanddate"][]
-          | components["schemas"]["ItemsBlockLocationanddate"];
+        "application/json": components["schemas"]["ItemsBlockLocationanddate"][] | components["schemas"]["ItemsBlockLocationanddate"];
       };
     };
     responses: {
@@ -21874,7 +21399,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLocationanddate"][];
           };
         };
       };
@@ -21912,9 +21437,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLocationanddate"][]
-          | components["schemas"]["ItemsBlockLocationanddate"];
+        "application/json": components["schemas"]["ItemsBlockLocationanddate"][] | components["schemas"]["ItemsBlockLocationanddate"];
       };
     };
     responses: {
@@ -21922,7 +21445,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLocationanddate"][];
           };
         };
       };
@@ -22051,9 +21574,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockConditionalcardTranslations"][]
-          | components["schemas"]["ItemsBlockConditionalcardTranslations"];
+        "application/json": components["schemas"]["ItemsBlockConditionalcardTranslations"][] | components["schemas"]["ItemsBlockConditionalcardTranslations"];
       };
     };
     responses: {
@@ -22061,7 +21582,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockConditionalcardTranslations"][];
           };
         };
       };
@@ -22099,9 +21620,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockConditionalcardTranslations"][]
-          | components["schemas"]["ItemsBlockConditionalcardTranslations"];
+        "application/json": components["schemas"]["ItemsBlockConditionalcardTranslations"][] | components["schemas"]["ItemsBlockConditionalcardTranslations"];
       };
     };
     responses: {
@@ -22109,7 +21628,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockConditionalcardTranslations"][];
           };
         };
       };
@@ -22238,9 +21757,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockConditionalcard"][]
-          | components["schemas"]["ItemsBlockConditionalcard"];
+        "application/json": components["schemas"]["ItemsBlockConditionalcard"][] | components["schemas"]["ItemsBlockConditionalcard"];
       };
     };
     responses: {
@@ -22248,7 +21765,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockConditionalcard"][];
           };
         };
       };
@@ -22286,9 +21803,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockConditionalcard"][]
-          | components["schemas"]["ItemsBlockConditionalcard"];
+        "application/json": components["schemas"]["ItemsBlockConditionalcard"][] | components["schemas"]["ItemsBlockConditionalcard"];
       };
     };
     responses: {
@@ -22296,7 +21811,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockConditionalcard"][];
           };
         };
       };
@@ -22425,9 +21940,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockTajenka"][]
-          | components["schemas"]["ItemsBlockTajenka"];
+        "application/json": components["schemas"]["ItemsBlockTajenka"][] | components["schemas"]["ItemsBlockTajenka"];
       };
     };
     responses: {
@@ -22435,7 +21948,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockTajenka"][];
           };
         };
       };
@@ -22473,9 +21986,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockTajenka"][]
-          | components["schemas"]["ItemsBlockTajenka"];
+        "application/json": components["schemas"]["ItemsBlockTajenka"][] | components["schemas"]["ItemsBlockTajenka"];
       };
     };
     responses: {
@@ -22483,7 +21994,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockTajenka"][];
           };
         };
       };
@@ -22612,9 +22123,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLocationanddateTranslations"][]
-          | components["schemas"]["ItemsBlockLocationanddateTranslations"];
+        "application/json": components["schemas"]["ItemsBlockLocationanddateTranslations"][] | components["schemas"]["ItemsBlockLocationanddateTranslations"];
       };
     };
     responses: {
@@ -22622,7 +22131,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLocationanddateTranslations"][];
           };
         };
       };
@@ -22660,9 +22169,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLocationanddateTranslations"][]
-          | components["schemas"]["ItemsBlockLocationanddateTranslations"];
+        "application/json": components["schemas"]["ItemsBlockLocationanddateTranslations"][] | components["schemas"]["ItemsBlockLocationanddateTranslations"];
       };
     };
     responses: {
@@ -22670,7 +22177,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLocationanddateTranslations"][];
           };
         };
       };
@@ -22760,6 +22267,189 @@ export interface operations {
   };
   /**
    * List Items
+   * @description List the block_brochure_translations items.
+   */
+  readItemsBlockBrochureTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBlockBrochureTranslations"][];
+            meta?: components["schemas"]["x-metadata"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Create an Item
+   * @description Create a new block_brochure_translations item.
+   */
+  createItemsBlockBrochureTranslations: {
+    parameters: {
+      query?: {
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsBlockBrochureTranslations"][] | components["schemas"]["ItemsBlockBrochureTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBlockBrochureTranslations"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Delete Multiple Items
+   * @description Delete multiple existing block_brochure_translations items.
+   */
+  deleteItemsBlockBrochureTranslations: {
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Update Multiple Items
+   * @description Update multiple block_brochure_translations items at the same time.
+   */
+  updateItemsBlockBrochureTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsBlockBrochureTranslations"][] | components["schemas"]["ItemsBlockBrochureTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBlockBrochureTranslations"][];
+          };
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve an Item
+   * @description Retrieve a single block_brochure_translations item by unique identifier.
+   */
+  readSingleItemsBlockBrochureTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+        version?: components["parameters"]["Version"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBlockBrochureTranslations"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Delete an Item
+   * @description Delete an existing block_brochure_translations item.
+   */
+  deleteSingleItemsBlockBrochureTranslations: {
+    parameters: {
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Update an Item
+   * @description Update an existing block_brochure_translations item.
+   */
+  updateSingleItemsBlockBrochureTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsBlockBrochureTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBlockBrochureTranslations"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * List Items
    * @description List the block_bannerhero items.
    */
   readItemsBlockBannerhero: {
@@ -22799,9 +22489,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockBannerhero"][]
-          | components["schemas"]["ItemsBlockBannerhero"];
+        "application/json": components["schemas"]["ItemsBlockBannerhero"][] | components["schemas"]["ItemsBlockBannerhero"];
       };
     };
     responses: {
@@ -22809,7 +22497,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockBannerhero"][];
           };
         };
       };
@@ -22847,9 +22535,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockBannerhero"][]
-          | components["schemas"]["ItemsBlockBannerhero"];
+        "application/json": components["schemas"]["ItemsBlockBannerhero"][] | components["schemas"]["ItemsBlockBannerhero"];
       };
     };
     responses: {
@@ -22857,7 +22543,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockBannerhero"][];
           };
         };
       };
@@ -22986,9 +22672,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockBannerheroTranslations"][]
-          | components["schemas"]["ItemsBlockBannerheroTranslations"];
+        "application/json": components["schemas"]["ItemsBlockBannerheroTranslations"][] | components["schemas"]["ItemsBlockBannerheroTranslations"];
       };
     };
     responses: {
@@ -22996,7 +22680,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockBannerheroTranslations"][];
           };
         };
       };
@@ -23034,9 +22718,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockBannerheroTranslations"][]
-          | components["schemas"]["ItemsBlockBannerheroTranslations"];
+        "application/json": components["schemas"]["ItemsBlockBannerheroTranslations"][] | components["schemas"]["ItemsBlockBannerheroTranslations"];
       };
     };
     responses: {
@@ -23044,7 +22726,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockBannerheroTranslations"][];
           };
         };
       };
@@ -23173,9 +22855,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockPartner"][]
-          | components["schemas"]["ItemsBlockPartner"];
+        "application/json": components["schemas"]["ItemsBlockPartner"][] | components["schemas"]["ItemsBlockPartner"];
       };
     };
     responses: {
@@ -23183,7 +22863,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockPartner"][];
           };
         };
       };
@@ -23221,9 +22901,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockPartner"][]
-          | components["schemas"]["ItemsBlockPartner"];
+        "application/json": components["schemas"]["ItemsBlockPartner"][] | components["schemas"]["ItemsBlockPartner"];
       };
     };
     responses: {
@@ -23231,7 +22909,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockPartner"][];
           };
         };
       };
@@ -23360,9 +23038,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockFestivalPoster"][]
-          | components["schemas"]["ItemsBlockFestivalPoster"];
+        "application/json": components["schemas"]["ItemsBlockFestivalPoster"][] | components["schemas"]["ItemsBlockFestivalPoster"];
       };
     };
     responses: {
@@ -23370,7 +23046,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockFestivalPoster"][];
           };
         };
       };
@@ -23408,9 +23084,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockFestivalPoster"][]
-          | components["schemas"]["ItemsBlockFestivalPoster"];
+        "application/json": components["schemas"]["ItemsBlockFestivalPoster"][] | components["schemas"]["ItemsBlockFestivalPoster"];
       };
     };
     responses: {
@@ -23418,7 +23092,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockFestivalPoster"][];
           };
         };
       };
@@ -23547,9 +23221,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockVideoTrailerTranslations"][]
-          | components["schemas"]["ItemsBlockVideoTrailerTranslations"];
+        "application/json": components["schemas"]["ItemsBlockVideoTrailerTranslations"][] | components["schemas"]["ItemsBlockVideoTrailerTranslations"];
       };
     };
     responses: {
@@ -23557,7 +23229,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockVideoTrailerTranslations"][];
           };
         };
       };
@@ -23595,9 +23267,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockVideoTrailerTranslations"][]
-          | components["schemas"]["ItemsBlockVideoTrailerTranslations"];
+        "application/json": components["schemas"]["ItemsBlockVideoTrailerTranslations"][] | components["schemas"]["ItemsBlockVideoTrailerTranslations"];
       };
     };
     responses: {
@@ -23605,7 +23275,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockVideoTrailerTranslations"][];
           };
         };
       };
@@ -23734,9 +23404,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockFestivalPosterTranslations"][]
-          | components["schemas"]["ItemsBlockFestivalPosterTranslations"];
+        "application/json": components["schemas"]["ItemsBlockFestivalPosterTranslations"][] | components["schemas"]["ItemsBlockFestivalPosterTranslations"];
       };
     };
     responses: {
@@ -23744,7 +23412,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockFestivalPosterTranslations"][];
           };
         };
       };
@@ -23782,9 +23450,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockFestivalPosterTranslations"][]
-          | components["schemas"]["ItemsBlockFestivalPosterTranslations"];
+        "application/json": components["schemas"]["ItemsBlockFestivalPosterTranslations"][] | components["schemas"]["ItemsBlockFestivalPosterTranslations"];
       };
     };
     responses: {
@@ -23792,7 +23458,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockFestivalPosterTranslations"][];
           };
         };
       };
@@ -23921,9 +23587,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockVideoTrailer"][]
-          | components["schemas"]["ItemsBlockVideoTrailer"];
+        "application/json": components["schemas"]["ItemsBlockVideoTrailer"][] | components["schemas"]["ItemsBlockVideoTrailer"];
       };
     };
     responses: {
@@ -23931,7 +23595,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockVideoTrailer"][];
           };
         };
       };
@@ -23969,9 +23633,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockVideoTrailer"][]
-          | components["schemas"]["ItemsBlockVideoTrailer"];
+        "application/json": components["schemas"]["ItemsBlockVideoTrailer"][] | components["schemas"]["ItemsBlockVideoTrailer"];
       };
     };
     responses: {
@@ -23979,7 +23641,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockVideoTrailer"][];
           };
         };
       };
@@ -24069,193 +23731,6 @@ export interface operations {
   };
   /**
    * List Items
-   * @description List the block_button_translations items.
-   */
-  readItemsBlockButtonTranslations: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        limit?: components["parameters"]["Limit"];
-        meta?: components["parameters"]["Meta"];
-        offset?: components["parameters"]["Offset"];
-        sort?: components["parameters"]["Sort"];
-        filter?: components["parameters"]["Filter"];
-        search?: components["parameters"]["Search"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: components["schemas"]["ItemsBlockButtonTranslations"][];
-            meta?: components["schemas"]["x-metadata"];
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-    };
-  };
-  /**
-   * Create an Item
-   * @description Create a new block_button_translations item.
-   */
-  createItemsBlockButtonTranslations: {
-    parameters: {
-      query?: {
-        meta?: components["parameters"]["Meta"];
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockButtonTranslations"][]
-          | components["schemas"]["ItemsBlockButtonTranslations"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: unknown;
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-    };
-  };
-  /**
-   * Delete Multiple Items
-   * @description Delete multiple existing block_button_translations items.
-   */
-  deleteItemsBlockButtonTranslations: {
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: never;
-      };
-      401: components["responses"]["UnauthorizedError"];
-    };
-  };
-  /**
-   * Update Multiple Items
-   * @description Update multiple block_button_translations items at the same time.
-   */
-  updateItemsBlockButtonTranslations: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        limit?: components["parameters"]["Limit"];
-        meta?: components["parameters"]["Meta"];
-        offset?: components["parameters"]["Offset"];
-        sort?: components["parameters"]["Sort"];
-        filter?: components["parameters"]["Filter"];
-        search?: components["parameters"]["Search"];
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockButtonTranslations"][]
-          | components["schemas"]["ItemsBlockButtonTranslations"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: unknown;
-          };
-        };
-      };
-    };
-  };
-  /**
-   * Retrieve an Item
-   * @description Retrieve a single block_button_translations item by unique identifier.
-   */
-  readSingleItemsBlockButtonTranslations: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        meta?: components["parameters"]["Meta"];
-        version?: components["parameters"]["Version"];
-      };
-      path: {
-        /** @description Index of the item. */
-        id: number | string;
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: components["schemas"]["ItemsBlockButtonTranslations"];
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-      404: components["responses"]["NotFoundError"];
-    };
-  };
-  /**
-   * Delete an Item
-   * @description Delete an existing block_button_translations item.
-   */
-  deleteSingleItemsBlockButtonTranslations: {
-    parameters: {
-      path: {
-        /** @description Index of the item. */
-        id: number | string;
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: never;
-      };
-      401: components["responses"]["UnauthorizedError"];
-      404: components["responses"]["NotFoundError"];
-    };
-  };
-  /**
-   * Update an Item
-   * @description Update an existing block_button_translations item.
-   */
-  updateSingleItemsBlockButtonTranslations: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        meta?: components["parameters"]["Meta"];
-      };
-      path: {
-        /** @description Index of the item. */
-        id: number | string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["ItemsBlockButtonTranslations"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: components["schemas"]["ItemsBlockButtonTranslations"];
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-      404: components["responses"]["NotFoundError"];
-    };
-  };
-  /**
-   * List Items
    * @description List the film_crew_film_person items.
    */
   readItemsFilmCrewFilmPerson: {
@@ -24295,9 +23770,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmCrewFilmPerson"][]
-          | components["schemas"]["ItemsFilmCrewFilmPerson"];
+        "application/json": components["schemas"]["ItemsFilmCrewFilmPerson"][] | components["schemas"]["ItemsFilmCrewFilmPerson"];
       };
     };
     responses: {
@@ -24305,7 +23778,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmCrewFilmPerson"][];
           };
         };
       };
@@ -24343,9 +23816,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmCrewFilmPerson"][]
-          | components["schemas"]["ItemsFilmCrewFilmPerson"];
+        "application/json": components["schemas"]["ItemsFilmCrewFilmPerson"][] | components["schemas"]["ItemsFilmCrewFilmPerson"];
       };
     };
     responses: {
@@ -24353,7 +23824,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmCrewFilmPerson"][];
           };
         };
       };
@@ -24443,6 +23914,189 @@ export interface operations {
   };
   /**
    * List Items
+   * @description List the block_button_translations items.
+   */
+  readItemsBlockButtonTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBlockButtonTranslations"][];
+            meta?: components["schemas"]["x-metadata"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Create an Item
+   * @description Create a new block_button_translations item.
+   */
+  createItemsBlockButtonTranslations: {
+    parameters: {
+      query?: {
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsBlockButtonTranslations"][] | components["schemas"]["ItemsBlockButtonTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBlockButtonTranslations"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Delete Multiple Items
+   * @description Delete multiple existing block_button_translations items.
+   */
+  deleteItemsBlockButtonTranslations: {
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Update Multiple Items
+   * @description Update multiple block_button_translations items at the same time.
+   */
+  updateItemsBlockButtonTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsBlockButtonTranslations"][] | components["schemas"]["ItemsBlockButtonTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBlockButtonTranslations"][];
+          };
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve an Item
+   * @description Retrieve a single block_button_translations item by unique identifier.
+   */
+  readSingleItemsBlockButtonTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+        version?: components["parameters"]["Version"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBlockButtonTranslations"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Delete an Item
+   * @description Delete an existing block_button_translations item.
+   */
+  deleteSingleItemsBlockButtonTranslations: {
+    parameters: {
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Update an Item
+   * @description Update an existing block_button_translations item.
+   */
+  updateSingleItemsBlockButtonTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsBlockButtonTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBlockButtonTranslations"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * List Items
    * @description List the page_blocks_background items.
    */
   readItemsPageBlocksBackground: {
@@ -24482,9 +24136,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsPageBlocksBackground"][]
-          | components["schemas"]["ItemsPageBlocksBackground"];
+        "application/json": components["schemas"]["ItemsPageBlocksBackground"][] | components["schemas"]["ItemsPageBlocksBackground"];
       };
     };
     responses: {
@@ -24492,7 +24144,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsPageBlocksBackground"][];
           };
         };
       };
@@ -24530,9 +24182,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsPageBlocksBackground"][]
-          | components["schemas"]["ItemsPageBlocksBackground"];
+        "application/json": components["schemas"]["ItemsPageBlocksBackground"][] | components["schemas"]["ItemsPageBlocksBackground"];
       };
     };
     responses: {
@@ -24540,7 +24190,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsPageBlocksBackground"][];
           };
         };
       };
@@ -24669,9 +24319,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsGradient"][]
-          | components["schemas"]["ItemsGradient"];
+        "application/json": components["schemas"]["ItemsGradient"][] | components["schemas"]["ItemsGradient"];
       };
     };
     responses: {
@@ -24679,7 +24327,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsGradient"][];
           };
         };
       };
@@ -24717,9 +24365,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsGradient"][]
-          | components["schemas"]["ItemsGradient"];
+        "application/json": components["schemas"]["ItemsGradient"][] | components["schemas"]["ItemsGradient"];
       };
     };
     responses: {
@@ -24727,7 +24373,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsGradient"][];
           };
         };
       };
@@ -24856,9 +24502,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLogo"][]
-          | components["schemas"]["ItemsBlockLogo"];
+        "application/json": components["schemas"]["ItemsBlockLogo"][] | components["schemas"]["ItemsBlockLogo"];
       };
     };
     responses: {
@@ -24866,7 +24510,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLogo"][];
           };
         };
       };
@@ -24904,9 +24548,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLogo"][]
-          | components["schemas"]["ItemsBlockLogo"];
+        "application/json": components["schemas"]["ItemsBlockLogo"][] | components["schemas"]["ItemsBlockLogo"];
       };
     };
     responses: {
@@ -24914,7 +24556,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLogo"][];
           };
         };
       };
@@ -25043,9 +24685,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsPageBlocksBackground1"][]
-          | components["schemas"]["ItemsPageBlocksBackground1"];
+        "application/json": components["schemas"]["ItemsPageBlocksBackground1"][] | components["schemas"]["ItemsPageBlocksBackground1"];
       };
     };
     responses: {
@@ -25053,7 +24693,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsPageBlocksBackground1"][];
           };
         };
       };
@@ -25091,9 +24731,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsPageBlocksBackground1"][]
-          | components["schemas"]["ItemsPageBlocksBackground1"];
+        "application/json": components["schemas"]["ItemsPageBlocksBackground1"][] | components["schemas"]["ItemsPageBlocksBackground1"];
       };
     };
     responses: {
@@ -25101,7 +24739,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsPageBlocksBackground1"][];
           };
         };
       };
@@ -25230,9 +24868,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLogoImage"][]
-          | components["schemas"]["ItemsBlockLogoImage"];
+        "application/json": components["schemas"]["ItemsBlockLogoImage"][] | components["schemas"]["ItemsBlockLogoImage"];
       };
     };
     responses: {
@@ -25240,7 +24876,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLogoImage"][];
           };
         };
       };
@@ -25278,9 +24914,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLogoImage"][]
-          | components["schemas"]["ItemsBlockLogoImage"];
+        "application/json": components["schemas"]["ItemsBlockLogoImage"][] | components["schemas"]["ItemsBlockLogoImage"];
       };
     };
     responses: {
@@ -25288,7 +24922,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLogoImage"][];
           };
         };
       };
@@ -25417,9 +25051,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockCountdownTranslations"][]
-          | components["schemas"]["ItemsBlockCountdownTranslations"];
+        "application/json": components["schemas"]["ItemsBlockCountdownTranslations"][] | components["schemas"]["ItemsBlockCountdownTranslations"];
       };
     };
     responses: {
@@ -25427,7 +25059,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockCountdownTranslations"][];
           };
         };
       };
@@ -25465,9 +25097,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockCountdownTranslations"][]
-          | components["schemas"]["ItemsBlockCountdownTranslations"];
+        "application/json": components["schemas"]["ItemsBlockCountdownTranslations"][] | components["schemas"]["ItemsBlockCountdownTranslations"];
       };
     };
     responses: {
@@ -25475,7 +25105,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockCountdownTranslations"][];
           };
         };
       };
@@ -25604,9 +25234,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockCountdown"][]
-          | components["schemas"]["ItemsBlockCountdown"];
+        "application/json": components["schemas"]["ItemsBlockCountdown"][] | components["schemas"]["ItemsBlockCountdown"];
       };
     };
     responses: {
@@ -25614,7 +25242,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockCountdown"][];
           };
         };
       };
@@ -25652,9 +25280,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockCountdown"][]
-          | components["schemas"]["ItemsBlockCountdown"];
+        "application/json": components["schemas"]["ItemsBlockCountdown"][] | components["schemas"]["ItemsBlockCountdown"];
       };
     };
     responses: {
@@ -25662,7 +25288,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockCountdown"][];
           };
         };
       };
@@ -25791,9 +25417,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmCrewFilmPersonFilmCrewRole"][]
-          | components["schemas"]["ItemsFilmCrewFilmPersonFilmCrewRole"];
+        "application/json": components["schemas"]["ItemsFilmCrewFilmPersonFilmCrewRole"][] | components["schemas"]["ItemsFilmCrewFilmPersonFilmCrewRole"];
       };
     };
     responses: {
@@ -25801,7 +25425,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmCrewFilmPersonFilmCrewRole"][];
           };
         };
       };
@@ -25839,9 +25463,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmCrewFilmPersonFilmCrewRole"][]
-          | components["schemas"]["ItemsFilmCrewFilmPersonFilmCrewRole"];
+        "application/json": components["schemas"]["ItemsFilmCrewFilmPersonFilmCrewRole"][] | components["schemas"]["ItemsFilmCrewFilmPersonFilmCrewRole"];
       };
     };
     responses: {
@@ -25849,7 +25471,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmCrewFilmPersonFilmCrewRole"][];
           };
         };
       };
@@ -25939,193 +25561,6 @@ export interface operations {
   };
   /**
    * List Items
-   * @description List the vote items.
-   */
-  readItemsVote: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        limit?: components["parameters"]["Limit"];
-        meta?: components["parameters"]["Meta"];
-        offset?: components["parameters"]["Offset"];
-        sort?: components["parameters"]["Sort"];
-        filter?: components["parameters"]["Filter"];
-        search?: components["parameters"]["Search"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: components["schemas"]["ItemsVote"][];
-            meta?: components["schemas"]["x-metadata"];
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-    };
-  };
-  /**
-   * Create an Item
-   * @description Create a new vote item.
-   */
-  createItemsVote: {
-    parameters: {
-      query?: {
-        meta?: components["parameters"]["Meta"];
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json":
-          | components["schemas"]["ItemsVote"][]
-          | components["schemas"]["ItemsVote"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: unknown;
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-    };
-  };
-  /**
-   * Delete Multiple Items
-   * @description Delete multiple existing vote items.
-   */
-  deleteItemsVote: {
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: never;
-      };
-      401: components["responses"]["UnauthorizedError"];
-    };
-  };
-  /**
-   * Update Multiple Items
-   * @description Update multiple vote items at the same time.
-   */
-  updateItemsVote: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        limit?: components["parameters"]["Limit"];
-        meta?: components["parameters"]["Meta"];
-        offset?: components["parameters"]["Offset"];
-        sort?: components["parameters"]["Sort"];
-        filter?: components["parameters"]["Filter"];
-        search?: components["parameters"]["Search"];
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json":
-          | components["schemas"]["ItemsVote"][]
-          | components["schemas"]["ItemsVote"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: unknown;
-          };
-        };
-      };
-    };
-  };
-  /**
-   * Retrieve an Item
-   * @description Retrieve a single vote item by unique identifier.
-   */
-  readSingleItemsVote: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        meta?: components["parameters"]["Meta"];
-        version?: components["parameters"]["Version"];
-      };
-      path: {
-        /** @description Index of the item. */
-        id: number | string;
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: components["schemas"]["ItemsVote"];
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-      404: components["responses"]["NotFoundError"];
-    };
-  };
-  /**
-   * Delete an Item
-   * @description Delete an existing vote item.
-   */
-  deleteSingleItemsVote: {
-    parameters: {
-      path: {
-        /** @description Index of the item. */
-        id: number | string;
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: never;
-      };
-      401: components["responses"]["UnauthorizedError"];
-      404: components["responses"]["NotFoundError"];
-    };
-  };
-  /**
-   * Update an Item
-   * @description Update an existing vote item.
-   */
-  updateSingleItemsVote: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        meta?: components["parameters"]["Meta"];
-      };
-      path: {
-        /** @description Index of the item. */
-        id: number | string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["ItemsVote"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: components["schemas"]["ItemsVote"];
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-      404: components["responses"]["NotFoundError"];
-    };
-  };
-  /**
-   * List Items
    * @description List the block_patron_translations items.
    */
   readItemsBlockPatronTranslations: {
@@ -26165,9 +25600,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockPatronTranslations"][]
-          | components["schemas"]["ItemsBlockPatronTranslations"];
+        "application/json": components["schemas"]["ItemsBlockPatronTranslations"][] | components["schemas"]["ItemsBlockPatronTranslations"];
       };
     };
     responses: {
@@ -26175,7 +25608,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockPatronTranslations"][];
           };
         };
       };
@@ -26213,9 +25646,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockPatronTranslations"][]
-          | components["schemas"]["ItemsBlockPatronTranslations"];
+        "application/json": components["schemas"]["ItemsBlockPatronTranslations"][] | components["schemas"]["ItemsBlockPatronTranslations"];
       };
     };
     responses: {
@@ -26223,7 +25654,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockPatronTranslations"][];
           };
         };
       };
@@ -26352,9 +25783,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsVoting"][]
-          | components["schemas"]["ItemsVoting"];
+        "application/json": components["schemas"]["ItemsVoting"][] | components["schemas"]["ItemsVoting"];
       };
     };
     responses: {
@@ -26362,7 +25791,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsVoting"][];
           };
         };
       };
@@ -26400,9 +25829,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsVoting"][]
-          | components["schemas"]["ItemsVoting"];
+        "application/json": components["schemas"]["ItemsVoting"][] | components["schemas"]["ItemsVoting"];
       };
     };
     responses: {
@@ -26410,7 +25837,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsVoting"][];
           };
         };
       };
@@ -26500,6 +25927,189 @@ export interface operations {
   };
   /**
    * List Items
+   * @description List the vote items.
+   */
+  readItemsVote: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsVote"][];
+            meta?: components["schemas"]["x-metadata"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Create an Item
+   * @description Create a new vote item.
+   */
+  createItemsVote: {
+    parameters: {
+      query?: {
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsVote"][] | components["schemas"]["ItemsVote"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsVote"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Delete Multiple Items
+   * @description Delete multiple existing vote items.
+   */
+  deleteItemsVote: {
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Update Multiple Items
+   * @description Update multiple vote items at the same time.
+   */
+  updateItemsVote: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsVote"][] | components["schemas"]["ItemsVote"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsVote"][];
+          };
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve an Item
+   * @description Retrieve a single vote item by unique identifier.
+   */
+  readSingleItemsVote: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+        version?: components["parameters"]["Version"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsVote"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Delete an Item
+   * @description Delete an existing vote item.
+   */
+  deleteSingleItemsVote: {
+    parameters: {
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Update an Item
+   * @description Update an existing vote item.
+   */
+  updateSingleItemsVote: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsVote"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsVote"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * List Items
    * @description List the block_patron items.
    */
   readItemsBlockPatron: {
@@ -26539,9 +26149,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockPatron"][]
-          | components["schemas"]["ItemsBlockPatron"];
+        "application/json": components["schemas"]["ItemsBlockPatron"][] | components["schemas"]["ItemsBlockPatron"];
       };
     };
     responses: {
@@ -26549,7 +26157,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockPatron"][];
           };
         };
       };
@@ -26587,9 +26195,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockPatron"][]
-          | components["schemas"]["ItemsBlockPatron"];
+        "application/json": components["schemas"]["ItemsBlockPatron"][] | components["schemas"]["ItemsBlockPatron"];
       };
     };
     responses: {
@@ -26597,7 +26203,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockPatron"][];
           };
         };
       };
@@ -26726,9 +26332,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockFestivalFooterTranslations"][]
-          | components["schemas"]["ItemsBlockFestivalFooterTranslations"];
+        "application/json": components["schemas"]["ItemsBlockFestivalFooterTranslations"][] | components["schemas"]["ItemsBlockFestivalFooterTranslations"];
       };
     };
     responses: {
@@ -26736,7 +26340,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockFestivalFooterTranslations"][];
           };
         };
       };
@@ -26774,9 +26378,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockFestivalFooterTranslations"][]
-          | components["schemas"]["ItemsBlockFestivalFooterTranslations"];
+        "application/json": components["schemas"]["ItemsBlockFestivalFooterTranslations"][] | components["schemas"]["ItemsBlockFestivalFooterTranslations"];
       };
     };
     responses: {
@@ -26784,7 +26386,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockFestivalFooterTranslations"][];
           };
         };
       };
@@ -26913,9 +26515,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockFestivalFooter"][]
-          | components["schemas"]["ItemsBlockFestivalFooter"];
+        "application/json": components["schemas"]["ItemsBlockFestivalFooter"][] | components["schemas"]["ItemsBlockFestivalFooter"];
       };
     };
     responses: {
@@ -26923,7 +26523,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockFestivalFooter"][];
           };
         };
       };
@@ -26961,9 +26561,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockFestivalFooter"][]
-          | components["schemas"]["ItemsBlockFestivalFooter"];
+        "application/json": components["schemas"]["ItemsBlockFestivalFooter"][] | components["schemas"]["ItemsBlockFestivalFooter"];
       };
     };
     responses: {
@@ -26971,7 +26569,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockFestivalFooter"][];
           };
         };
       };
@@ -27100,9 +26698,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockJury"][]
-          | components["schemas"]["ItemsBlockJury"];
+        "application/json": components["schemas"]["ItemsBlockJury"][] | components["schemas"]["ItemsBlockJury"];
       };
     };
     responses: {
@@ -27110,7 +26706,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockJury"][];
           };
         };
       };
@@ -27148,9 +26744,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockJury"][]
-          | components["schemas"]["ItemsBlockJury"];
+        "application/json": components["schemas"]["ItemsBlockJury"][] | components["schemas"]["ItemsBlockJury"];
       };
     };
     responses: {
@@ -27158,7 +26752,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockJury"][];
           };
         };
       };
@@ -27287,9 +26881,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockJuryTranslations"][]
-          | components["schemas"]["ItemsBlockJuryTranslations"];
+        "application/json": components["schemas"]["ItemsBlockJuryTranslations"][] | components["schemas"]["ItemsBlockJuryTranslations"];
       };
     };
     responses: {
@@ -27297,7 +26889,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockJuryTranslations"][];
           };
         };
       };
@@ -27335,9 +26927,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockJuryTranslations"][]
-          | components["schemas"]["ItemsBlockJuryTranslations"];
+        "application/json": components["schemas"]["ItemsBlockJuryTranslations"][] | components["schemas"]["ItemsBlockJuryTranslations"];
       };
     };
     responses: {
@@ -27345,7 +26935,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockJuryTranslations"][];
           };
         };
       };
@@ -27474,9 +27064,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia"][]
-          | components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia"];
+        "application/json": components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia"][] | components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia"];
       };
     };
     responses: {
@@ -27484,7 +27072,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia"][];
           };
         };
       };
@@ -27522,9 +27110,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia"][]
-          | components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia"];
+        "application/json": components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia"][] | components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia"];
       };
     };
     responses: {
@@ -27532,7 +27118,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia"][];
           };
         };
       };
@@ -27661,9 +27247,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia1"][]
-          | components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia1"];
+        "application/json": components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia1"][] | components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia1"];
       };
     };
     responses: {
@@ -27671,7 +27255,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia1"][];
           };
         };
       };
@@ -27709,9 +27293,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia1"][]
-          | components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia1"];
+        "application/json": components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia1"][] | components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia1"];
       };
     };
     responses: {
@@ -27719,7 +27301,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockFestivalFooterBlockSocialMedia1"][];
           };
         };
       };
@@ -27848,9 +27430,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockImageRow"][]
-          | components["schemas"]["ItemsBlockImageRow"];
+        "application/json": components["schemas"]["ItemsBlockImageRow"][] | components["schemas"]["ItemsBlockImageRow"];
       };
     };
     responses: {
@@ -27858,7 +27438,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockImageRow"][];
           };
         };
       };
@@ -27896,9 +27476,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockImageRow"][]
-          | components["schemas"]["ItemsBlockImageRow"];
+        "application/json": components["schemas"]["ItemsBlockImageRow"][] | components["schemas"]["ItemsBlockImageRow"];
       };
     };
     responses: {
@@ -27906,7 +27484,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockImageRow"][];
           };
         };
       };
@@ -28035,9 +27613,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockImageRowImages"][]
-          | components["schemas"]["ItemsBlockImageRowImages"];
+        "application/json": components["schemas"]["ItemsBlockImageRowImages"][] | components["schemas"]["ItemsBlockImageRowImages"];
       };
     };
     responses: {
@@ -28045,7 +27621,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockImageRowImages"][];
           };
         };
       };
@@ -28083,9 +27659,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockImageRowImages"][]
-          | components["schemas"]["ItemsBlockImageRowImages"];
+        "application/json": components["schemas"]["ItemsBlockImageRowImages"][] | components["schemas"]["ItemsBlockImageRowImages"];
       };
     };
     responses: {
@@ -28093,7 +27667,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockImageRowImages"][];
           };
         };
       };
@@ -28222,9 +27796,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsSocial"][]
-          | components["schemas"]["ItemsSocial"];
+        "application/json": components["schemas"]["ItemsSocial"][] | components["schemas"]["ItemsSocial"];
       };
     };
     responses: {
@@ -28232,7 +27804,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsSocial"][];
           };
         };
       };
@@ -28270,9 +27842,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsSocial"][]
-          | components["schemas"]["ItemsSocial"];
+        "application/json": components["schemas"]["ItemsSocial"][] | components["schemas"]["ItemsSocial"];
       };
     };
     responses: {
@@ -28280,7 +27850,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsSocial"][];
           };
         };
       };
@@ -28409,9 +27979,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockFestivalFooterSocial"][]
-          | components["schemas"]["ItemsBlockFestivalFooterSocial"];
+        "application/json": components["schemas"]["ItemsBlockFestivalFooterSocial"][] | components["schemas"]["ItemsBlockFestivalFooterSocial"];
       };
     };
     responses: {
@@ -28419,7 +27987,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockFestivalFooterSocial"][];
           };
         };
       };
@@ -28457,9 +28025,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockFestivalFooterSocial"][]
-          | components["schemas"]["ItemsBlockFestivalFooterSocial"];
+        "application/json": components["schemas"]["ItemsBlockFestivalFooterSocial"][] | components["schemas"]["ItemsBlockFestivalFooterSocial"];
       };
     };
     responses: {
@@ -28467,7 +28033,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockFestivalFooterSocial"][];
           };
         };
       };
@@ -28596,9 +28162,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockImageRowDirectusFiles"][]
-          | components["schemas"]["ItemsBlockImageRowDirectusFiles"];
+        "application/json": components["schemas"]["ItemsBlockImageRowDirectusFiles"][] | components["schemas"]["ItemsBlockImageRowDirectusFiles"];
       };
     };
     responses: {
@@ -28606,7 +28170,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockImageRowDirectusFiles"][];
           };
         };
       };
@@ -28644,9 +28208,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockImageRowDirectusFiles"][]
-          | components["schemas"]["ItemsBlockImageRowDirectusFiles"];
+        "application/json": components["schemas"]["ItemsBlockImageRowDirectusFiles"][] | components["schemas"]["ItemsBlockImageRowDirectusFiles"];
       };
     };
     responses: {
@@ -28654,7 +28216,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockImageRowDirectusFiles"][];
           };
         };
       };
@@ -28783,9 +28345,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockImageRowFiles"][]
-          | components["schemas"]["ItemsBlockImageRowFiles"];
+        "application/json": components["schemas"]["ItemsBlockImageRowFiles"][] | components["schemas"]["ItemsBlockImageRowFiles"];
       };
     };
     responses: {
@@ -28793,7 +28353,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockImageRowFiles"][];
           };
         };
       };
@@ -28831,9 +28391,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockImageRowFiles"][]
-          | components["schemas"]["ItemsBlockImageRowFiles"];
+        "application/json": components["schemas"]["ItemsBlockImageRowFiles"][] | components["schemas"]["ItemsBlockImageRowFiles"];
       };
     };
     responses: {
@@ -28841,7 +28399,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockImageRowFiles"][];
           };
         };
       };
@@ -28970,9 +28528,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockPartnerRowBlockPartner"][]
-          | components["schemas"]["ItemsBlockPartnerRowBlockPartner"];
+        "application/json": components["schemas"]["ItemsBlockPartnerRowBlockPartner"][] | components["schemas"]["ItemsBlockPartnerRowBlockPartner"];
       };
     };
     responses: {
@@ -28980,7 +28536,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockPartnerRowBlockPartner"][];
           };
         };
       };
@@ -29018,9 +28574,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockPartnerRowBlockPartner"][]
-          | components["schemas"]["ItemsBlockPartnerRowBlockPartner"];
+        "application/json": components["schemas"]["ItemsBlockPartnerRowBlockPartner"][] | components["schemas"]["ItemsBlockPartnerRowBlockPartner"];
       };
     };
     responses: {
@@ -29028,7 +28582,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockPartnerRowBlockPartner"][];
           };
         };
       };
@@ -29157,9 +28711,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsPartnerRowBlockPartner"][]
-          | components["schemas"]["ItemsPartnerRowBlockPartner"];
+        "application/json": components["schemas"]["ItemsPartnerRowBlockPartner"][] | components["schemas"]["ItemsPartnerRowBlockPartner"];
       };
     };
     responses: {
@@ -29167,7 +28719,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsPartnerRowBlockPartner"][];
           };
         };
       };
@@ -29205,9 +28757,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsPartnerRowBlockPartner"][]
-          | components["schemas"]["ItemsPartnerRowBlockPartner"];
+        "application/json": components["schemas"]["ItemsPartnerRowBlockPartner"][] | components["schemas"]["ItemsPartnerRowBlockPartner"];
       };
     };
     responses: {
@@ -29215,7 +28765,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsPartnerRowBlockPartner"][];
           };
         };
       };
@@ -29344,9 +28894,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockPartnerRow"][]
-          | components["schemas"]["ItemsBlockPartnerRow"];
+        "application/json": components["schemas"]["ItemsBlockPartnerRow"][] | components["schemas"]["ItemsBlockPartnerRow"];
       };
     };
     responses: {
@@ -29354,7 +28902,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockPartnerRow"][];
           };
         };
       };
@@ -29392,9 +28940,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockPartnerRow"][]
-          | components["schemas"]["ItemsBlockPartnerRow"];
+        "application/json": components["schemas"]["ItemsBlockPartnerRow"][] | components["schemas"]["ItemsBlockPartnerRow"];
       };
     };
     responses: {
@@ -29402,7 +28948,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockPartnerRow"][];
           };
         };
       };
@@ -29531,9 +29077,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockReferee"][]
-          | components["schemas"]["ItemsBlockReferee"];
+        "application/json": components["schemas"]["ItemsBlockReferee"][] | components["schemas"]["ItemsBlockReferee"];
       };
     };
     responses: {
@@ -29541,7 +29085,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockReferee"][];
           };
         };
       };
@@ -29579,9 +29123,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockReferee"][]
-          | components["schemas"]["ItemsBlockReferee"];
+        "application/json": components["schemas"]["ItemsBlockReferee"][] | components["schemas"]["ItemsBlockReferee"];
       };
     };
     responses: {
@@ -29589,7 +29131,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockReferee"][];
           };
         };
       };
@@ -29718,9 +29260,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockRefereeTranslations"][]
-          | components["schemas"]["ItemsBlockRefereeTranslations"];
+        "application/json": components["schemas"]["ItemsBlockRefereeTranslations"][] | components["schemas"]["ItemsBlockRefereeTranslations"];
       };
     };
     responses: {
@@ -29728,7 +29268,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockRefereeTranslations"][];
           };
         };
       };
@@ -29766,9 +29306,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockRefereeTranslations"][]
-          | components["schemas"]["ItemsBlockRefereeTranslations"];
+        "application/json": components["schemas"]["ItemsBlockRefereeTranslations"][] | components["schemas"]["ItemsBlockRefereeTranslations"];
       };
     };
     responses: {
@@ -29776,7 +29314,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockRefereeTranslations"][];
           };
         };
       };
@@ -29905,9 +29443,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilm"][]
-          | components["schemas"]["ItemsFilm"];
+        "application/json": components["schemas"]["ItemsFilm"][] | components["schemas"]["ItemsFilm"];
       };
     };
     responses: {
@@ -29915,7 +29451,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilm"][];
           };
         };
       };
@@ -29953,9 +29489,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilm"][]
-          | components["schemas"]["ItemsFilm"];
+        "application/json": components["schemas"]["ItemsFilm"][] | components["schemas"]["ItemsFilm"];
       };
     };
     responses: {
@@ -29963,7 +29497,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilm"][];
           };
         };
       };
@@ -30092,9 +29626,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmActorFilmPerson"][]
-          | components["schemas"]["ItemsFilmActorFilmPerson"];
+        "application/json": components["schemas"]["ItemsFilmActorFilmPerson"][] | components["schemas"]["ItemsFilmActorFilmPerson"];
       };
     };
     responses: {
@@ -30102,7 +29634,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmActorFilmPerson"][];
           };
         };
       };
@@ -30140,9 +29672,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmActorFilmPerson"][]
-          | components["schemas"]["ItemsFilmActorFilmPerson"];
+        "application/json": components["schemas"]["ItemsFilmActorFilmPerson"][] | components["schemas"]["ItemsFilmActorFilmPerson"];
       };
     };
     responses: {
@@ -30150,7 +29680,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmActorFilmPerson"][];
           };
         };
       };
@@ -30279,9 +29809,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockContact"][]
-          | components["schemas"]["ItemsBlockContact"];
+        "application/json": components["schemas"]["ItemsBlockContact"][] | components["schemas"]["ItemsBlockContact"];
       };
     };
     responses: {
@@ -30289,7 +29817,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockContact"][];
           };
         };
       };
@@ -30327,9 +29855,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockContact"][]
-          | components["schemas"]["ItemsBlockContact"];
+        "application/json": components["schemas"]["ItemsBlockContact"][] | components["schemas"]["ItemsBlockContact"];
       };
     };
     responses: {
@@ -30337,7 +29863,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockContact"][];
           };
         };
       };
@@ -30466,9 +29992,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockArticle"][]
-          | components["schemas"]["ItemsBlockArticle"];
+        "application/json": components["schemas"]["ItemsBlockArticle"][] | components["schemas"]["ItemsBlockArticle"];
       };
     };
     responses: {
@@ -30476,7 +30000,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockArticle"][];
           };
         };
       };
@@ -30514,9 +30038,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockArticle"][]
-          | components["schemas"]["ItemsBlockArticle"];
+        "application/json": components["schemas"]["ItemsBlockArticle"][] | components["schemas"]["ItemsBlockArticle"];
       };
     };
     responses: {
@@ -30524,7 +30046,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockArticle"][];
           };
         };
       };
@@ -30653,9 +30175,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockInfoStack"][]
-          | components["schemas"]["ItemsBlockInfoStack"];
+        "application/json": components["schemas"]["ItemsBlockInfoStack"][] | components["schemas"]["ItemsBlockInfoStack"];
       };
     };
     responses: {
@@ -30663,7 +30183,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockInfoStack"][];
           };
         };
       };
@@ -30701,9 +30221,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockInfoStack"][]
-          | components["schemas"]["ItemsBlockInfoStack"];
+        "application/json": components["schemas"]["ItemsBlockInfoStack"][] | components["schemas"]["ItemsBlockInfoStack"];
       };
     };
     responses: {
@@ -30711,7 +30229,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockInfoStack"][];
           };
         };
       };
@@ -30840,9 +30358,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockArticleTranslations"][]
-          | components["schemas"]["ItemsBlockArticleTranslations"];
+        "application/json": components["schemas"]["ItemsBlockArticleTranslations"][] | components["schemas"]["ItemsBlockArticleTranslations"];
       };
     };
     responses: {
@@ -30850,7 +30366,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockArticleTranslations"][];
           };
         };
       };
@@ -30888,9 +30404,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockArticleTranslations"][]
-          | components["schemas"]["ItemsBlockArticleTranslations"];
+        "application/json": components["schemas"]["ItemsBlockArticleTranslations"][] | components["schemas"]["ItemsBlockArticleTranslations"];
       };
     };
     responses: {
@@ -30898,7 +30412,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockArticleTranslations"][];
           };
         };
       };
@@ -31027,9 +30541,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockInfoStackTranslations"][]
-          | components["schemas"]["ItemsBlockInfoStackTranslations"];
+        "application/json": components["schemas"]["ItemsBlockInfoStackTranslations"][] | components["schemas"]["ItemsBlockInfoStackTranslations"];
       };
     };
     responses: {
@@ -31037,7 +30549,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockInfoStackTranslations"][];
           };
         };
       };
@@ -31075,9 +30587,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockInfoStackTranslations"][]
-          | components["schemas"]["ItemsBlockInfoStackTranslations"];
+        "application/json": components["schemas"]["ItemsBlockInfoStackTranslations"][] | components["schemas"]["ItemsBlockInfoStackTranslations"];
       };
     };
     responses: {
@@ -31085,7 +30595,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockInfoStackTranslations"][];
           };
         };
       };
@@ -31214,9 +30724,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockContactTranslations"][]
-          | components["schemas"]["ItemsBlockContactTranslations"];
+        "application/json": components["schemas"]["ItemsBlockContactTranslations"][] | components["schemas"]["ItemsBlockContactTranslations"];
       };
     };
     responses: {
@@ -31224,7 +30732,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockContactTranslations"][];
           };
         };
       };
@@ -31262,9 +30770,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockContactTranslations"][]
-          | components["schemas"]["ItemsBlockContactTranslations"];
+        "application/json": components["schemas"]["ItemsBlockContactTranslations"][] | components["schemas"]["ItemsBlockContactTranslations"];
       };
     };
     responses: {
@@ -31272,7 +30778,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockContactTranslations"][];
           };
         };
       };
@@ -31401,9 +30907,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLayoutBlocks1Background"][]
-          | components["schemas"]["ItemsBlockLayoutBlocks1Background"];
+        "application/json": components["schemas"]["ItemsBlockLayoutBlocks1Background"][] | components["schemas"]["ItemsBlockLayoutBlocks1Background"];
       };
     };
     responses: {
@@ -31411,7 +30915,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLayoutBlocks1Background"][];
           };
         };
       };
@@ -31449,9 +30953,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLayoutBlocks1Background"][]
-          | components["schemas"]["ItemsBlockLayoutBlocks1Background"];
+        "application/json": components["schemas"]["ItemsBlockLayoutBlocks1Background"][] | components["schemas"]["ItemsBlockLayoutBlocks1Background"];
       };
     };
     responses: {
@@ -31459,7 +30961,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLayoutBlocks1Background"][];
           };
         };
       };
@@ -31588,9 +31090,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLightboxFiles"][]
-          | components["schemas"]["ItemsBlockLightboxFiles"];
+        "application/json": components["schemas"]["ItemsBlockLightboxFiles"][] | components["schemas"]["ItemsBlockLightboxFiles"];
       };
     };
     responses: {
@@ -31598,7 +31098,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLightboxFiles"][];
           };
         };
       };
@@ -31636,9 +31136,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockLightboxFiles"][]
-          | components["schemas"]["ItemsBlockLightboxFiles"];
+        "application/json": components["schemas"]["ItemsBlockLightboxFiles"][] | components["schemas"]["ItemsBlockLightboxFiles"];
       };
     };
     responses: {
@@ -31646,7 +31144,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockLightboxFiles"][];
           };
         };
       };
@@ -31775,9 +31273,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsVotingFilm"][]
-          | components["schemas"]["ItemsVotingFilm"];
+        "application/json": components["schemas"]["ItemsVotingFilm"][] | components["schemas"]["ItemsVotingFilm"];
       };
     };
     responses: {
@@ -31785,7 +31281,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsVotingFilm"][];
           };
         };
       };
@@ -31823,9 +31319,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsVotingFilm"][]
-          | components["schemas"]["ItemsVotingFilm"];
+        "application/json": components["schemas"]["ItemsVotingFilm"][] | components["schemas"]["ItemsVotingFilm"];
       };
     };
     responses: {
@@ -31833,7 +31327,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsVotingFilm"][];
           };
         };
       };
@@ -31962,9 +31456,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockPartnershipTranslations"][]
-          | components["schemas"]["ItemsBlockPartnershipTranslations"];
+        "application/json": components["schemas"]["ItemsBlockPartnershipTranslations"][] | components["schemas"]["ItemsBlockPartnershipTranslations"];
       };
     };
     responses: {
@@ -31972,7 +31464,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockPartnershipTranslations"][];
           };
         };
       };
@@ -32010,9 +31502,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockPartnershipTranslations"][]
-          | components["schemas"]["ItemsBlockPartnershipTranslations"];
+        "application/json": components["schemas"]["ItemsBlockPartnershipTranslations"][] | components["schemas"]["ItemsBlockPartnershipTranslations"];
       };
     };
     responses: {
@@ -32020,7 +31510,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockPartnershipTranslations"][];
           };
         };
       };
@@ -32149,9 +31639,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmGenreTranslations"][]
-          | components["schemas"]["ItemsFilmGenreTranslations"];
+        "application/json": components["schemas"]["ItemsFilmGenreTranslations"][] | components["schemas"]["ItemsFilmGenreTranslations"];
       };
     };
     responses: {
@@ -32159,7 +31647,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmGenreTranslations"][];
           };
         };
       };
@@ -32197,9 +31685,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmGenreTranslations"][]
-          | components["schemas"]["ItemsFilmGenreTranslations"];
+        "application/json": components["schemas"]["ItemsFilmGenreTranslations"][] | components["schemas"]["ItemsFilmGenreTranslations"];
       };
     };
     responses: {
@@ -32207,7 +31693,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmGenreTranslations"][];
           };
         };
       };
@@ -32336,9 +31822,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockPartnership"][]
-          | components["schemas"]["ItemsBlockPartnership"];
+        "application/json": components["schemas"]["ItemsBlockPartnership"][] | components["schemas"]["ItemsBlockPartnership"];
       };
     };
     responses: {
@@ -32346,7 +31830,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockPartnership"][];
           };
         };
       };
@@ -32384,9 +31868,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockPartnership"][]
-          | components["schemas"]["ItemsBlockPartnership"];
+        "application/json": components["schemas"]["ItemsBlockPartnership"][] | components["schemas"]["ItemsBlockPartnership"];
       };
     };
     responses: {
@@ -32394,7 +31876,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockPartnership"][];
           };
         };
       };
@@ -32523,9 +32005,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFestivalBlockTranslations"][]
-          | components["schemas"]["ItemsFestivalBlockTranslations"];
+        "application/json": components["schemas"]["ItemsFestivalBlockTranslations"][] | components["schemas"]["ItemsFestivalBlockTranslations"];
       };
     };
     responses: {
@@ -32533,7 +32013,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFestivalBlockTranslations"][];
           };
         };
       };
@@ -32571,9 +32051,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFestivalBlockTranslations"][]
-          | components["schemas"]["ItemsFestivalBlockTranslations"];
+        "application/json": components["schemas"]["ItemsFestivalBlockTranslations"][] | components["schemas"]["ItemsFestivalBlockTranslations"];
       };
     };
     responses: {
@@ -32581,7 +32059,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFestivalBlockTranslations"][];
           };
         };
       };
@@ -32710,9 +32188,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockPartnershipBlockPartner"][]
-          | components["schemas"]["ItemsBlockPartnershipBlockPartner"];
+        "application/json": components["schemas"]["ItemsBlockPartnershipBlockPartner"][] | components["schemas"]["ItemsBlockPartnershipBlockPartner"];
       };
     };
     responses: {
@@ -32720,7 +32196,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockPartnershipBlockPartner"][];
           };
         };
       };
@@ -32758,9 +32234,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsBlockPartnershipBlockPartner"][]
-          | components["schemas"]["ItemsBlockPartnershipBlockPartner"];
+        "application/json": components["schemas"]["ItemsBlockPartnershipBlockPartner"][] | components["schemas"]["ItemsBlockPartnershipBlockPartner"];
       };
     };
     responses: {
@@ -32768,7 +32242,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsBlockPartnershipBlockPartner"][];
           };
         };
       };
@@ -32897,9 +32371,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFestivalBlock"][]
-          | components["schemas"]["ItemsFestivalBlock"];
+        "application/json": components["schemas"]["ItemsFestivalBlock"][] | components["schemas"]["ItemsFestivalBlock"];
       };
     };
     responses: {
@@ -32907,7 +32379,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFestivalBlock"][];
           };
         };
       };
@@ -32945,9 +32417,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFestivalBlock"][]
-          | components["schemas"]["ItemsFestivalBlock"];
+        "application/json": components["schemas"]["ItemsFestivalBlock"][] | components["schemas"]["ItemsFestivalBlock"];
       };
     };
     responses: {
@@ -32955,7 +32425,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFestivalBlock"][];
           };
         };
       };
@@ -33084,9 +32554,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmGenre"][]
-          | components["schemas"]["ItemsFilmGenre"];
+        "application/json": components["schemas"]["ItemsFilmGenre"][] | components["schemas"]["ItemsFilmGenre"];
       };
     };
     responses: {
@@ -33094,7 +32562,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmGenre"][];
           };
         };
       };
@@ -33132,9 +32600,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmGenre"][]
-          | components["schemas"]["ItemsFilmGenre"];
+        "application/json": components["schemas"]["ItemsFilmGenre"][] | components["schemas"]["ItemsFilmGenre"];
       };
     };
     responses: {
@@ -33142,7 +32608,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmGenre"][];
           };
         };
       };
@@ -33271,9 +32737,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmPerson"][]
-          | components["schemas"]["ItemsFilmPerson"];
+        "application/json": components["schemas"]["ItemsFilmPerson"][] | components["schemas"]["ItemsFilmPerson"];
       };
     };
     responses: {
@@ -33281,7 +32745,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmPerson"][];
           };
         };
       };
@@ -33319,9 +32783,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmPerson"][]
-          | components["schemas"]["ItemsFilmPerson"];
+        "application/json": components["schemas"]["ItemsFilmPerson"][] | components["schemas"]["ItemsFilmPerson"];
       };
     };
     responses: {
@@ -33329,7 +32791,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmPerson"][];
           };
         };
       };
@@ -33458,9 +32920,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmCrewRoleTranslations"][]
-          | components["schemas"]["ItemsFilmCrewRoleTranslations"];
+        "application/json": components["schemas"]["ItemsFilmCrewRoleTranslations"][] | components["schemas"]["ItemsFilmCrewRoleTranslations"];
       };
     };
     responses: {
@@ -33468,7 +32928,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmCrewRoleTranslations"][];
           };
         };
       };
@@ -33506,9 +32966,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmCrewRoleTranslations"][]
-          | components["schemas"]["ItemsFilmCrewRoleTranslations"];
+        "application/json": components["schemas"]["ItemsFilmCrewRoleTranslations"][] | components["schemas"]["ItemsFilmCrewRoleTranslations"];
       };
     };
     responses: {
@@ -33516,7 +32974,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmCrewRoleTranslations"][];
           };
         };
       };
@@ -33645,9 +33103,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmCrewRole"][]
-          | components["schemas"]["ItemsFilmCrewRole"];
+        "application/json": components["schemas"]["ItemsFilmCrewRole"][] | components["schemas"]["ItemsFilmCrewRole"];
       };
     };
     responses: {
@@ -33655,7 +33111,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmCrewRole"][];
           };
         };
       };
@@ -33693,9 +33149,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json":
-          | components["schemas"]["ItemsFilmCrewRole"][]
-          | components["schemas"]["ItemsFilmCrewRole"];
+        "application/json": components["schemas"]["ItemsFilmCrewRole"][] | components["schemas"]["ItemsFilmCrewRole"];
       };
     };
     responses: {
@@ -33703,7 +33157,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: unknown;
+            data?: components["schemas"]["ItemsFilmCrewRole"][];
           };
         };
       };
@@ -33793,12 +33247,12 @@ export interface operations {
   };
 }
 
+
 export type ApiCollections = {
   film_translations: components["schemas"]["ItemsFilmTranslations"][];
-  vote_film: components["schemas"]["ItemsVoteFilm"][];
   film_film_genre: components["schemas"]["ItemsFilmFilmGenre"][];
-  voting_translations: components["schemas"]["ItemsVotingTranslations"][];
   block_button: components["schemas"]["ItemsBlockButton"][];
+  voting_translations: components["schemas"]["ItemsVotingTranslations"][];
   block_divider: components["schemas"]["ItemsBlockDivider"][];
   block_faqs: components["schemas"]["ItemsBlockFaqs"][];
   block_logocloud: components["schemas"]["ItemsBlockLogocloud"][];
@@ -33814,7 +33268,6 @@ export type ApiCollections = {
   block_team: components["schemas"]["ItemsBlockTeam"][];
   categories: components["schemas"]["ItemsCategories"][];
   inbox: components["schemas"]["ItemsInbox"][];
-  globals: components["schemas"]["ItemsGlobals"][];
   block_steps: components["schemas"]["ItemsBlockSteps"][];
   block_video: components["schemas"]["ItemsBlockVideo"][];
   navigation_items: components["schemas"]["ItemsNavigationItems"][];
@@ -33823,7 +33276,6 @@ export type ApiCollections = {
   redirects: components["schemas"]["ItemsRedirects"][];
   team: components["schemas"]["ItemsTeam"][];
   post_gallery_items: components["schemas"]["ItemsPostGalleryItems"][];
-  pages_blog: components["schemas"]["ItemsPagesBlog"][];
   block_columns_rows: components["schemas"]["ItemsBlockColumnsRows"][];
   posts: components["schemas"]["ItemsPosts"][];
   block_card: components["schemas"]["ItemsBlockCard"][];
@@ -33844,6 +33296,7 @@ export type ApiCollections = {
   block_link: components["schemas"]["ItemsBlockLink"][];
   block_richtext_translations: components["schemas"]["ItemsBlockRichtextTranslations"][];
   block_card_translations: components["schemas"]["ItemsBlockCardTranslations"][];
+  block_brochure: components["schemas"]["ItemsBlockBrochure"][];
   block_lightbox: components["schemas"]["ItemsBlockLightbox"][];
   block_link_translations: components["schemas"]["ItemsBlockLinkTranslations"][];
   block_locationanddate: components["schemas"]["ItemsBlockLocationanddate"][];
@@ -33851,6 +33304,7 @@ export type ApiCollections = {
   block_conditionalcard: components["schemas"]["ItemsBlockConditionalcard"][];
   block_tajenka: components["schemas"]["ItemsBlockTajenka"][];
   block_locationanddate_translations: components["schemas"]["ItemsBlockLocationanddateTranslations"][];
+  block_brochure_translations: components["schemas"]["ItemsBlockBrochureTranslations"][];
   block_bannerhero: components["schemas"]["ItemsBlockBannerhero"][];
   block_bannerhero_translations: components["schemas"]["ItemsBlockBannerheroTranslations"][];
   block_partner: components["schemas"]["ItemsBlockPartner"][];
@@ -33858,8 +33312,8 @@ export type ApiCollections = {
   block_video_trailer_translations: components["schemas"]["ItemsBlockVideoTrailerTranslations"][];
   block_festival_poster_translations: components["schemas"]["ItemsBlockFestivalPosterTranslations"][];
   block_video_trailer: components["schemas"]["ItemsBlockVideoTrailer"][];
-  block_button_translations: components["schemas"]["ItemsBlockButtonTranslations"][];
   film_crew_film_person: components["schemas"]["ItemsFilmCrewFilmPerson"][];
+  block_button_translations: components["schemas"]["ItemsBlockButtonTranslations"][];
   page_blocks_background: components["schemas"]["ItemsPageBlocksBackground"][];
   gradient: components["schemas"]["ItemsGradient"][];
   block_logo: components["schemas"]["ItemsBlockLogo"][];
@@ -33868,9 +33322,9 @@ export type ApiCollections = {
   block_countdown_translations: components["schemas"]["ItemsBlockCountdownTranslations"][];
   block_countdown: components["schemas"]["ItemsBlockCountdown"][];
   film_crew_film_person_film_crew_role: components["schemas"]["ItemsFilmCrewFilmPersonFilmCrewRole"][];
-  vote: components["schemas"]["ItemsVote"][];
   block_patron_translations: components["schemas"]["ItemsBlockPatronTranslations"][];
   voting: components["schemas"]["ItemsVoting"][];
+  vote: components["schemas"]["ItemsVote"][];
   block_patron: components["schemas"]["ItemsBlockPatron"][];
   block_festival_footer_translations: components["schemas"]["ItemsBlockFestivalFooterTranslations"][];
   block_festival_footer: components["schemas"]["ItemsBlockFestivalFooter"][];

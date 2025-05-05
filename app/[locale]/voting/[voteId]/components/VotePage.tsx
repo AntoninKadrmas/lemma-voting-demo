@@ -40,8 +40,9 @@ type VotePageProps = {
 
 export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
   const client = useQueryClient();
-  const [votedFilms, setVotedFilms] = useState<Set<number>>(new Set());
+  const [votedFilms, setVotedFilms] = useState<Set<number> | null>(null);
   const [counter, setCounter] = useState(0);
+  let timeout: NodeJS.Timeout;
   const { data, isLoading, isError, isFetching } = useQuery<
     ApiCollections["vote"][number]
   >({
@@ -56,16 +57,10 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
           },
         }
       );
-      const data = await response.json();
+      const data: ApiCollections["vote"][number] = await response.json();
       try {
-        if (data && data.films) {
-          setVotedFilms(
-            new Set(
-              data.films.map(
-                (item: ApiCollections["vote_film"][number]) => item.film_id
-              )
-            )
-          );
+        if (data && !votedFilms) {
+          setVotedFilms(new Set(JSON.parse(data.films ?? "[]")));
         }
       } catch (e) {
         console.error(e);
@@ -107,6 +102,10 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
           }),
         }
       );
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error?.error || "Unknown server error");
+      }
       return await response.json();
     },
     onSuccess: () => {
@@ -122,28 +121,27 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
         exact: true,
       });
     },
-    onError: () => {
+    onError: (error) => {
       toast.error("Error", {
         className: "dark:text-white",
-        description:
-          lang == "en-US"
-            ? "There was an error submitting your vote."
-            : "Došlo k chybě při odesílání vašeho hlasu.",
+        description: error.toString()
+          ? error.toString()
+          : lang == "en-US"
+          ? "There was an error submitting your vote."
+          : "Došlo k chybě při odesílání vašeho hlasu.",
         action: {
           label: lang == "en-US" ? "Try again" : "Zkusit znovu",
           onClick: onSubmit,
         },
-      });
-      client.invalidateQueries({
-        queryKey: ["vrotedFilms", voteId],
-        exact: true,
       });
     },
   });
 
   const onSubmit = useCallback(
     debounce(() => {
-      mutate(votedFilms);
+      setCounter(0);
+      clearTimeout(timeout);
+      mutate(votedFilms ?? new Set());
     }, 200),
     [votedFilms]
   );
@@ -197,22 +195,22 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
     return () => clearTimeout(timeout);
   }, [voting, showRemainingTime]);
 
-  const userVotedId = new Set(
-    ((data?.films ?? []) as ApiCollections["vote_film"][number][]).map(
-      (item: ApiCollections["vote_film"][number]) => item.film_id as number
-    )
-  );
+  const userVotedId = new Set<number>(JSON.parse(data?.films ?? "[]"));
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
     if (votedFilms && !areSetsEqual(votedFilms, userVotedId)) {
-      setCounter(30);
-      timeout = setTimeout(() => {
-        mutate(votedFilms);
-      }, 33 * 1000);
+      autoSaveTimeout();
     }
     return () => clearTimeout(timeout);
   }, [votedFilms, mutate]);
+
+  const autoSaveTimeout = () => {
+    setCounter(30);
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      mutate(votedFilms ?? new Set());
+    }, 34 * 1000);
+  };
 
   if (voting && moment(voting.start_date).isAfter(moment())) {
     setTimeout(() => {
@@ -252,8 +250,8 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
   }
 
   const votingFilmsIds: Set<number> = new Set(
-    ((voting?.films ?? []) as ApiCollections["vote_film"][number][]).map(
-      (item: ApiCollections["vote_film"][number]) => item.film_id as number
+    ((voting?.films ?? []) as ApiCollections["voting_film"][number][]).map(
+      (item: ApiCollections["voting_film"][number]) => item.film_id as number
     )
   );
 
@@ -284,13 +282,15 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
                 block={JSON.parse(item)}
                 lang={lang}
                 filteredMovies={orderedByBlockMovies.get(item)}
-                votedFilms={votedFilms}
+                votedFilms={votedFilms ?? new Set()}
                 setVotedFilms={(id: number) => {
-                  if (!votedFilms.has(id)) {
-                    setVotedFilms((prev) => new Set(prev.add(id)));
+                  if (!(votedFilms ?? new Set()).has(id)) {
+                    setVotedFilms(
+                      (prev) => new Set((prev ?? new Set()).add(id))
+                    );
                   } else {
                     setVotedFilms((prev) => {
-                      prev.delete(id);
+                      (prev ?? new Set()).delete(id);
                       return new Set(prev);
                     });
                   }
@@ -305,9 +305,9 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
               isPending={isPending}
               onSubmit={onSubmit}
               maxAmount={votingFilmsIds?.size ?? 0}
-              actualAmount={votedFilms.size}
+              actualAmount={(votedFilms ?? new Set()).size}
               counter={counter}
-              changed={!areSetsEqual(votedFilms, userVotedId)}
+              changed={!areSetsEqual(votedFilms ?? new Set(), userVotedId)}
               voteMessage={voting?.submit_text ?? "SAVE/ULOŽIT"}
             />
           )}

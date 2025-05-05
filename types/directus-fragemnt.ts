@@ -46,5 +46,5 @@ export const votingFragment = {
 };
 
 export const voteFragment = {
-  vote: ["*", { voting_id: votingFragment.voting }, { films: ["*"] }],
+  vote: ["*", { voting_id: votingFragment.voting }],
 };

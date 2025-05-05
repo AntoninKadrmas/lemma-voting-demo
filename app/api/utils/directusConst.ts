@@ -22,7 +22,6 @@ export const directusNoCashing = createDirectus(
       onRequest: (options) => ({
         ...options,
         cache: "no-cache",
-        mode: "no-cors",
       }),
     })
   )
