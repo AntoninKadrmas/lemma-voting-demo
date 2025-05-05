@@ -63,8 +63,6 @@ export default function DragCarousel({
     let dragDistanceX = startX - currentX;
     let dragDistanceY = startY - currentY;
     const time = moment().valueOf() - startTime;
-    console.log(dragDistanceY, "<", threshold * 0.75);
-    console.log(dragDistanceY, ">", -threshold * 0.75);
     if (
       dragDistanceX > threshold &&
       Math.abs(dragDistanceY) < threshold * 0.75 &&
