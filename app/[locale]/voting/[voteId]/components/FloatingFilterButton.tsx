@@ -131,7 +131,7 @@ export function FloatingFilterButton() {
       ref={containerRef}
       className={cn(
         "absolute transition-all duration-100 ease-in-out flex flex-col right-4 top-3 sm:right-8 sm:top-8 items-end z-20 ",
-        isFilterExpanded ? "w-screen md:w-[400px]" : "w-auto"
+        hasAnyFilter ? "w-screen md:w-[400px]" : "w-auto"
       )}
     >
       <Button
