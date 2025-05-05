@@ -41,8 +41,7 @@ type VotePageProps = {
 export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
   const client = useQueryClient();
   const [votedFilms, setVotedFilms] = useState<Set<number> | null>(null);
-  const [counter, setCounter] = useState(0);
-  let timeout: NodeJS.Timeout;
+  const [counter, setCounter] = useState(-1);
   const { data, isLoading, isError, isFetching } = useQuery<
     ApiCollections["vote"][number]
   >({
@@ -76,7 +75,7 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
           if (value > 0) {
             return value - 1;
           }
-          return 0;
+          return -1;
         });
       }, 1000);
       return () => {
@@ -87,7 +86,7 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (films: Set<number>) => {
-      setCounter(0);
+      setCounter(-1);
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL || ""}/vote/${voteId}`,
         {
@@ -134,13 +133,13 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
           onClick: onSubmit,
         },
       });
+      setCounter(30);
     },
   });
 
   const onSubmit = useCallback(
     debounce(() => {
-      setCounter(0);
-      clearTimeout(timeout);
+      setCounter(-1);
       mutate(votedFilms ?? new Set());
     }, 200),
     [votedFilms]
@@ -199,18 +198,15 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
 
   useEffect(() => {
     if (votedFilms && !areSetsEqual(votedFilms, userVotedId)) {
-      autoSaveTimeout();
+      setCounter(30);
     }
-    return () => clearTimeout(timeout);
   }, [votedFilms, mutate]);
 
-  const autoSaveTimeout = () => {
-    setCounter(30);
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
+  useEffect(() => {
+    if (counter == 0) {
       mutate(votedFilms ?? new Set());
-    }, 34 * 1000);
-  };
+    }
+  }, [counter]);
 
   if (voting && moment(voting.start_date).isAfter(moment())) {
     setTimeout(() => {
@@ -246,6 +242,7 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
         queryKey: ["votedFilms", voteId],
         exact: true,
       });
+      setCounter(-1);
     }, moment(voting.end_date).diff(moment()));
   }
 
