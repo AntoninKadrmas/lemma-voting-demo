@@ -125,13 +125,13 @@ export function FloatingFilterButton() {
   const checkValue = (data: FilterOption) => data.value.length > 0;
 
   const hasAnyFilter = Object.values(filteredSearch).some(checkValue);
-
+  const hasAnyFilterOpened = Object.values(filteredSearch).some(checkClosed);
   return (
     <div
       ref={containerRef}
       className={cn(
         "absolute transition-all duration-100 ease-in-out flex flex-col right-4 top-3 sm:right-8 sm:top-8 items-end z-20 ",
-        hasAnyFilter ? "w-screen md:w-[400px]" : "w-auto"
+        hasAnyFilterOpened ? "w-screen md:w-[400px]" : "w-auto"
       )}
     >
       <Button
