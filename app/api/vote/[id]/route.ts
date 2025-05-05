@@ -56,11 +56,8 @@ export async function POST(req: NextRequest) {
   }
 
   for (const id of userFilmIds) {
-    if (validFilmIds.has(id)) {
-      return NextResponse.json(
-        { error: `Invalid film ID: ${id}` },
-        { status: 500 }
-      );
+    if (!validFilmIds.has(id)) {
+      return NextResponse.json({ error: `Invalid film ID` }, { status: 500 });
     }
   }
 
