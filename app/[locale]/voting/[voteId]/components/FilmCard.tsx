@@ -63,19 +63,24 @@ export default function DragCarousel({
     let dragDistanceX = startX - currentX;
     let dragDistanceY = startY - currentY;
     const time = moment().valueOf() - startTime;
-    if (time > 0) {
-      dragDistanceX *= time / 100;
-      dragDistanceY *= time / 100;
-    }
-    if (dragDistanceX > threshold && activeIndex < items.length - 1) {
+
+    if (
+      dragDistanceX > threshold &&
+      dragDistanceY < threshold &&
+      activeIndex < items.length - 1
+    ) {
       // Dragged left (next card)
       setActiveIndex(activeIndex + 1);
-    } else if (dragDistanceX < -threshold && activeIndex > 0) {
+    } else if (
+      dragDistanceX < -threshold &&
+      dragDistanceY > -threshold &&
+      activeIndex > 0
+    ) {
       // Dragged right (previous card)
       setActiveIndex(activeIndex - 1);
     } else if (
-      Math.abs(dragDistanceX) < limitToTapX &&
-      Math.abs(dragDistanceY) < limitToTapY
+      Math.abs((dragDistanceX * time) / 100) < limitToTapX &&
+      Math.abs((dragDistanceY * time) / 100) < limitToTapY
     )
       onSelected(!state);
 
