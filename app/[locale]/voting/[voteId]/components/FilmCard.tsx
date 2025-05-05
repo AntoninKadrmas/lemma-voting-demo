@@ -60,8 +60,8 @@ export default function DragCarousel({
   // Handle drag end
   const handleDragEnd = () => {
     if (!isDragging) return;
-    let dragDistanceX = startX - currentX;
-    let dragDistanceY = startY - currentY;
+    const dragDistanceX = startX - currentX;
+    const dragDistanceY = startY - currentY;
     const time = moment().valueOf() - startTime;
     if (
       dragDistanceX > threshold &&
