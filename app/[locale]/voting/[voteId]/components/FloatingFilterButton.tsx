@@ -110,7 +110,12 @@ export function FloatingFilterButton() {
       const target =
         "touches" in e ? (e.touches[0].target as Node) : (e.target as Node);
       const clickedInsideFilter = containerRef.current?.contains(target);
-      if (!clickedInsideFilter) onClose();
+      if (!clickedInsideFilter) {
+        onClose();
+        if (document.activeElement instanceof HTMLElement) {
+          document.activeElement.blur();
+        }
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
