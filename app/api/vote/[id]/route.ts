@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readItem, readItems, triggerFlow, updateItem } from "@directus/sdk";
-import { directusCashing, directusNoCashing } from "../../utils/directusConst";
-import { filmFragment, voteFragment } from "@/types/directus-fragemnt";
+import { readItem, updateItem } from "@directus/sdk";
+import { directusNoCashing } from "../../utils/directusConst";
+import { voteFragment } from "@/types/directus-fragemnt";
 import moment from "moment";
 
 export async function GET(req: NextRequest) {
@@ -71,7 +71,7 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     );
   }
-  
+
   let response;
   try {
     response = await directusNoCashing.request(
