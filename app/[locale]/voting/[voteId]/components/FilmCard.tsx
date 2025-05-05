@@ -65,14 +65,14 @@ export default function DragCarousel({
     const time = moment().valueOf() - startTime;
     if (
       dragDistanceX > threshold &&
-      Math.abs(dragDistanceY) < threshold * 0.75 &&
+      Math.abs(dragDistanceY) < threshold * 0.85 &&
       activeIndex < items.length - 1
     ) {
       // Dragged left (next card)
       setActiveIndex(activeIndex + 1);
     } else if (
       dragDistanceX < -threshold &&
-      Math.abs(dragDistanceY) < threshold * 0.75 &&
+      Math.abs(dragDistanceY) < threshold * 0.85 &&
       activeIndex > 0
     ) {
       // Dragged right (previous card)
