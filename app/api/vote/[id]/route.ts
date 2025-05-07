@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
   }
 
   // --- CACHE LAYER ---
-  let voting: any;
+  let voting: VoteData;
   const now = Date.now();
   const cached = voteCache.get(voteId);
 
@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
     voting = cached.data;
   } else {
     try {
-      voting = await directusNoCashing.request(
+      voting = await directusNoCashing.request<VoteData>(
         readItem("vote", voteId, {
           fields: ["voting_id.end_date", "voting_id.films.film_id"],
         })

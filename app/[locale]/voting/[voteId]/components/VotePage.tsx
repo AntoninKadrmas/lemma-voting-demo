@@ -5,6 +5,7 @@ import {
   ReactNode,
   useCallback,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -141,11 +142,12 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
   });
 
   const onSubmit = useCallback(
-    debounce(() => {
-      setCounter(-1);
-      mutate(votedFilms ?? new Set());
-    }, 200),
-    [votedFilms]
+    () =>
+      debounce(() => {
+        setCounter(-1);
+        mutate(votedFilms ?? new Set());
+      }, 200),
+    [votedFilms, mutate]
   );
 
   let voting = data?.voting_id as ApiCollections["voting"][number] &
@@ -197,19 +199,25 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
     return () => clearTimeout(timeout);
   }, [voting, showRemainingTime]);
 
-  const userVotedId = new Set<number>(JSON.parse(data?.films ?? "[]"));
+  const userVotedId = useMemo(() => {
+    try {
+      return new Set<number>(JSON.parse(data?.films ?? "[]"));
+    } catch {
+      return new Set<number>();
+    }
+  }, [data?.films]);
 
   useEffect(() => {
     if (votedFilms && !areSetsEqual(votedFilms, userVotedId)) {
       setCounter(30);
     }
-  }, [votedFilms, mutate]);
+  }, [votedFilms, userVotedId]);
 
   useEffect(() => {
     if (counter == 0) {
       mutate(votedFilms ?? new Set());
     }
-  }, [counter]);
+  }, [counter, mutate, votedFilms]);
 
   if (voting && moment(voting.start_date).isAfter(moment())) {
     setTimeout(() => {
