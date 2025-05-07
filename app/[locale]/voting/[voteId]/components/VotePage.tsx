@@ -56,6 +56,10 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
           },
         }
       );
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error?.error || "Unknown server error");
+      }
       const data: ApiCollections["vote"][number] = await response.json();
       try {
         if (data && !votedFilms) {
@@ -95,8 +99,7 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            voteId: voteId,
-            films: JSON.stringify(Array.from(films)),
+            films: Array.from(films),
             timestamp: new Date().toISOString(),
           }),
         }
