@@ -3,6 +3,7 @@ import { Separator } from "@/components/ui/separator";
 import env from "@/env";
 import { AvailableLocales } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { ApiCollections } from "@/types/api-collection";
 import { useQuery } from "@tanstack/react-query";
 import { FC, HTMLAttributes } from "react";
 import { LuLoader } from "react-icons/lu";
@@ -10,14 +11,17 @@ import { LuLoader } from "react-icons/lu";
 type ResultsPageProps = {
   className?: string;
   lang: AvailableLocales;
+  films: ApiCollections["film"][number][];
 } & HTMLAttributes<HTMLOrSVGElement>;
+
+type FetchedFilmData = { films: string };
 
 export const ResultsPage: FC<ResultsPageProps> = ({
   className,
   lang,
   ...props
 }) => {
-  const { data, isLoading, isError, isFetching } = useQuery<any>({
+  const { data, isLoading } = useQuery<FetchedFilmData[]>({
     queryKey: ["votedFilms"],
     queryFn: async () => {
       const response = await fetch(`${env.NEXT_PUBLIC_API_URL || ""}/vote`, {
@@ -30,13 +34,13 @@ export const ResultsPage: FC<ResultsPageProps> = ({
         const error = await response.json();
         throw new Error(error?.error || "Unknown server error");
       }
-      const data: any = await response.json();
+      const data: FetchedFilmData[] = await response.json();
       return data;
     },
   });
 
   const scoreBoard: Map<number, number> = new Map();
-  (data ?? []).forEach((element: any) => {
+  (data ?? []).forEach((element: FetchedFilmData) => {
     JSON.parse(element.films ?? "[]").forEach((filmId: number) => {
       scoreBoard.set(filmId, (scoreBoard.get(filmId) ?? 0) + 1);
     });
@@ -57,7 +61,7 @@ export const ResultsPage: FC<ResultsPageProps> = ({
         {lang == "en-US" ? "Score board" : "Skórovací tabule"}
       </h1>
       {data &&
-        Array.from(scoreBoardSorted.entries()).map(([key, value], index) => {
+        Array.from(scoreBoardSorted.entries()).map(([key, value]) => {
           const shouldBeSeparated =
             lastValueCount != null && lastValueCount != value;
           lastValueCount = value;

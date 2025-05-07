@@ -25,7 +25,7 @@ const AdminPage: FC<Props> = async ({ ...props }) => {
 
   if (res.status != 200) return "Error during film fetching";
   const films: ApiCollections["film"][number][] = await res.json();
-  return <ResultsPage lang={lang} />;
+  return <ResultsPage films={films} lang={lang} />;
 };
 
 export default AdminPage;
