@@ -4,8 +4,20 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const response = NextResponse.next();
 
-  // Skip API routes
-  if (pathname.startsWith("/api")) return response;
+  // Skip API and Next.js internal routes
+  if (
+    pathname.startsWith("/api") ||
+    pathname.startsWith("/_next") ||
+    pathname === "/favicon.ico"
+  ) {
+    return response;
+  }
+
+  // Allow explicitly valid paths
+  const validStaticPaths = ["/en/login", "/en/admin", "/cz/login", "/cz/admin"];
+  if (validStaticPaths.includes(pathname)) {
+    return response;
+  }
 
   // Detect locale from pathname
   let locale: string;
@@ -14,7 +26,7 @@ export function middleware(request: NextRequest) {
   } else if (pathname.startsWith("/cz")) {
     locale = "cz-CZ";
   } else {
-    // Fallback to cookie or default to cz-CZ
+    // Fallback to cookie or default
     locale = request.cookies.get("locale")?.value ?? "cz-CZ";
     return NextResponse.redirect(
       new URL(`/${locale.split("-")[0]}/voting`, request.url)
@@ -29,7 +41,6 @@ export function middleware(request: NextRequest) {
     pathname
   );
 
-  // Redirect all invalid paths (including /, /en, /cz, or anything else)
   if (!isValidVotingPath) {
     return NextResponse.redirect(new URL(`/${lang}/voting`, request.url));
   }
