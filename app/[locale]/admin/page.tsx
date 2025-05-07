@@ -5,12 +5,15 @@ import { FC } from "react";
 import env from "@/env";
 import { ResultsPage } from "./components/ResultsPage";
 import { ApiCollections } from "@/types/api-collection";
+import { AVAIL_LOCALES, AvailableLocales } from "@/lib/constants";
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
 const AdminPage: FC<Props> = async ({ ...props }) => {
   const { locale } = await props.params;
+  const lang = (AVAIL_LOCALES.find((x) => x.startsWith(locale ?? "")) ??
+    "cz-CZ") as AvailableLocales;
   const session = await getServerSession(authOptions);
   if (!session || session.user.role !== "admin") {
     redirect(`/${locale}/login`);
@@ -22,14 +25,7 @@ const AdminPage: FC<Props> = async ({ ...props }) => {
 
   if (res.status != 200) return "Error during film fetching";
   const films: ApiCollections["film"][number][] = await res.json();
-
-  return (
-    <div>
-      <h1>Admin Dashboard</h1>
-      <p>Welcome, {session.user.name}</p>
-      <ResultsPage />
-    </div>
-  );
+  return <ResultsPage lang={lang} />;
 };
 
 export default AdminPage;

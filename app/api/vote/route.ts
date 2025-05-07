@@ -5,7 +5,6 @@ import { readItems } from "@directus/sdk";
 import { directusNoCashing } from "../utils/directusConst";
 
 export async function GET() {
-  console.log("Ahoj");
   const session = await getServerSession(authOptions);
 
   if (!session || session.user.role !== "admin") {
@@ -16,6 +15,7 @@ export async function GET() {
     const data = await directusNoCashing.request(
       readItems("vote", {
         fields: ["films"],
+        limit: 10000,
       })
     );
     console.log("here", data);
