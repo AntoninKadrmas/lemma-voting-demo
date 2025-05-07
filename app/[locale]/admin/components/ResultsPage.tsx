@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import env from "@/env";
 import { AvailableLocales } from "@/lib/constants";
