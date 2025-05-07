@@ -5,7 +5,7 @@ import { AvailableLocales } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { ApiCollections } from "@/types/api-collection";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { FC, HTMLAttributes, useEffect, useState } from "react";
+import { FC, HTMLAttributes, useCallback, useEffect, useState } from "react";
 import { LuLoader } from "react-icons/lu";
 import { SaveButton } from "../../voting/[voteId]/components/SaveButton";
 
@@ -60,15 +60,15 @@ export const ResultsPage: FC<ResultsPageProps> = ({
     }
   }, [counter]);
 
-  const onSubmit = () => {
+  const onSubmit = useCallback(() => {
     setCounter(-1);
     client.invalidateQueries({ queryKey: ["votedFilms"] });
-  };
+  }, [client]);
   useEffect(() => {
     if (counter == 0) {
       onSubmit();
     }
-  }, [onSubmit]);
+  }, [onSubmit, counter]);
 
   const scoreBoard: Map<number, number> = new Map();
   (data ?? []).forEach((element: FetchedFilmData) => {
