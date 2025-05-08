@@ -185,8 +185,8 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
     if (
       voting &&
       (!localStorage.getItem("dismissed") ||
-        (moment().add(1, "minute").isAfter(moment(voting.end_date)) &&
-          moment().isBefore(moment(voting.end_date))))
+        moment().add(1, "minute").isAfter(moment(voting.end_date))) &&
+      moment().isBefore(moment(voting.end_date))
     ) {
       showRemainingTime();
     }
@@ -210,6 +210,8 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
   useEffect(() => {
     if (votedFilms && !areSetsEqual(votedFilms, userVotedId)) {
       setCounter(30);
+    } else {
+      setCounter(-1);
     }
   }, [votedFilms, userVotedId]);
 

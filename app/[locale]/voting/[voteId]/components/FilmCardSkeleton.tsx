@@ -6,9 +6,7 @@ type FilmCardSkeletonProps = {
 } & HTMLAttributes<HTMLOrSVGElement>;
 
 export const FilmCardSkeleton: FC<FilmCardSkeletonProps> = ({}) => {
-  return (
-    <Skeleton className="relative mx-auto h-[270px] w-[300px] max-w-lg" />
-  );
+  return <Skeleton className="relative mx-auto h-[270px] w-[300px] max-w-lg" />;
 };
 
 export const FilmCardSkeletonGroup: FC<FilmCardSkeletonProps> = ({}) => {
@@ -16,7 +14,7 @@ export const FilmCardSkeletonGroup: FC<FilmCardSkeletonProps> = ({}) => {
     <div className="flex flex-col w-full gap-20 p-10 items-center ">
       <Skeleton className="w-40 h-10" />
       <div className="flex flex-col sm:flex-row sm:flex-wrap gap-6 ">
-        {Array(6)
+        {Array(7)
           .fill(0)
           .map((_, index) => {
             return <FilmCardSkeleton key={index + "film_card_skeleton"} />;
