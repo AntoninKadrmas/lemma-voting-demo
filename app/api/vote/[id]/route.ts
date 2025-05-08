@@ -5,27 +5,27 @@ import { voteFragment } from "@/types/directus-fragemnt";
 import moment from "moment";
 
 export async function GET(req: NextRequest) {
-  try {
-    const id = req.nextUrl.pathname.split("/").pop()!;
-    const data = await directusNoCashing.request(
-      readItem("vote", id, {
-        fields: voteFragment.vote,
-      })
-    );
-    if (!data) {
+    try {
+      const id = req.nextUrl.pathname.split("/").pop()!;
+      const data = await directusNoCashing.request(
+        readItem("vote", id, {
+          fields: voteFragment.vote,
+        })
+      );
+      if (!data) {
+        return NextResponse.json(
+          { error: "Internal server error" },
+          { status: 500 }
+        );
+      }
+      return NextResponse.json(data);
+    } catch (error) {
+      console.error("POST /api/vote/[id] error:", error);
       return NextResponse.json(
         { error: "Internal server error" },
         { status: 500 }
       );
     }
-    return NextResponse.json(data);
-  } catch (error) {
-    console.error("POST /api/vote/[id] error:", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
-  }
 }
 
 type VoteData = {

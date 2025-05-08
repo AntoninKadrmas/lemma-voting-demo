@@ -11,6 +11,8 @@ export const env = createEnv({
     DIRECTUS_SECRET_TOKEN: z.string(),
     DIRECTUS_USERNAME: z.string().optional(),
     DIRECTUS_PASSWORD: z.string().optional(),
+    NEXTAUTH_USERNAME: z.string().optional(),
+    NEXRAUTH_PASSWORD: z.string().optional(),
   },
 
   /**
@@ -35,6 +37,8 @@ export const env = createEnv({
     DIRECTUS_PASSWORD: process.env.DIRECTUS_PASSWORD,
     DIRECTUS_USERNAME: process.env.DIRECTUS_USERNAME,
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    NEXTAUTH_USERNAME: process.env.NEXTAUTH_USERNAME,
+    NEXRAUTH_PASSWORD: process.env.NEXRAUTH_PASSWORD,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
