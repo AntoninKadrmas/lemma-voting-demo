@@ -15,7 +15,7 @@ import { FloatingFilterButton } from "./FloatingFilterButton";
 import { SaveButton, SaveButtonFallback } from "./SaveButton";
 import { ApiCollections } from "@/types/api-collection";
 import env from "@/env";
-import { areSetsEqual, cn, parseTranslations } from "@/lib/utils";
+import { areSetsEqual, parseTranslations } from "@/lib/utils";
 import { AvailableLocales } from "@/lib/constants";
 import { BlockPage } from "./BlockPage";
 import { FilmCardSkeletonGroup } from "./FilmCardSkeleton";
@@ -28,7 +28,6 @@ import { TimeToggle } from "@/components/ui/time-toggle";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
