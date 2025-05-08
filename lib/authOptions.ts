@@ -1,3 +1,4 @@
+import env from "@/env";
 import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -10,10 +11,12 @@ export const authOptions: AuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        console.log(credentials);
         const { username, password } = credentials || {};
-        if (username === "admin" && password === "admin") {
-          return { id: 1, name: "Admin User", role: "admin" };
+        if (
+          username === env.NEXTAUTH_USERNAME &&
+          password === env.NEXRAUTH_PASSWORD
+        ) {
+          return { id: 69, name: "Admin User", role: "admin" };
         }
         return null;
       },

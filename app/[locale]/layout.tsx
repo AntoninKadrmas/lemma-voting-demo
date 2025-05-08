@@ -34,9 +34,9 @@ const RootLayout: FC<Props> = async ({ params, children }) => {
   const lang = (AVAIL_LOCALES.find((x) => x.startsWith(locale ?? "")) ??
     "cz-CZ") as AvailableLocales;
   return (
-    <html lang="en" className="dark min-h-screen" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background font-sans dark:text-white min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background font-sans dark:text-white relative`}
       >
         <ThemeProvider
           attribute="class"

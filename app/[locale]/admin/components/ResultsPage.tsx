@@ -2,12 +2,14 @@
 import { Separator } from "@/components/ui/separator";
 import env from "@/env";
 import { AvailableLocales } from "@/lib/constants";
-import { cn } from "@/lib/utils";
+import { cn, parseTranslations } from "@/lib/utils";
 import { ApiCollections } from "@/types/api-collection";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { FC, HTMLAttributes, useCallback, useEffect, useState } from "react";
 import { LuLoader } from "react-icons/lu";
 import { SaveButton } from "../../voting/[voteId]/components/SaveButton";
+import { FilmShortContent } from "./FilmShortContent";
+import { useRouter } from "next/navigation";
 
 type ResultsPageProps = {
   className?: string;
@@ -20,12 +22,15 @@ type FetchedFilmData = { films: string };
 export const ResultsPage: FC<ResultsPageProps> = ({
   className,
   lang,
+  films,
   ...props
 }) => {
   const COUNTER_UNTIL_REFETCH = 30;
   const client = useQueryClient();
   const [counter, setCounter] = useState(-1);
-  const { data, isLoading, isFetching } = useQuery<FetchedFilmData[]>({
+  const router = useRouter();
+
+  const { data, isLoading, isFetching, error } = useQuery<FetchedFilmData[]>({
     queryKey: ["votedFilms"],
     queryFn: async () => {
       const response = await fetch(`${env.NEXT_PUBLIC_API_URL || ""}/vote`, {
@@ -35,6 +40,7 @@ export const ResultsPage: FC<ResultsPageProps> = ({
         },
       });
       if (!response.ok) {
+        if (response.status == 401) router.push(`/${lang.split("-")[0]}/login`);
         const error = await response.json();
         throw new Error(error?.error || "Unknown server error");
       }
@@ -82,12 +88,16 @@ export const ResultsPage: FC<ResultsPageProps> = ({
   );
 
   let lastValueCount: null | number = null;
-
+  let place = 1;
   return (
     <>
       <div
         {...props}
-        className={cn(className, "flex flex-col gap-5 p-4 items-center")}
+        className={cn(
+          className,
+          "flex flex-col w-full p-10 items-center h-screen overflow-y-auto",
+          "gap-5   p-4 items-center  m-auto py-16"
+        )}
       >
         <h1 className="p-2">
           {lang == "en-US" ? "Score board" : "Skórovací tabule"}
@@ -97,17 +107,27 @@ export const ResultsPage: FC<ResultsPageProps> = ({
             const shouldBeSeparated =
               lastValueCount != null && lastValueCount != value;
             lastValueCount = value;
+            const film: ApiCollections["film"][number] = parseTranslations<
+              ApiCollections["film"][number]
+            >(films.find((x) => x.id == key)!, lang);
+            if (shouldBeSeparated) place++;
             return (
               <>
-                {shouldBeSeparated && <Separator />}
-                <p key={key}>
-                  {key} - {value}
-                </p>
+                {shouldBeSeparated && <Separator className="h-2!" />}
+                <p className="text-2xl font-bold w-full">{place}.</p>
+                <FilmShortContent film={film} lang={lang} amount={value} />
               </>
             );
           })}
         {!data && isLoading && (
           <LuLoader className="animate-spin !w-16 !h-16" />
+        )}
+        {error && (
+          <p className="w-auto m-auto">
+            {lang == "en-US"
+              ? "Error while loading the data."
+              : "Chyba při načítání dat."}
+          </p>
         )}
       </div>
       {data && (

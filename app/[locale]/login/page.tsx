@@ -54,15 +54,18 @@ const LoginPage: FC = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className=" m-auto max-w-xl flex flex-col gap-5 h-screen justify-center p-4 space-y-8"
       >
+        <p className="text-5xl font-bold">
+          {lang == "en-US" ? "Login" : "Přihlášení"}
+        </p>
         <FormField
           control={form.control}
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>{lang == "en-US" ? "Username" : "Jmeno"}</FormLabel>
               <FormControl>
                 <Input
-                  placeholder={lang == "en-US" ? "username" : "jmeno"}
+                  placeholder={lang == "en-US" ? "JohnDoe" : "JanNovak"}
                   {...field}
                 />
               </FormControl>
@@ -80,13 +83,9 @@ const LoginPage: FC = () => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>{lang == "en-US" ? "Password" : "Heslo"}</FormLabel>
               <FormControl>
-                <Input
-                  type="password"
-                  placeholder={lang == "en-US" ? "password" : "heslo"}
-                  {...field}
-                />
+                <Input type="password" {...field} />
               </FormControl>
               <FormDescription>
                 {lang == "en-US"

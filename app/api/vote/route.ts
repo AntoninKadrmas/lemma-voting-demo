@@ -18,7 +18,6 @@ export async function GET() {
         limit: 10000,
       })
     );
-    console.log("here", data);
     if (!data) {
       return NextResponse.json(
         { error: "Internal server error" },
