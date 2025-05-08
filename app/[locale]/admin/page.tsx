@@ -1,11 +1,11 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import { FC } from "react";
 import env from "@/env";
 import { ResultsPage } from "./components/ResultsPage";
 import { ApiCollections } from "@/types/api-collection";
 import { AVAIL_LOCALES, AvailableLocales } from "@/lib/constants";
+import { authOptions } from "@/lib/authOptions";
 
 type Props = {
   params: Promise<{ locale: string }>;
