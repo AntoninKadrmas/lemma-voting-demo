@@ -15,7 +15,7 @@ import { FloatingFilterButton } from "./FloatingFilterButton";
 import { SaveButton, SaveButtonFallback } from "./SaveButton";
 import { ApiCollections } from "@/types/api-collection";
 import env from "@/env";
-import { areSetsEqual, parseTranslations } from "@/lib/utils";
+import { areSetsEqual, cn, parseTranslations } from "@/lib/utils";
 import { AvailableLocales } from "@/lib/constants";
 import { BlockPage } from "./BlockPage";
 import { FilmCardSkeletonGroup } from "./FilmCardSkeleton";
@@ -25,7 +25,16 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { LastVoteIdButton } from "../../components/LastVoteIdButton";
 import { TimeToggle } from "@/components/ui/time-toggle";
-import { LuClock } from "react-icons/lu";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { InfoToggle } from "@/components/ui/info-toggle";
+import { FilmShortContent } from "@/app/[locale]/admin/components/FilmShortContent";
 export type Movies = {
   nodes: ReactNode[];
   id: number;
@@ -36,10 +45,16 @@ type VotePageProps = {
   className?: string;
   voteId?: string;
   movies?: Movies[];
+  films: ApiCollections["film"][number][];
   lang: AvailableLocales;
 } & HTMLAttributes<HTMLOrSVGElement>;
 
-export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
+export const VotePage: FC<VotePageProps> = ({
+  movies,
+  voteId,
+  lang,
+  films,
+}) => {
   const client = useQueryClient();
   const [votedFilms, setVotedFilms] = useState<Set<number> | null>(null);
   const [counter, setCounter] = useState(-1);
@@ -142,11 +157,10 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
   });
 
   const onSubmit = useCallback(
-    () =>
-      debounce(() => {
-        setCounter(-1);
-        mutate(votedFilms ?? new Set());
-      }, 200),
+    debounce(() => {
+      setCounter(-1);
+      mutate(votedFilms ?? new Set());
+    }, 200),
     [votedFilms, mutate]
   );
 
@@ -241,10 +255,21 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
   if (voting && moment(voting.end_date).isBefore(moment())) {
     toast.dismiss();
     return (
-      <div className="flex flex-col items-center justify-center h-screen w-full text-center">
+      <div className="flex flex-col w-full gap-5 p-10 py-16 items-center h-screen overflow-y-auto ">
         <h4 className={"pb-6 text-xl font-bold sm:text-3xl"}>
           {voting.after_end_text}
         </h4>
+        <p>{lang == "en-US" ? "Selected films:" : "Zvolené filmy:"}</p>
+        {JSON.parse(data?.films ?? "[]").map((filmId: number) => {
+          return (
+            <FilmShortContent
+              key={filmId}
+              lang={lang}
+              className=""
+              film={films.find((x) => x.id == filmId)!}
+            />
+          );
+        })}
       </div>
     );
   }
@@ -277,14 +302,13 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
       orderedByBlockMovies.delete(JSON.stringify(element.block));
     }
   });
-
   return (
     <>
       {!isError && !data && <FilmCardSkeletonGroup />}
       {!isError && !data && <FilmCardSkeletonGroup />}
       {!isError && !voting && <SaveButtonFallback />}
       {!isError && (
-        <div className="flex flex-col w-full gap-20 p-10 items-center h-screen overflow-y-auto ">
+        <div className="flex flex-col w-full gap-20 p-10 py-16 items-center h-screen overflow-y-auto ">
           {Array.from(orderedByBlockMovies.keys()).map((item) => {
             return (
               <BlockPage
@@ -325,12 +349,56 @@ export const VotePage: FC<VotePageProps> = ({ movies, voteId, lang }) => {
           {voting && (
             <TimeToggle
               endTime={voting?.end_date ?? ""}
-              className={"left-[7rem] top-3 sm:left-[8rem] sm:top-8"}
-              icon={<LuClock />}
               onClick={() => {
                 showRemainingTime();
               }}
             />
+          )}
+          {films && voting && (
+            <Dialog>
+              <DialogTrigger asChild>
+                <InfoToggle onClick={() => {}} />
+              </DialogTrigger>
+              <DialogContent className="w-screen max-w-screen max-h-screen sm:w-[calc(100%-5rem)] sm:max-w-[800px]! h-screen sm:max-h-[80%] sm:h-fit overflow-y-auto flex flex-col overflow-x-hidden gap-3 p-2 sm:p-4">
+                <DialogHeader>
+                  <DialogTitle>
+                    {lang == "en-US" ? "Vote info" : "Informace o hlasu"}
+                  </DialogTitle>
+                </DialogHeader>
+                <p>
+                  {lang == "en-US"
+                    ? "Last time voted:"
+                    : "Naposledy zahlasováno:"}
+                  {data?.timestamp
+                    ? moment(data?.timestamp).format(" DD. MM. YYYY, h:mm:ss ")
+                    : lang == "en-US"
+                    ? "Not voted yet."
+                    : "Ještě nehlasováno."}
+                </p>
+                <p>
+                  {lang == "en-US"
+                    ? "Voted for films:"
+                    : "Hlasováno pro filmy:"}
+                </p>
+                {JSON.parse(data?.films ?? "[]").map((filmId: number) => {
+                  return (
+                    <FilmShortContent
+                      key={filmId}
+                      lang={lang}
+                      className=""
+                      film={films.find((x) => x.id == filmId)!}
+                    />
+                  );
+                })}
+                {JSON.parse(data?.films ?? "[]").length == 0 && (
+                  <p className="text-sm">
+                    {lang == "en-US"
+                      ? "No films selected."
+                      : "Není vybraný žádný film."}
+                  </p>
+                )}
+              </DialogContent>
+            </Dialog>
           )}
         </div>
       )}

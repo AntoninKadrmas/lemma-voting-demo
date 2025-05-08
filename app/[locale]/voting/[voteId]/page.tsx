@@ -35,6 +35,7 @@ const Page: FC<Props> = async ({ params }) => {
         >
           <VotePage
             voteId={voteId as string}
+            films={films}
             movies={
               films
                 ? (films.map((item) => getFimComponent(item, lang)) as Movies[])

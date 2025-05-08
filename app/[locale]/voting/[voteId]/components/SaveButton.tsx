@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { CSSProperties, FC, HTMLAttributes } from "react";
-import { LuLoader } from "react-icons/lu";
+import { LuLoader, LuSave } from "react-icons/lu";
 
 type SaveButtonProps = {
   className?: string;
@@ -56,7 +56,7 @@ export const SaveButton: FC<SaveButtonProps> = ({
           {isPending && <LuLoader className="animate-spin !w-5 !h-5" />}
           {voteMessage}
         </div>
-        {actualAmount && maxAmount && (
+        {actualAmount != undefined && maxAmount != undefined && (
           <div
             className={cn(
               "absolute -top-3 -right-2 px-2 py-1 h-[27.5px] flex justify-center items-baseline rounded-2xl  font-bold",
@@ -68,20 +68,19 @@ export const SaveButton: FC<SaveButtonProps> = ({
             <span className="font-light text-[12px]">/{maxAmount}</span>
           </div>
         )}
-        {changed && counter && counter >= 0 ? (
+        {changed && counter != undefined && counter >= 0 ? (
           <div
             className={cn(
               "absolute -top-3 -left-2 px-2 py-1 h-[27.5px] flex justify-center items-center rounded-2xl font-bold",
               "bg-black text-white dark:bg-white dark:text-black"
             )}
           >
-            <span className="countdown font-bold">
+            <span className="countdown font-bold flex items-center gap-1">
+              <LuSave />
               <span style={{ "--value": counter } as CSSProperties}></span>
             </span>
           </div>
-        ) : (
-          <></>
-        )}
+        ) : null}
       </Button>
     </div>
   );

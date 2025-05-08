@@ -26,11 +26,23 @@ export const FilmShortContent: FC<FilmShortContentProps> = ({
       {...props}
       className={cn(
         className,
-        "flex w-full justify-between items-center border"
+        "flex w-full justify-between border items-center"
       )}
     >
-      <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto flex-grow min-w-0">
-        <div className="h-[100px] w-[200px] sm:h-[100px] shrink-0">
+      <div
+        className={cn(
+          "flex gap-2 w-full flex-grow min-w-0",
+          { "flex-row": amount == undefined },
+          { "flex-col sm:flex-row": amount != undefined }
+        )}
+      >
+        <div
+          className={cn(
+            "sm:h-[100px] sm:w-[200px] shrink-0",
+            { "h-[55px] w-[100px]": amount == undefined },
+            { "h-[100px] w-[200px]": amount != undefined }
+          )}
+        >
           <Image
             src={`${env.NEXT_PUBLIC_DIRECTUS_URL}assets/${
               film.title_image
@@ -48,10 +60,22 @@ export const FilmShortContent: FC<FilmShortContentProps> = ({
         </div>
 
         {/* Text */}
-        <div className="flex flex-col flex-grow min-w-0">
-          <h2 className="truncate text-ellipsis text-xl whitespace-nowrap">
+        <div
+          className={cn(
+            "flex flex-col flex-grow min-w-0 overflow-hidden",
+            { "justify-center sm:justify-start": amount == undefined },
+            { "justify-start": amount != undefined }
+          )}
+        >
+          <p
+            className={cn(
+              "truncate text-ellipsis sm:text-xl uppercase font-bold whitespace-nowrap overflow-hidden",
+              { "text-md": amount == undefined },
+              { "text-xl": amount != undefined }
+            )}
+          >
             {film.name}
-          </h2>
+          </p>
           <div className="text-sm font-light flex gap-1 flex-wrap">
             {film.genres &&
               (film.genres as ApiCollections["film_film_genre"][number][]).map(

@@ -3,31 +3,25 @@
 import { SimpleProgressivePulse } from "@/app/[locale]/voting/[voteId]/components/SimlpeProgrsivePulse";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
-import { LuInfo } from "react-icons/lu";
+import { LuClock } from "react-icons/lu";
 
 export function TimeToggle({
   onClick,
   className,
   endTime,
-  icon,
 }: {
   onClick?: () => void;
   className?: string;
   endTime: string;
-  icon: ReactNode;
 }) {
   return (
     <div
       className={cn(
         className,
-        "absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between items-end z-20"
+        "left-[7rem] top-3 sm:left-[8rem] sm:top-8 absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between items-end z-20"
       )}
     >
-      <SimpleProgressivePulse
-        className="bg-black dark:bg-white"
-        endDate={endTime}
-      >
+      <SimpleProgressivePulse className="bg-primary" endDate={endTime}>
         <Button
           variant="secondary"
           size="icon"
@@ -37,7 +31,7 @@ export function TimeToggle({
             "bg-primary text-primary-foreground dark:text-shadow-white"
           )}
         >
-          {icon ?? <LuInfo className="w-5 h-5" />}
+          <LuClock className="w-5 h-5" />
         </Button>
       </SimpleProgressivePulse>
     </div>

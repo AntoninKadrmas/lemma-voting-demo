@@ -10,6 +10,7 @@ import { LuLoader } from "react-icons/lu";
 import { SaveButton } from "../../voting/[voteId]/components/SaveButton";
 import { FilmShortContent } from "./FilmShortContent";
 import { useRouter } from "next/navigation";
+import { debounce } from "lodash";
 
 type ResultsPageProps = {
   className?: string;
@@ -66,10 +67,14 @@ export const ResultsPage: FC<ResultsPageProps> = ({
     }
   }, [counter]);
 
-  const onSubmit = useCallback(() => {
-    setCounter(-1);
-    client.invalidateQueries({ queryKey: ["votedFilms"] });
-  }, [client]);
+  const onSubmit = useCallback(
+    debounce(() => {
+      setCounter(-1);
+      client.invalidateQueries({ queryKey: ["votedFilms"] });
+    }, 200),
+    [client]
+  );
+
   useEffect(() => {
     if (counter == 0) {
       onSubmit();
@@ -96,7 +101,7 @@ export const ResultsPage: FC<ResultsPageProps> = ({
         className={cn(
           className,
           "flex flex-col w-full p-10 items-center h-screen overflow-y-auto",
-          "gap-5   p-4 items-center  m-auto py-16"
+          "gap-5 p-2sm:p-4 items-center m-auto py-16"
         )}
       >
         <h1 className="p-2">
