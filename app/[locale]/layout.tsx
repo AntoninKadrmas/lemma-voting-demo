@@ -8,7 +8,8 @@ import { AVAIL_LOCALES, AvailableLocales } from "@/lib/constants";
 import { Toaster } from "sonner";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { LanguageToggle } from "@/components/ui/language-toggle";
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -38,6 +39,8 @@ const RootLayout: FC<Props> = async ({ params, children }) => {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background font-sans dark:text-white`}
       >
+        <SpeedInsights />
+        <Analytics />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
