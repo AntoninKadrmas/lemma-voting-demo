@@ -34,7 +34,8 @@ export const SaveButton: FC<SaveButtonProps> = ({
   return (
     <div
       className={cn(
-        "absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between right-4 bottom-[calc(env(safe-area-inset-bottom)+1rem)] sm:right-8 sm:bottom-8 items-end z-20",
+        "fixed w-auto transition-all duration-100 ease-in-out flex flex-row justify-between right-4 bottom-[calc(env(safe-area-inset-bottom)+1rem)] sm:bottom-8 items-end z-20",
+
         className
       )}
       {...props}
@@ -88,6 +89,6 @@ export const SaveButton: FC<SaveButtonProps> = ({
 
 export const SaveButtonFallback: FC = () => {
   return (
-    <Skeleton className="h-14 w-32 absolute right-4 bottom-3 sm:right-8 sm:bottom-8 z-20" />
+    <Skeleton className="h-14 w-32 fixed right-4 bottom-[calc(env(safe-area-inset-bottom)+1rem)] sm:bottom-8 items-end z-20" />
   );
 };
