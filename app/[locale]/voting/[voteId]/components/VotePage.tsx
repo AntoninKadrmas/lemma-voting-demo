@@ -393,7 +393,7 @@ export const VotePage: FC<VotePageProps> = ({
           <DialogTrigger asChild>
             <InfoToggle onClick={() => {}} />
           </DialogTrigger>
-          <DialogContent className="w-screen max-w-screen max-h-screen sm:w-[calc(100%-5rem)] sm:max-w-[800px]! h-screen sm:max-h-[80%] sm:h-fit overflow-y-auto flex flex-col overflow-x-hidden gap-3 p-2 sm:p-4">
+          <DialogContent className="max-w-[90%] sm:w-[calc(100%-5rem)] sm:max-w-[800px]! max-h-[80%] sm:h-fit overflow-y-auto flex flex-col overflow-x-hidden gap-3 p-4 sm:p-6">
             <DialogHeader>
               <DialogTitle>
                 {lang == "en-US" ? "Vote info" : "Informace o hlasu"}
