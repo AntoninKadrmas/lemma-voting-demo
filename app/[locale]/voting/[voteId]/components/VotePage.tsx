@@ -360,6 +360,76 @@ export const VotePage: FC<VotePageProps> = ({
           {!voting && <FloatingFilterButtonSkeleton />}
         </div>
       )}
+      {!!voting && (
+        <SaveButton
+          isFetching={isFetching}
+          isLoading={isLoading}
+          isPending={isPending}
+          onSubmit={onSubmit}
+          maxAmount={votingFilmsIds?.size ?? 0}
+          actualAmount={(votedFilms ?? new Set()).size}
+          counter={counter}
+          changed={!areSetsEqual(votedFilms ?? new Set(), userVotedId)}
+          voteMessage={voting?.submit_text ?? "SAVE/ULOŽIT"}
+        />
+      )}
+      {voting && (
+        <FloatingFilterButton
+          blocks={[...blocks].map((x) => JSON.parse(x))}
+          filteredSearch={filteredSearch}
+          setFilteredSearch={setFilteredSearch}
+        />
+      )}
+      {voting && (
+        <TimeToggle
+          endTime={voting?.end_date ?? ""}
+          onClick={() => {
+            showRemainingTime();
+          }}
+        />
+      )}
+      {films && voting && (
+        <Dialog>
+          <DialogTrigger asChild>
+            <InfoToggle onClick={() => {}} />
+          </DialogTrigger>
+          <DialogContent className="w-screen max-w-screen max-h-screen sm:w-[calc(100%-5rem)] sm:max-w-[800px]! h-screen sm:max-h-[80%] sm:h-fit overflow-y-auto flex flex-col overflow-x-hidden gap-3 p-2 sm:p-4">
+            <DialogHeader>
+              <DialogTitle>
+                {lang == "en-US" ? "Vote info" : "Informace o hlasu"}
+              </DialogTitle>
+            </DialogHeader>
+            <p>
+              {lang == "en-US" ? "Last time voted:" : "Naposledy zahlasováno:"}
+              {data?.timestamp
+                ? moment(data?.timestamp).format(" DD. MM. YYYY, h:mm:ss ")
+                : lang == "en-US"
+                ? "Not voted yet."
+                : "Ještě nehlasováno."}
+            </p>
+            <p>
+              {lang == "en-US" ? "Voted for films:" : "Hlasováno pro filmy:"}
+            </p>
+            {JSON.parse(data?.films ?? "[]").map((filmId: number) => {
+              return (
+                <FilmShortContent
+                  key={filmId}
+                  lang={lang}
+                  className=""
+                  film={films.find((x) => x.id == filmId)!}
+                />
+              );
+            })}
+            {JSON.parse(data?.films ?? "[]").length == 0 && (
+              <p className="text-sm">
+                {lang == "en-US"
+                  ? "No films selected."
+                  : "Není vybraný žádný film."}
+              </p>
+            )}
+          </DialogContent>
+        </Dialog>
+      )}
       {!isError && data && (
         <div className="flex flex-col w-full gap-20 p-10 py-16 items-center h-screen overflow-y-auto ">
           {Array.from(orderedByBlockFilms.keys()).map((item: string) => {
@@ -385,80 +455,6 @@ export const VotePage: FC<VotePageProps> = ({
               />
             );
           })}
-          {!!voting && (
-            <SaveButton
-              isFetching={isFetching}
-              isLoading={isLoading}
-              isPending={isPending}
-              onSubmit={onSubmit}
-              maxAmount={votingFilmsIds?.size ?? 0}
-              actualAmount={(votedFilms ?? new Set()).size}
-              counter={counter}
-              changed={!areSetsEqual(votedFilms ?? new Set(), userVotedId)}
-              voteMessage={voting?.submit_text ?? "SAVE/ULOŽIT"}
-            />
-          )}
-          {voting && (
-            <FloatingFilterButton
-              blocks={[...blocks].map((x) => JSON.parse(x))}
-              filteredSearch={filteredSearch}
-              setFilteredSearch={setFilteredSearch}
-            />
-          )}
-          {voting && (
-            <TimeToggle
-              endTime={voting?.end_date ?? ""}
-              onClick={() => {
-                showRemainingTime();
-              }}
-            />
-          )}
-          {films && voting && (
-            <Dialog>
-              <DialogTrigger asChild>
-                <InfoToggle onClick={() => {}} />
-              </DialogTrigger>
-              <DialogContent className="w-screen max-w-screen max-h-screen sm:w-[calc(100%-5rem)] sm:max-w-[800px]! h-screen sm:max-h-[80%] sm:h-fit overflow-y-auto flex flex-col overflow-x-hidden gap-3 p-2 sm:p-4">
-                <DialogHeader>
-                  <DialogTitle>
-                    {lang == "en-US" ? "Vote info" : "Informace o hlasu"}
-                  </DialogTitle>
-                </DialogHeader>
-                <p>
-                  {lang == "en-US"
-                    ? "Last time voted:"
-                    : "Naposledy zahlasováno:"}
-                  {data?.timestamp
-                    ? moment(data?.timestamp).format(" DD. MM. YYYY, h:mm:ss ")
-                    : lang == "en-US"
-                    ? "Not voted yet."
-                    : "Ještě nehlasováno."}
-                </p>
-                <p>
-                  {lang == "en-US"
-                    ? "Voted for films:"
-                    : "Hlasováno pro filmy:"}
-                </p>
-                {JSON.parse(data?.films ?? "[]").map((filmId: number) => {
-                  return (
-                    <FilmShortContent
-                      key={filmId}
-                      lang={lang}
-                      className=""
-                      film={films.find((x) => x.id == filmId)!}
-                    />
-                  );
-                })}
-                {JSON.parse(data?.films ?? "[]").length == 0 && (
-                  <p className="text-sm">
-                    {lang == "en-US"
-                      ? "No films selected."
-                      : "Není vybraný žádný film."}
-                  </p>
-                )}
-              </DialogContent>
-            </Dialog>
-          )}
         </div>
       )}
       {isError && (
