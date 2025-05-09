@@ -2,7 +2,6 @@ import { FC, HTMLAttributes } from "react";
 import DragCarousel from "./FilmCard";
 import { Movies } from "./VotePage";
 import { ApiCollections } from "@/types/api-collection";
-import { parseTranslations } from "@/lib/utils";
 import { AvailableLocales } from "@/lib/constants";
 
 type BlockPageProps = {
@@ -18,7 +17,6 @@ export const BlockPage: FC<BlockPageProps> = ({
   filteredMovies,
   votedFilms,
   block,
-  lang,
   setVotedFilms,
 }) => {
   return (

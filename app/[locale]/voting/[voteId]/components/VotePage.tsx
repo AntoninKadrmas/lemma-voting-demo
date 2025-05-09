@@ -35,8 +35,6 @@ import {
 import { InfoToggle } from "@/components/ui/info-toggle";
 import { FilmShortContent } from "@/app/[locale]/admin/components/FilmShortContent";
 import fuzzy from "fuzzy";
-import { number } from "zod";
-import { getFimComponent } from "./FilmCardContent";
 import { translateDirectusProps } from "@/lib/directusTranslations";
 export type Movies = {
   nodes: ReactNode[];
@@ -339,28 +337,23 @@ export const VotePage: FC<VotePageProps> = ({
     if (votingFilmsIds.has(film.id!)) {
       blocks.add(blockString);
       if (
-        filteredSearch.name.value.length &&
-        !fuzzy.test(
-          filteredSearch.name.value[0],
-          (film?.name ?? "")?.toLocaleLowerCase()
-        )
-      )
-        null;
-      else if (
-        filteredSearch.block.value.length &&
-        !filteredSearch.block.value.find(
-          (x) =>
-            x ==
-            (
-              element.festival_block as ApiCollections["festival_block"][number]
-            ).id?.toString()
-        )
-      )
-        null;
-      else
-        orderedByBlockFilms
-          .get(blockString)!
-          .push(movies?.find((x) => x.id == film.id)!);
+        (!filteredSearch.name.value.length ||
+          fuzzy.test(
+            filteredSearch.name.value[0],
+            (film?.name ?? "")?.toLocaleLowerCase()
+          )) &&
+        (!filteredSearch.block.value.length ||
+          filteredSearch.block.value.find(
+            (x) =>
+              x ==
+              (
+                element.festival_block as ApiCollections["festival_block"][number]
+              ).id?.toString()
+          ))
+      ) {
+        const movie = movies?.find((x) => x.id == film.id);
+        if (movie) orderedByBlockFilms.get(blockString)!.push(movie);
+      }
     }
     if (orderedByBlockFilms.get(blockString)!.length == 0) {
       orderedByBlockFilms.delete(blockString);
