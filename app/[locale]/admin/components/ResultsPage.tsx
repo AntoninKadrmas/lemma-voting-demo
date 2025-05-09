@@ -71,7 +71,7 @@ export const ResultsPage: FC<ResultsPageProps> = ({
     debounce(() => {
       setCounter(-1);
       client.invalidateQueries({ queryKey: ["votedFilms"] });
-    }, 200),
+    }, 300),
     [client]
   );
 

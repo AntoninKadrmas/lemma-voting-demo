@@ -21,10 +21,6 @@ export const BlockPage: FC<BlockPageProps> = ({
   lang,
   setVotedFilms,
 }) => {
-  block = parseTranslations<
-    ApiCollections["festival_block"][number] &
-      ApiCollections["festival_block_translations"][number]
-  >(block, lang);
   return (
     <>
       <h2>{block.name}</h2>

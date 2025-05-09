@@ -34,11 +34,25 @@ import {
 } from "@/components/ui/dialog";
 import { InfoToggle } from "@/components/ui/info-toggle";
 import { FilmShortContent } from "@/app/[locale]/admin/components/FilmShortContent";
+import fuzzy from "fuzzy";
+import { number } from "zod";
+import { getFimComponent } from "./FilmCardContent";
+import { translateDirectusProps } from "@/lib/directusTranslations";
 export type Movies = {
   nodes: ReactNode[];
   id: number;
   block: ApiCollections["festival_block"][number];
 };
+
+export type FilterOption = {
+  selected: boolean;
+  value: string[];
+};
+
+export type SearchOption = "name" | "block";
+// | "genre";
+
+export type FilterState = Record<SearchOption, FilterOption>;
 
 type VotePageProps = {
   className?: string;
@@ -57,6 +71,11 @@ export const VotePage: FC<VotePageProps> = ({
   const client = useQueryClient();
   const [votedFilms, setVotedFilms] = useState<Set<number> | null>(null);
   const [counter, setCounter] = useState(-1);
+  const [filteredSearch, setFilteredSearch] = useState<FilterState>({
+    // author: { selected: false, value: [] },
+    block: { selected: false, value: [] },
+    name: { selected: false, value: [] },
+  });
   const { data, isLoading, isError, isFetching } = useQuery<
     ApiCollections["vote"][number]
   >({
@@ -159,7 +178,7 @@ export const VotePage: FC<VotePageProps> = ({
     debounce(() => {
       setCounter(-1);
       mutate(votedFilms ?? new Set());
-    }, 200),
+    }, 300),
     [votedFilms, mutate]
   );
 
@@ -289,16 +308,62 @@ export const VotePage: FC<VotePageProps> = ({
     )
   );
 
-  const orderedByBlockMovies = new Map<string, Movies[]>();
+  // const orderedByBlockMovies = new Map<string, Movies[]>();
 
-  (movies ?? []).forEach((element: Movies) => {
-    if (!orderedByBlockMovies.has(JSON.stringify(element.block))) {
-      orderedByBlockMovies.set(JSON.stringify(element.block), []);
+  // (movies ?? []).forEach((element: Movies) => {
+  //   if (!orderedByBlockMovies.has(JSON.stringify(element.block))) {
+  //     orderedByBlockMovies.set(JSON.stringify(element.block), []);
+  //   }
+  //   if (votingFilmsIds.has(element.id))
+  //     orderedByBlockMovies.get(JSON.stringify(element.block))!.push(element);
+  //   if (orderedByBlockMovies.get(JSON.stringify(element.block))!.length == 0) {
+  //     orderedByBlockMovies.delete(JSON.stringify(element.block));
+  //   }
+  // });
+
+  const orderedByBlockFilms = new Map<string, Movies[]>();
+  const blocks = new Set<string>();
+
+  (films ?? []).forEach((element: ApiCollections["film"][number]) => {
+    const block =
+      element.festival_block as ApiCollections["festival_block"][number];
+    const blockTranslated = translateDirectusProps(block, lang);
+    delete blockTranslated.translations;
+    blockTranslated.id = block.id;
+    const blockString = JSON.stringify(blockTranslated);
+    const film = translateDirectusProps(element, lang);
+    film.id = element.id;
+    if (!orderedByBlockFilms.has(blockString)) {
+      orderedByBlockFilms.set(blockString, []);
     }
-    if (votingFilmsIds.has(element.id))
-      orderedByBlockMovies.get(JSON.stringify(element.block))!.push(element);
-    if (orderedByBlockMovies.get(JSON.stringify(element.block))!.length == 0) {
-      orderedByBlockMovies.delete(JSON.stringify(element.block));
+    if (votingFilmsIds.has(film.id!)) {
+      blocks.add(blockString);
+      if (
+        filteredSearch.name.value.length &&
+        !fuzzy.test(
+          filteredSearch.name.value[0],
+          (film?.name ?? "")?.toLocaleLowerCase()
+        )
+      )
+        null;
+      else if (
+        filteredSearch.block.value.length &&
+        !filteredSearch.block.value.find(
+          (x) =>
+            x ==
+            (
+              element.festival_block as ApiCollections["festival_block"][number]
+            ).id?.toString()
+        )
+      )
+        null;
+      else
+        orderedByBlockFilms
+          .get(blockString)!
+          .push(movies?.find((x) => x.id == film.id)!);
+    }
+    if (orderedByBlockFilms.get(blockString)!.length == 0) {
+      orderedByBlockFilms.delete(blockString);
     }
   });
   return (
@@ -308,13 +373,13 @@ export const VotePage: FC<VotePageProps> = ({
       {!isError && !voting && <SaveButtonFallback />}
       {!isError && (
         <div className="flex flex-col w-full gap-20 p-10 py-16 items-center h-screen overflow-y-auto ">
-          {Array.from(orderedByBlockMovies.keys()).map((item) => {
+          {Array.from(orderedByBlockFilms.keys()).map((item: string) => {
             return (
               <BlockPage
                 key={item}
                 block={JSON.parse(item)}
                 lang={lang}
-                filteredMovies={orderedByBlockMovies.get(item)}
+                filteredMovies={orderedByBlockFilms.get(item)}
                 votedFilms={votedFilms ?? new Set()}
                 setVotedFilms={(id: number) => {
                   if (!(votedFilms ?? new Set()).has(id)) {
@@ -344,7 +409,11 @@ export const VotePage: FC<VotePageProps> = ({
               voteMessage={voting?.submit_text ?? "SAVE/ULOŽIT"}
             />
           )}
-          <FloatingFilterButton />
+          <FloatingFilterButton
+            blocks={[...blocks].map((x) => JSON.parse(x))}
+            filteredSearch={filteredSearch}
+            setFilteredSearch={setFilteredSearch}
+          />
           {voting && (
             <TimeToggle
               endTime={voting?.end_date ?? ""}

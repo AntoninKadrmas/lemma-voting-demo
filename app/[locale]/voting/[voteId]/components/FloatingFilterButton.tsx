@@ -1,45 +1,54 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import {
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { LuFilter } from "react-icons/lu";
-import { MdSearch, MdCategory, MdPerson, MdDelete } from "react-icons/md";
+import { MdSearch, MdCategory, MdDelete } from "react-icons/md";
+import { FilterOption, FilterState, SearchOption } from "./VotePage";
 import MultipleSelect from "@/components/ui/multiple-select";
+import { ApiCollections } from "@/types/api-collection";
+import debounce from "lodash/debounce";
 
-type SearchOption = "name" | "author" | "genre";
-
-type FilterOption = {
-  selected: boolean;
-  value: string[];
-};
-
-type FilterState = Record<SearchOption, FilterOption>;
-
-const genres = [
-  { label: "Fiction", value: "fiction" },
-  { label: "Non Fiction", value: "non-fiction" },
-  { label: "Science Fiction", value: "science-fiction" },
-  { label: "Fantasy", value: "fantasy" },
-  { label: "Mystery", value: "mystery" },
-  { label: "Romance", value: "romance" },
-  { label: "Thriller", value: "thriller" },
-  { label: "Biography", value: "biography" },
-];
-
-export function FloatingFilterButton() {
+export function FloatingFilterButton({
+  filteredSearch,
+  blocks,
+  setFilteredSearch,
+}: {
+  filteredSearch: FilterState;
+  blocks: ApiCollections["festival_block"][number][] &
+    ApiCollections["festival_block_translations"][number][];
+  setFilteredSearch: Dispatch<SetStateAction<FilterState>>;
+}) {
   const [isFilterExpanded, setIsFilterExpanded] = useState(false);
-  const [filteredSearch, setFilteredSearch] = useState<FilterState>({
-    author: { selected: false, value: [] },
-    genre: { selected: false, value: [] },
-    name: { selected: false, value: [] },
-  });
-
+  const [localFilter, setLocalFilter] = useState<FilterState>(filteredSearch);
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRefs = useRef<
     Record<string, HTMLDivElement | HTMLInputElement | HTMLButtonElement | null>
   >({});
+
+  // Debounced propagation to parent
+  const debouncedSetFilteredSearch = useRef(
+    debounce((nextState: FilterState) => {
+      setFilteredSearch(nextState);
+    }, 300)
+  ).current;
+
+  useEffect(() => {
+    debouncedSetFilteredSearch(localFilter);
+  }, [localFilter]);
+
+  useEffect(() => {
+    setLocalFilter(filteredSearch);
+  }, [filteredSearch]);
 
   const toggleFilter = () => {
     if (isFilterExpanded) onClose();
@@ -47,7 +56,7 @@ export function FloatingFilterButton() {
   };
 
   const toggleSearch = (type: SearchOption) => {
-    setFilteredSearch((prev) => {
+    setLocalFilter((prev) => {
       const updated = { ...prev };
       let clearedInput = false;
 
@@ -77,7 +86,7 @@ export function FloatingFilterButton() {
   };
 
   const onClean = () => {
-    setFilteredSearch((prev) => {
+    setLocalFilter((prev) => {
       const updated = { ...prev };
       (Object.keys(updated) as SearchOption[]).forEach((key) => {
         updated[key].selected = false;
@@ -87,7 +96,7 @@ export function FloatingFilterButton() {
   };
 
   const onCleanForce = () => {
-    setFilteredSearch((prev) => {
+    setLocalFilter((prev) => {
       const updated = { ...prev };
       (Object.keys(updated) as SearchOption[]).forEach((key) => {
         updated[key] = { value: [], selected: false };
@@ -129,8 +138,16 @@ export function FloatingFilterButton() {
   const checkClosed = (data: FilterOption) => data.selected || checkValue(data);
   const checkValue = (data: FilterOption) => data.value.length > 0;
 
-  const hasAnyFilter = Object.values(filteredSearch).some(checkValue);
-  const hasAnyFilterOpened = Object.values(filteredSearch).some(checkClosed);
+  const hasAnyFilter = Object.values(localFilter).some(checkValue);
+  const hasAnyFilterOpened = Object.values(localFilter).some(checkClosed);
+
+  const blockData = blocks.map(
+    (x: ApiCollections["festival_block"][number]) => ({
+      label: x.name ?? "",
+      value: x.id?.toString() ?? "",
+    })
+  );
+
   return (
     <div
       ref={containerRef}
@@ -146,18 +163,13 @@ export function FloatingFilterButton() {
         onClick={toggleFilter}
       >
         <div className="w-full h-full relative flex justify-center items-center transition-all duration-100 ease-in-out">
-          {filteredSearch.name.value.length > 0 && (
+          {localFilter.name.value.length > 0 && (
             <div className="absolute -left-1 -top-1 bg-destructive text-white rounded-2xl font-bold p-1">
               <MdSearch className="!h-4 !w-4" />
             </div>
           )}
-          {filteredSearch.author.value.length > 0 && (
+          {localFilter.block.value.length > 0 && (
             <div className="absolute -right-1 -top-1 bg-destructive text-white rounded-2xl font-bold p-1">
-              <MdPerson className="!h-4 !w-4" />
-            </div>
-          )}
-          {filteredSearch.genre.value.length > 0 && (
-            <div className="absolute -right-1 -bottom-1 bg-destructive text-white rounded-2xl font-bold p-1">
               <MdCategory className="!h-4 !w-4" />
             </div>
           )}
@@ -179,9 +191,9 @@ export function FloatingFilterButton() {
           <div
             className={cn("transition-all duration-200 ease-in-out", {
               "w-[0] opacity-0 pointer-events-none": !checkClosed(
-                filteredSearch.name
+                localFilter.name
               ),
-              "w-full opacity-100": checkClosed(filteredSearch.name),
+              "w-full opacity-100": checkClosed(localFilter.name),
             })}
           >
             <Input
@@ -190,7 +202,7 @@ export function FloatingFilterButton() {
               }}
               onChange={(val) => {
                 const value = val.target.value;
-                setFilteredSearch((prev) => ({
+                setLocalFilter((prev) => ({
                   ...prev,
                   name: {
                     ...prev.name,
@@ -198,7 +210,7 @@ export function FloatingFilterButton() {
                   },
                 }));
               }}
-              value={filteredSearch.name.value[0] || ""}
+              value={localFilter.name.value[0] || ""}
               placeholder="Search by name..."
               className="h-14 rounded-full shadow-lg border-0 pr-14 text-sm"
             />
@@ -206,14 +218,12 @@ export function FloatingFilterButton() {
           <Button
             size="icon"
             variant={
-              filteredSearch.name.value.length === 0
-                ? "secondary"
-                : "destructive"
+              localFilter.name.value.length === 0 ? "secondary" : "destructive"
             }
             className={cn(
               "h-14 w-14 rounded-full shadow-lg flex-shrink-0 cursor-pointer",
-              filteredSearch.name.value.length === 0
-                ? checkClosed(filteredSearch.name)
+              localFilter.name.value.length === 0
+                ? checkClosed(localFilter.name)
                   ? "bg-primary text-primary-foreground"
                   : ""
                 : "text-shadow-white"
@@ -224,57 +234,7 @@ export function FloatingFilterButton() {
           </Button>
         </div>
 
-        {/* Author */}
-        <div className="flex items-center gap-3 justify-end">
-          <div
-            className={cn("transition-all duration-200 ease-in-out", {
-              "w-[0] opacity-0 pointer-events-none": !checkClosed(
-                filteredSearch.author
-              ),
-              "w-full opacity-100": checkClosed(filteredSearch.author),
-            })}
-          >
-            <Input
-              ref={(el) => {
-                inputRefs.current["author"] = el;
-              }}
-              onChange={(val) => {
-                const value = val.target.value;
-                setFilteredSearch((prev) => ({
-                  ...prev,
-                  author: {
-                    ...prev.author,
-                    value: value ? [value] : [],
-                  },
-                }));
-              }}
-              value={filteredSearch.author.value[0] || ""}
-              placeholder="Search by author..."
-              className="h-14 rounded-full shadow-lg border-0 pr-14 text-sm"
-            />
-          </div>
-          <Button
-            size="icon"
-            variant={
-              filteredSearch.author.value.length === 0
-                ? "secondary"
-                : "destructive"
-            }
-            className={cn(
-              "h-14 w-14 rounded-full shadow-lg flex-shrink-0 cursor-pointer",
-              filteredSearch.author.value.length === 0
-                ? checkClosed(filteredSearch.author)
-                  ? "bg-primary text-primary-foreground"
-                  : ""
-                : "text-shadow-white"
-            )}
-            onClick={() => toggleSearch("author")}
-          >
-            <MdPerson className="!h-5 !w-5" />
-          </Button>
-        </div>
-
-        {/* Genre */}
+        {/* Block */}
         <div
           className="flex items-center gap-3 justify-end"
           onClick={(e) => e.stopPropagation()}
@@ -282,27 +242,27 @@ export function FloatingFilterButton() {
           <div
             className={cn("transition-all duration-200 ease-in-out", {
               "w-[0] opacity-0 pointer-events-none": !checkClosed(
-                filteredSearch.genre
+                localFilter.block
               ),
-              "w-full opacity-100": checkClosed(filteredSearch.genre),
+              "w-full opacity-100": checkClosed(localFilter.block),
             })}
             ref={(el) => {
               inputRefs.current["genre"] = el;
             }}
           >
             <MultipleSelect
-              isOpen={checkClosed(filteredSearch.genre)}
-              options={genres}
-              placeholder="Search by genres..."
-              selectedOptions={filteredSearch.genre.value}
+              isOpen={checkClosed(localFilter.block)}
+              options={blockData}
+              placeholder="Search by blocks..."
+              selectedOptions={localFilter.block.value}
               setSelectedOptions={(value) => {
-                setFilteredSearch((prev) => ({
+                setLocalFilter((prev) => ({
                   ...prev,
-                  genre: {
-                    ...prev.genre,
+                  block: {
+                    ...prev.block,
                     value:
                       typeof value === "function"
-                        ? value(prev.genre.value)
+                        ? value(prev.block.value)
                         : value,
                   },
                 }));
@@ -312,19 +272,17 @@ export function FloatingFilterButton() {
           <Button
             size="icon"
             variant={
-              filteredSearch.genre.value.length === 0
-                ? "secondary"
-                : "destructive"
+              localFilter.block.value.length === 0 ? "secondary" : "destructive"
             }
             className={cn(
               "h-14 w-14 rounded-full shadow-lg flex-shrink-0 cursor-pointer",
-              filteredSearch.genre.value.length === 0
-                ? checkClosed(filteredSearch.genre)
+              localFilter.block.value.length === 0
+                ? checkClosed(localFilter.block)
                   ? "bg-primary text-primary-foreground"
                   : ""
                 : "text-shadow-white"
             )}
-            onClick={() => toggleSearch("genre")}
+            onClick={() => toggleSearch("block")}
           >
             <MdCategory className="!h-5 !w-5" />
           </Button>
