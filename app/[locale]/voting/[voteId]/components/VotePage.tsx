@@ -11,7 +11,10 @@ import {
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { debounce } from "lodash";
 import { toast } from "sonner";
-import { FloatingFilterButton } from "./FloatingFilterButton";
+import {
+  FloatingFilterButton,
+  FloatingFilterButtonSkeleton,
+} from "./FloatingFilterButton";
 import { SaveButton, SaveButtonFallback } from "./SaveButton";
 import { ApiCollections } from "@/types/api-collection";
 import env from "@/env";
@@ -74,7 +77,7 @@ export const VotePage: FC<VotePageProps> = ({
     block: { selected: false, value: [] },
     name: { selected: false, value: [] },
   });
-  const { data, isLoading, isError, isFetching } = useQuery<
+  let { data, isLoading, isError, isFetching } = useQuery<
     ApiCollections["vote"][number]
   >({
     queryKey: ["votedFilms", voteId],
@@ -359,12 +362,18 @@ export const VotePage: FC<VotePageProps> = ({
       orderedByBlockFilms.delete(blockString);
     }
   });
+
   return (
     <>
-      {!isError && !data && <FilmCardSkeletonGroup />}
-      {!isError && !data && <FilmCardSkeletonGroup />}
-      {!isError && !voting && <SaveButtonFallback />}
-      {!isError && (
+      {!isError && !data && (
+        <div className="flex flex-col w-full gap-20 p-10 py-16 items-center h-screen overflow-y-auto ">
+          {<FilmCardSkeletonGroup />}
+          {<FilmCardSkeletonGroup />}
+          {!voting && <SaveButtonFallback />}
+          {!voting && <FloatingFilterButtonSkeleton />}
+        </div>
+      )}
+      {!isError && data && (
         <div className="flex flex-col w-full gap-20 p-10 py-16 items-center h-screen overflow-y-auto ">
           {Array.from(orderedByBlockFilms.keys()).map((item: string) => {
             return (
@@ -402,11 +411,13 @@ export const VotePage: FC<VotePageProps> = ({
               voteMessage={voting?.submit_text ?? "SAVE/ULOŽIT"}
             />
           )}
-          <FloatingFilterButton
-            blocks={[...blocks].map((x) => JSON.parse(x))}
-            filteredSearch={filteredSearch}
-            setFilteredSearch={setFilteredSearch}
-          />
+          {voting && (
+            <FloatingFilterButton
+              blocks={[...blocks].map((x) => JSON.parse(x))}
+              filteredSearch={filteredSearch}
+              setFilteredSearch={setFilteredSearch}
+            />
+          )}
           {voting && (
             <TimeToggle
               endTime={voting?.end_date ?? ""}

@@ -86,17 +86,8 @@ export const SaveButton: FC<SaveButtonProps> = ({
   );
 };
 
-export const SaveButtonFallback: FC<{ className?: string }> = ({
-  className,
-}) => {
+export const SaveButtonFallback: FC = () => {
   return (
-    <div
-      className={cn(
-        "absolute w-auto transition-all duration-100 ease-in-out flex flex-row justify-between right-0 bottom-3 sm:right-4 sm:bottom-8 items-end z-20",
-        className
-      )}
-    >
-      <Skeleton className="h-14 w-32" />
-    </div>
+    <Skeleton className="h-14 w-32 absolute right-4 bottom-3 sm:right-8 sm:bottom-8 z-20" />
   );
 };

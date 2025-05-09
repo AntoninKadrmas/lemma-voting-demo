@@ -17,6 +17,7 @@ import { FilterOption, FilterState, SearchOption } from "./VotePage";
 import MultipleSelect from "@/components/ui/multiple-select";
 import { ApiCollections } from "@/types/api-collection";
 import debounce from "lodash/debounce";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function FloatingFilterButton({
   filteredSearch,
@@ -311,3 +312,9 @@ export function FloatingFilterButton({
     </div>
   );
 }
+
+export const FloatingFilterButtonSkeleton = () => {
+  return (
+    <Skeleton className="h-14 w-14 rounded-full absolute right-4 top-3 sm:right-8 sm:top-8 z-20" />
+  );
+};
