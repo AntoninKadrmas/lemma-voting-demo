@@ -3,7 +3,7 @@ import env from "@/env";
 import { AvailableLocales } from "@/lib/constants";
 import directusImageLoader from "@/lib/DirectusLoader";
 import { translateDirectusProps } from "@/lib/directusTranslations";
-import { cn, parseTranslations } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { ApiCollections } from "@/types/api-collection";
 import Image from "next/image";
 import { FC, HTMLAttributes } from "react";
@@ -54,8 +54,8 @@ export const FilmShortContent: FC<FilmShortContentProps> = ({
             }`}
             loader={directusImageLoader}
             alt="Fallback Image"
-            width={100}
-            height={100}
+            width={200}
+            height={200}
             className="h-full w-full object-cover pointer-events-none"
           />
         </div>
