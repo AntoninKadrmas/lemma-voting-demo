@@ -309,19 +309,6 @@ export const VotePage: FC<VotePageProps> = ({
     )
   );
 
-  // const orderedByBlockMovies = new Map<string, Movies[]>();
-
-  // (movies ?? []).forEach((element: Movies) => {
-  //   if (!orderedByBlockMovies.has(JSON.stringify(element.block))) {
-  //     orderedByBlockMovies.set(JSON.stringify(element.block), []);
-  //   }
-  //   if (votingFilmsIds.has(element.id))
-  //     orderedByBlockMovies.get(JSON.stringify(element.block))!.push(element);
-  //   if (orderedByBlockMovies.get(JSON.stringify(element.block))!.length == 0) {
-  //     orderedByBlockMovies.delete(JSON.stringify(element.block));
-  //   }
-  // });
-
   const orderedByBlockFilms = new Map<string, Movies[]>();
   const blocks = new Set<string>();
 

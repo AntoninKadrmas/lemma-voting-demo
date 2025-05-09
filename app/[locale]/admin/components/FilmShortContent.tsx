@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import env from "@/env";
 import { AvailableLocales } from "@/lib/constants";
 import directusImageLoader from "@/lib/DirectusLoader";
+import { translateDirectusProps } from "@/lib/directusTranslations";
 import { cn, parseTranslations } from "@/lib/utils";
 import { ApiCollections } from "@/types/api-collection";
 import Image from "next/image";
@@ -74,7 +75,12 @@ export const FilmShortContent: FC<FilmShortContentProps> = ({
               { "text-xl": amount != undefined }
             )}
           >
-            {film.name}
+            {
+              translateDirectusProps(
+                film as ApiCollections["film"][number],
+                lang
+              ).name
+            }
           </p>
           <div className="text-sm font-light flex gap-1 flex-wrap">
             {film.genres &&
@@ -82,7 +88,7 @@ export const FilmShortContent: FC<FilmShortContentProps> = ({
                 (val: ApiCollections["film_film_genre"][number]) => (
                   <Badge key={val.id + "badge_genre_short"}>
                     {
-                      parseTranslations<ApiCollections["film_genre"][number]>(
+                      translateDirectusProps(
                         val.film_genre_id as ApiCollections["film_genre"][number],
                         lang
                       ).name
