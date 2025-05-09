@@ -77,7 +77,7 @@ export const VotePage: FC<VotePageProps> = ({
     block: { selected: false, value: [] },
     name: { selected: false, value: [] },
   });
-  let { data, isLoading, isError, isFetching } = useQuery<
+  const { data, isLoading, isError, isFetching } = useQuery<
     ApiCollections["vote"][number]
   >({
     queryKey: ["votedFilms", voteId],

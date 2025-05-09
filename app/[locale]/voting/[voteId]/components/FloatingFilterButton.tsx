@@ -45,7 +45,7 @@ export function FloatingFilterButton({
 
   useEffect(() => {
     debouncedSetFilteredSearch(localFilter);
-  }, [localFilter]);
+  }, [localFilter, debouncedSetFilteredSearch]);
 
   useEffect(() => {
     setLocalFilter(filteredSearch);
