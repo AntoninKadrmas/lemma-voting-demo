@@ -143,10 +143,10 @@ const generatePDFWithQRCodes = async (
     let descWidth = fontItalic.widthOfTextAtSize(description, descSize);
     page.drawText(description, {
       x: centerX - descWidth / 2,
-      y: centerY - qrSize / 2,
+      y: centerY - qrSize / 2 - 5,
       size: descSize,
       font: fontItalic,
-      color: rgb(0, 0, 0),
+      color: rgb(0.3, 0.3, 0.3),
     });
 
     description = val.id;
@@ -154,10 +154,10 @@ const generatePDFWithQRCodes = async (
     descWidth = fontItalic.widthOfTextAtSize(description, descSize);
     page.drawText(description, {
       x: centerX - descWidth / 2,
-      y: centerY - qrSize / 2 - 10,
+      y: centerY - qrSize / 2 - 15,
       size: descSize,
       font: fontItalic,
-      color: rgb(0, 0, 0),
+      color: rgb(0.3, 0.3, 0.3),
     });
 
     description = "Voting opens after 1st film";
@@ -165,7 +165,7 @@ const generatePDFWithQRCodes = async (
     descWidth = fontBold.widthOfTextAtSize(description, descSize);
     page.drawText(description, {
       x: centerX - descWidth / 2,
-      y: centerY - qrSize / 2 - 30,
+      y: centerY - qrSize / 2 - 35,
       size: descSize,
       font: fontBold,
       color: rgb(0, 0, 0),
@@ -176,13 +176,13 @@ const generatePDFWithQRCodes = async (
     descWidth = fontRegular.widthOfTextAtSize(description, descSize);
     page.drawText(description, {
       x: centerX - descWidth / 2,
-      y: centerY - qrSize / 2 - 45,
+      y: centerY - qrSize / 2 - 50,
       size: descSize,
       font: fontRegular,
       color: rgb(0.3, 0.3, 0.3),
     });
 
-    // bottom left corner
+    // bottom center
     description = `Voting: FFFIMU25`;
     descSize = 10;
     descWidth = fontItalic.widthOfTextAtSize(description, descSize);
@@ -219,8 +219,7 @@ async function main() {
       default: "LemmaVotingQr", // Default value if not provided
     })
     .option("logo", {
-      description:
-        "Relative path to the logo that should be placed in the middle",
+      description: "Path to the logo that should be placed in the middle",
       type: "string",
     })
     .option("logosize", {
