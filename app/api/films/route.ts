@@ -5,6 +5,7 @@ import { filmFragment } from "@/types/directus-fragemnt";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
 import env from "@/env";
+import { rateLimit } from "../utils/rateLimit";
 
 export async function GET(req: NextRequest) {
   const referer = req.headers.get("referer") || "";
@@ -17,6 +18,13 @@ export async function GET(req: NextRequest) {
     (session.user?.role !== "user" && session.user?.role !== "admin")
   ) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  if (!rateLimit(session.user.id, "GET", new URL(req.url).pathname, 30)) {
+    return NextResponse.json(
+      { error: "Too many requests wait a moment." },
+      { status: 429 }
+    );
   }
 
   let data;

@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
     return new NextResponse("Unauthorized", { status: 401 });
   }
 
-  if (!rateLimit(session.user.id)) {
+  if (!rateLimit(session.user.id, "GET", new URL(req.url).pathname)) {
     return NextResponse.json(
       { error: "Too many requests wait a moment." },
       { status: 429 }

@@ -22,6 +22,13 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  if (!rateLimit(session.user.id, "GET", new URL(req.url).pathname, 30)) {
+    return NextResponse.json(
+      { error: "Too many requests wait a moment." },
+      { status: 429 }
+    );
+  }
+
   try {
     const id = req.nextUrl.pathname.split("/").pop()!;
     const data = await directusNoCashing.request(
@@ -74,7 +81,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  if (!rateLimit(session.user.id)) {
+  if (!rateLimit(session.user.id, "POST", new URL(req.url).pathname)) {
     return NextResponse.json(
       { error: "Too many requests wait a moment." },
       { status: 429 }
