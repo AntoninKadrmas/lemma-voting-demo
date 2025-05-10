@@ -12,6 +12,7 @@ dotenv.config();
 const generatePDFWithQRCodes = async (
   data: ApiCollections["vote"][number][],
   fileName: string,
+  logs: boolean,
   logoSize: number,
   logoPath?: string
 ) => {
@@ -45,7 +46,7 @@ const generatePDFWithQRCodes = async (
         compressionLevel: 0,
       })
       .toBuffer();
-    console.log("Generated qr logo");
+    if (logs) console.log("Generated qr logo");
   }
 
   for (let i = 0; i < data.length; i++) {
@@ -198,7 +199,7 @@ const generatePDFWithQRCodes = async (
       page = pdfDoc.addPage([pageWidth, pageHeight]);
       itemsOnPage = 0;
     }
-    console.log(`Generated qr code ${i + 1}/${data.length}`);
+    if (logs) console.log(`Generated qr code ${i + 1}/${data.length}`);
   }
 
   const pdfBytes = await pdfDoc.save();
@@ -208,25 +209,30 @@ const generatePDFWithQRCodes = async (
 async function main() {
   const argv = await yargs(process.argv.slice(2))
     .option("amount", {
-      description: "Amount of QR codes to generate.",
+      description: "Amount of QR codes to generate",
       type: "number",
       demandOption: true, // This makes --amount required
     })
     .option("name", {
-      description: "Name for the generated QR codes PDF.",
+      description: "Name for the generated QR codes PDF",
       type: "string",
       default: "LemmaVotingQr", // Default value if not provided
     })
     .option("logo", {
       description:
-        "Relative path to the logo that should be placed in the middle.",
+        "Relative path to the logo that should be placed in the middle",
       type: "string",
     })
     .option("logosize", {
       description:
-        "Multiplier between 0 and 1 where 1 is size of qrcode and 0 is hidden.",
+        "Multiplier between 0 and 1 where 1 is size of qrcode and 0 is hidden",
       type: "number",
       default: 0.3,
+    })
+    .option("logs", {
+      description: "Show the logs of progress",
+      type: "boolean",
+      default: false,
     })
     .check((argv) => {
       if (!Number.isInteger(argv.amount) || argv.amount < 0) {
@@ -247,10 +253,11 @@ async function main() {
   const name = argv.name;
   const logo = argv.logo;
   const logoSize = argv.logosize;
+  const logs = argv.logs;
 
   const data = await directusNoCashing.request<
     ApiCollections["vote"][number][]
   >(readItems("vote", { limit: amount }));
-  generatePDFWithQRCodes(data, name, logoSize, logo);
+  generatePDFWithQRCodes(data, name, logs, logoSize, logo);
 }
 main().catch((err) => console.error(err));

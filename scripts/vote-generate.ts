@@ -12,13 +12,13 @@ async function main() {
       demandOption: true, // This makes --amount required
     })
     .option("voting", {
-      description: "Id of voting to which the votes belongs to.",
+      description: "Id of voting to which the votes belongs to",
       type: "string",
       default: "a2f8a4e8-9f73-4c56-b353-2fc3bfe0d91b",
     })
     .check((argv) => {
       if (!Number.isInteger(argv.amount) || argv.amount < 0) {
-        throw new Error("amount must be an integer 0 or greater.");
+        throw new Error("amount must be an integer 0 or greater");
       }
       return true;
     })
