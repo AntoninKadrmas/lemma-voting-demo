@@ -5,12 +5,15 @@ import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import fs from "fs";
 import { directusNoCashing } from "@/app/api/utils/directusConst";
 import yargs from "yargs";
+import sharp from "sharp";
 import dotenv from "dotenv";
 dotenv.config();
 
 const generatePDFWithQRCodes = async (
   data: ApiCollections["vote"][number][],
-  fileName: string
+  fileName: string,
+  logoSize: number,
+  logoPath?: string
 ) => {
   const pdfDoc = await PDFDocument.create();
   const pageWidth = 595.28;
@@ -21,14 +24,70 @@ const generatePDFWithQRCodes = async (
 
   let page = pdfDoc.addPage([pageWidth, pageHeight]);
   let itemsOnPage = 0;
+  const qrSize = 250; // Size in points (1/78 inch)
+  const qrResolution = 300; // DPI
+  const qrSizePixels = Math.round((qrSize / 78) * qrResolution);
+
+  let optimizedLogoBuffer;
+  if (logoPath) {
+    // Calculate logo size (30% of QR code size)
+    const logoSizePixels = Math.round(qrSizePixels * logoSize);
+    optimizedLogoBuffer = await sharp(logoPath)
+      .resize({
+        width: logoSizePixels,
+        height: logoSizePixels,
+        fit: "contain",
+        background: { r: 0, g: 0, b: 0, alpha: 0 }, // Transparent background
+        kernel: sharp.kernel.lanczos3,
+      })
+      .png({
+        quality: 100,
+        compressionLevel: 0,
+      })
+      .toBuffer();
+    console.log("Generated qr logo");
+  }
 
   for (let i = 0; i < data.length; i++) {
     const val = data[i];
     if (!val.voting_id) continue;
 
     const url = `https://lemma-voting-demo.vercel.app/en/voting/${val.id}`;
-    const dataUrl = await QRCode.toDataURL(url);
-    const qrImage = await pdfDoc.embedPng(dataUrl);
+    const dataUrl = await QRCode.toDataURL(url, {
+      errorCorrectionLevel: "H",
+      width: qrSizePixels,
+      margin: 2, // Add some margin
+      color: {
+        dark: "#000000", // Pure black
+        light: "#ffffff", // Pure white
+      },
+    });
+
+    let qrImage;
+    if (logoPath) {
+      // Create QR code with logo
+      const qrWithLogo = await sharp(
+        Buffer.from(dataUrl.split(",")[1], "base64")
+      )
+        .ensureAlpha() // Ensure transparency channel exists
+        .composite([
+          {
+            input: optimizedLogoBuffer,
+            gravity: "center",
+            blend: "over",
+          },
+        ])
+        .resize(Math.round((qrSize / 72) * qrResolution)) // Downscale to target DPI
+        .png({
+          quality: 100,
+          compressionLevel: 0,
+        })
+        .toBuffer();
+
+      qrImage = await pdfDoc.embedPng(qrWithLogo);
+    } else {
+      qrImage = await pdfDoc.embedPng(dataUrl);
+    }
 
     const quadrantX = (itemsOnPage % 2) * (pageWidth / 2);
     const quadrantY =
@@ -47,7 +106,6 @@ const generatePDFWithQRCodes = async (
     });
 
     //  Draw QR
-    const qrSize = 250;
     page.drawImage(qrImage, {
       x: centerX - qrSize / 2,
       y: centerY - qrSize / 2,
@@ -140,6 +198,7 @@ const generatePDFWithQRCodes = async (
       page = pdfDoc.addPage([pageWidth, pageHeight]);
       itemsOnPage = 0;
     }
+    console.log(`Generated qr code ${i + 1}/${data.length}`);
   }
 
   const pdfBytes = await pdfDoc.save();
@@ -149,24 +208,49 @@ const generatePDFWithQRCodes = async (
 async function main() {
   const argv = await yargs(process.argv.slice(2))
     .option("amount", {
-      description: "Amount of QR codes to generate",
+      description: "Amount of QR codes to generate.",
       type: "number",
       demandOption: true, // This makes --amount required
     })
     .option("name", {
-      description: "Name for the generated QR codes PDF",
+      description: "Name for the generated QR codes PDF.",
       type: "string",
       default: "LemmaVotingQr", // Default value if not provided
+    })
+    .option("logo", {
+      description:
+        "Relative path to the logo that should be placed in the middle.",
+      type: "string",
+    })
+    .option("logosize", {
+      description:
+        "Multiplier between 0 and 1 where 1 is size of qrcode and 0 is hidden.",
+      type: "number",
+      default: 0.3,
+    })
+    .check((argv) => {
+      if (!Number.isInteger(argv.amount) || argv.amount < 0) {
+        throw new Error("amount must be an integer 0 or greater");
+      }
+      return true;
+    })
+    .check((argv) => {
+      if (argv.logosize < 0 || argv.logosize > 1) {
+        throw new Error("logosize must be between 0 and 1 (inclusive)");
+      }
+      return true; // validation passed
     })
     .help() // Automatically generates a --help option
     .alias("help", "h").argv; // Alias to trigger help with -h
 
   const amount = argv.amount;
   const name = argv.name;
+  const logo = argv.logo;
+  const logoSize = argv.logosize;
 
   const data = await directusNoCashing.request<
     ApiCollections["vote"][number][]
   >(readItems("vote", { limit: amount }));
-  generatePDFWithQRCodes(data, name);
+  generatePDFWithQRCodes(data, name, logoSize, logo);
 }
 main().catch((err) => console.error(err));
