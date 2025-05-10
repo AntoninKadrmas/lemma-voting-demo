@@ -1,7 +1,5 @@
 import { directusNoCashing } from "@/app/api/utils/directusConst";
 import {
-  deleteItem,
-  deleteItems,
   updateItem,
   updateItems,
 } from "@directus/sdk";
