@@ -10,6 +10,8 @@ import dotenv from "dotenv";
 import env from "@/env";
 dotenv.config();
 
+const api_url = "https://lemma-voting-demo.vercel.app/";
+
 const generatePDFWithQRCodes = async (
   data: ApiCollections["vote"][number][],
   fileName: string,
@@ -54,7 +56,7 @@ const generatePDFWithQRCodes = async (
     const val = data[i];
     if (!val.voting_id) continue;
 
-    const url = `${env.NEXT_PUBLIC_URL}en/voting/${val.id}`;
+    const url = `${api_url}en/voting/${val.id}`;
     const dataUrl = await QRCode.toDataURL(url, {
       errorCorrectionLevel: "H",
       width: qrSizePixels,
@@ -139,7 +141,7 @@ const generatePDFWithQRCodes = async (
     });
 
     // Draw Description
-    let description = `${env.NEXT_PUBLIC_URL}en/voting/`;
+    let description = `${api_url}en/voting/`;
     let descSize = 10;
     let descWidth = fontItalic.widthOfTextAtSize(description, descSize);
     page.drawText(description, {
