@@ -26,7 +26,7 @@ export const env = createEnv({
   client: {
     // NEXT_PUBLIC_CLIENTVAR: z.string(),
     NEXT_PUBLIC_DIRECTUS_URL: z.string().url(),
-    NEXT_PUBLIC_API_URL: z.string().url(),
+    NEXT_PUBLIC_URL: z.string().url(),
   },
 
   /**
@@ -39,7 +39,7 @@ export const env = createEnv({
     NEXT_PUBLIC_DIRECTUS_URL: process.env.NEXT_PUBLIC_DIRECTUS_URL,
     DIRECTUS_PASSWORD: process.env.DIRECTUS_PASSWORD,
     DIRECTUS_USERNAME: process.env.DIRECTUS_USERNAME,
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
     NEXTAUTH_USERNAME: process.env.NEXTAUTH_USERNAME,
     NEXRAUTH_PASSWORD: process.env.NEXRAUTH_PASSWORD,
   },

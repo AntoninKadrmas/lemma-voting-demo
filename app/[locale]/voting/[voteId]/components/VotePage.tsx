@@ -83,7 +83,7 @@ export const VotePage: FC<VotePageProps> = ({
     queryKey: ["votedFilms", voteId],
     queryFn: async () => {
       const response = await fetch(
-        `${env.NEXT_PUBLIC_API_URL || ""}/vote/${voteId}`,
+        `${env.NEXT_PUBLIC_URL || ""}api/vote/${voteId}`,
         {
           method: "GET",
           headers: {
@@ -127,7 +127,7 @@ export const VotePage: FC<VotePageProps> = ({
     mutationFn: async (films: Set<number>) => {
       setCounter(-1);
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL || ""}/vote/${voteId}`,
+        `${process.env.NEXT_PUBLIC_URL || ""}api/vote/${voteId}`,
         {
           method: "POST",
           headers: {

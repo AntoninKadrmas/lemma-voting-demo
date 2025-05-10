@@ -1,11 +1,12 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { FC } from "react";
-import env from "@/env";
 import { ResultsPage } from "./components/ResultsPage";
 import { ApiCollections } from "@/types/api-collection";
 import { AVAIL_LOCALES, AvailableLocales } from "@/lib/constants";
 import { authOptions } from "@/lib/authOptions";
+import { cookies } from "next/headers";
+import env from "@/env";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -19,8 +20,17 @@ const AdminPage: FC<Props> = async ({ ...props }) => {
     redirect(`/${locale}/login`);
   }
 
-  const res = await fetch(`${env.NEXT_PUBLIC_API_URL}/films`, {
+  const cookieStore = await cookies();
+  const cookieHeader = cookieStore
+    .getAll()
+    .map((c) => `${c.name}=${c.value}`)
+    .join("; ");
+  const res = await fetch(`${env.NEXT_PUBLIC_URL}api/films`, {
     method: "GET",
+    headers: {
+      Cookie: cookieHeader,
+      Referer: env.NEXT_PUBLIC_URL,
+    },
   });
 
   if (res.status != 200) return "Error during film fetching";

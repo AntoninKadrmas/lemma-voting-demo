@@ -37,7 +37,7 @@ const RootLayout: FC<Props> = async ({ params, children }) => {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background font-sans dark:text-white relative`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background font-sans dark:text-white`}
       >
         <SpeedInsights />
         <Analytics />

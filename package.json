@@ -7,6 +7,7 @@
     "script:vote:u": "pnpx tsx ./scripts/vote-update.ts",
     "script:vote:d": "pnpx tsx ./scripts/vote-prune.ts",
     "script:vote:c": "pnpx tsx ./scripts/vote-generate.ts",
+    "script:api": "pnpx tsx ./scripts/api-test.ts",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",

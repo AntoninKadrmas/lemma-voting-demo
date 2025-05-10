@@ -7,6 +7,7 @@ import { directusNoCashing } from "@/app/api/utils/directusConst";
 import yargs from "yargs";
 import sharp from "sharp";
 import dotenv from "dotenv";
+import env from "@/env";
 dotenv.config();
 
 const generatePDFWithQRCodes = async (
@@ -53,7 +54,7 @@ const generatePDFWithQRCodes = async (
     const val = data[i];
     if (!val.voting_id) continue;
 
-    const url = `https://lemma-voting-demo.vercel.app/en/voting/${val.id}`;
+    const url = `${env.NEXT_PUBLIC_URL}en/voting/${val.id}`;
     const dataUrl = await QRCode.toDataURL(url, {
       errorCorrectionLevel: "H",
       width: qrSizePixels,
@@ -138,7 +139,7 @@ const generatePDFWithQRCodes = async (
     });
 
     // Draw Description
-    let description = `https://lemma-voting-demo.vercel.app/en/voting/`;
+    let description = `${env.NEXT_PUBLIC_URL}en/voting/`;
     let descSize = 10;
     let descWidth = fontItalic.widthOfTextAtSize(description, descSize);
     page.drawText(description, {

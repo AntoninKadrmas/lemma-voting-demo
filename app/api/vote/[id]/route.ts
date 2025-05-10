@@ -3,29 +3,46 @@ import { readItem, updateItem } from "@directus/sdk";
 import { directusNoCashing } from "../../utils/directusConst";
 import { voteFragment } from "@/types/directus-fragemnt";
 import moment from "moment";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/authOptions";
+import env from "@/env";
+import { rateLimit } from "../../utils/rateLimit";
 
 export async function GET(req: NextRequest) {
-    try {
-      const id = req.nextUrl.pathname.split("/").pop()!;
-      const data = await directusNoCashing.request(
-        readItem("vote", id, {
-          fields: voteFragment.vote,
-        })
-      );
-      if (!data) {
-        return NextResponse.json(
-          { error: "Internal server error" },
-          { status: 500 }
-        );
-      }
-      return NextResponse.json(data);
-    } catch (error) {
-      console.error("POST /api/vote/[id] error:", error);
+  const referer = req.headers.get("referer") || "";
+  if (!referer.includes(env.NEXT_PUBLIC_URL)) {
+    return NextResponse.json({ error: "Invalid referer" }, { status: 403 });
+  }
+
+  const session = await getServerSession(authOptions);
+  if (
+    !session ||
+    (session.user?.role !== "user" && session.user?.role !== "admin")
+  ) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  try {
+    const id = req.nextUrl.pathname.split("/").pop()!;
+    const data = await directusNoCashing.request(
+      readItem("vote", id, {
+        fields: voteFragment.vote,
+      })
+    );
+    if (!data) {
       return NextResponse.json(
         { error: "Internal server error" },
         { status: 500 }
       );
     }
+    return NextResponse.json(data);
+  } catch (error) {
+    console.error("POST /api/vote/[id] error:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
+  }
 }
 
 type VoteData = {
@@ -44,6 +61,26 @@ const voteCache = new Map<string, VoteCacheEntry>();
 const CACHE_TTL_MS = 60_000;
 
 export async function POST(req: NextRequest) {
+  const referer = req.headers.get("referer") || "";
+  if (!referer.includes(env.NEXT_PUBLIC_URL)) {
+    return NextResponse.json({ error: "Invalid referer" }, { status: 403 });
+  }
+
+  const session = await getServerSession(authOptions);
+  if (
+    !session ||
+    (session.user?.role !== "user" && session.user?.role !== "admin")
+  ) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  if (!rateLimit(session.user.id)) {
+    return NextResponse.json(
+      { error: "Too many requests wait a moment." },
+      { status: 429 }
+    );
+  }
+
   const body = await req.json();
   const voteId = req.nextUrl.pathname.split("/").pop()!;
 
@@ -100,7 +137,7 @@ export async function POST(req: NextRequest) {
   for (const id of userFilmIds) {
     if (!validFilmIds.has(id)) {
       return NextResponse.json(
-        { error: `Invalid film ID: ${id}` },
+        { error: `Invalid film ID in voting.` },
         { status: 400 }
       );
     }

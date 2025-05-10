@@ -17,7 +17,7 @@ const Page: FC<Props> = async ({ params }) => {
       {lang == "en-US" && (
         <>
           <p>
-            For voting continue to the {env.NEXT_PUBLIC_API_URL}
+            For voting continue to the {env.NEXT_PUBLIC_URL}
             /en/voting/[voteId]
           </p>
           <p>Where [voteId] is your unique identification.</p>
@@ -26,7 +26,7 @@ const Page: FC<Props> = async ({ params }) => {
       {lang == "cz-CZ" && (
         <>
           <p>
-            Pro hlasování pokračujte na {env.NEXT_PUBLIC_API_URL}
+            Pro hlasování pokračujte na {env.NEXT_PUBLIC_URL}
             /cz/voting/[voteId]
           </p>
           <p>Kde [voteId] je váš unikátní identifikátor.</p>

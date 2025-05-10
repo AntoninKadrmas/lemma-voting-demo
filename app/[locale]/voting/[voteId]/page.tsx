@@ -6,6 +6,7 @@ import { AVAIL_LOCALES, AvailableLocales } from "@/lib/constants";
 import { getFimComponent } from "./components/FilmCardContent";
 import { SaveButtonFallback } from "./components/SaveButton";
 import env from "@/env";
+import { cookies } from "next/headers";
 
 type Props = {
   params: Promise<{ locale: string; voteId: string }>;
@@ -15,9 +16,19 @@ const Page: FC<Props> = async ({ params }) => {
   const { locale, voteId } = await params;
   const lang = (AVAIL_LOCALES.find((x) => x.startsWith(locale ?? "")) ??
     "cz-CZ") as AvailableLocales;
-  const res = await fetch(`${env.NEXT_PUBLIC_API_URL}/films`, {
+  const cookieStore = await cookies();
+  const cookieHeader = cookieStore
+    .getAll()
+    .map((c) => `${c.name}=${c.value}`)
+    .join("; ");
+  const res = await fetch(`${env.NEXT_PUBLIC_URL}api/films`, {
     method: "GET",
+    headers: {
+      Cookie: cookieHeader,
+      Referer: env.NEXT_PUBLIC_URL,
+    },
   });
+
   if (res.status != 200) return "Error during film fetching";
   const films: ApiCollections["film"][number][] = await res.json();
 

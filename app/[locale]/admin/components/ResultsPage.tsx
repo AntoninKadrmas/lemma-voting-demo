@@ -34,7 +34,7 @@ export const ResultsPage: FC<ResultsPageProps> = ({
   const { data, isLoading, isFetching, error } = useQuery<FetchedFilmData[]>({
     queryKey: ["votedFilms"],
     queryFn: async () => {
-      const response = await fetch(`${env.NEXT_PUBLIC_API_URL || ""}/vote`, {
+      const response = await fetch(`${env.NEXT_PUBLIC_URL || ""}api/vote`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

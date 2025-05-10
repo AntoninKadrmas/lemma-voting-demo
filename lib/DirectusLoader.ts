@@ -1,9 +1,6 @@
 "use client";
 import type { ImageLoaderProps } from "next/image";
 
-// const imgDomain =
-//   env.NEXT_PUBLIC_DIRECTUS_URL ?? "https://fffimu.up.railway.app";
-
 interface DirectusImageProps {
   fit?: "cover" | "contain" | "inside" | "outside";
   key?: "800w" | "1200w" | "1500w" | "thumbnail";

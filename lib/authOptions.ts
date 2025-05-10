@@ -7,29 +7,30 @@ export const authOptions: AuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
+        anonymous: { label: "Anonymous", type: "hidden" },
         username: { label: "Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        if (credentials?.anonymous === "true") {
+          return {
+            id: crypto.randomUUID(),
+            name: "Anonymous",
+            role: "user",
+          };
+        }
         const { username, password } = credentials || {};
         if (
           username === env.NEXTAUTH_USERNAME &&
           password === env.NEXRAUTH_PASSWORD
         ) {
-          return { id: 69, name: "Admin User", role: "admin" };
+          return { id: crypto.randomUUID(), name: "Admin User", role: "admin" };
         }
         return null;
       },
     }),
   ],
   callbacks: {
-    async session({ session, token }) {
-      if (token && session.user) {
-        session.user.id = token.id as number;
-        session.user.role = token.role as "admin" | "user";
-      }
-      return session;
-    },
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
@@ -37,8 +38,18 @@ export const authOptions: AuthOptions = {
       }
       return token;
     },
+    async session({ session, token }) {
+      if (token && session.user) {
+        session.user.id = token.id as string;
+        session.user.role = token.role as "admin" | "user";
+      }
+      return session;
+    },
   },
   pages: {
     signIn: "/login",
+  },
+  session: {
+    strategy: "jwt",
   },
 };
