@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "script:qr": "pnpx tsx ./scripts/qr-generate.ts",
-    "script:vote": "pnpx tsx ./scripts/vote-generate.ts",
+    "script:vote:u": "pnpx tsx ./scripts/vote-update.ts",
+    "script:vote:d": "pnpx tsx ./scripts/vote-prune.ts",
+    "script:vote:c": "pnpx tsx ./scripts/vote-generate.ts",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
