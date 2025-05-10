@@ -22,7 +22,7 @@ import { areSetsEqual, parseTranslations } from "@/lib/utils";
 import { AvailableLocales } from "@/lib/constants";
 import { BlockPage } from "./BlockPage";
 import { FilmCardSkeletonGroup } from "./FilmCardSkeleton";
-import moment from "moment";
+import moment from "moment-timezone";
 import Countdown from "@/components/element/Countdown";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
@@ -402,7 +402,10 @@ export const VotePage: FC<VotePageProps> = ({
             <p>
               {lang == "en-US" ? "Last time voted:" : "Naposledy zahlasováno:"}
               {data?.timestamp
-                ? moment(data?.timestamp).format(" DD. MM. YYYY, h:mm:ss ")
+                ? moment
+                    .utc(data?.timestamp)
+                    .local()
+                    .format("DD. MM. YYYY, HH:mm:ss")
                 : lang == "en-US"
                 ? "Not voted yet."
                 : "Ještě nehlasováno."}
